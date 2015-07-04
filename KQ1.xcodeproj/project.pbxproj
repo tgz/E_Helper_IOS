@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		5A898A241B480FFA00BECC26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A231B480FFA00BECC26 /* main.m */; };
 		5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A261B480FFA00BECC26 /* AppDelegate.m */; };
-		5A898A2A1B480FFA00BECC26 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A291B480FFA00BECC26 /* ViewController.m */; };
 		5A898A2D1B480FFA00BECC26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A2B1B480FFA00BECC26 /* Main.storyboard */; };
 		5A898A2F1B480FFA00BECC26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A2E1B480FFA00BECC26 /* Images.xcassets */; };
 		5A898A321B480FFA00BECC26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A301B480FFA00BECC26 /* LaunchScreen.xib */; };
 		5A898A3E1B480FFA00BECC26 /* KQ1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A3D1B480FFA00BECC26 /* KQ1Tests.m */; };
+		5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B02D1B4835FB00482293 /* HomeViewController.m */; };
+		5AE2B0311B483BB200482293 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B0301B483BB200482293 /* TodayViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +33,16 @@
 		5A898A231B480FFA00BECC26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5A898A251B480FFA00BECC26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5A898A261B480FFA00BECC26 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5A898A281B480FFA00BECC26 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5A898A291B480FFA00BECC26 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5A898A2C1B480FFA00BECC26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A898A2E1B480FFA00BECC26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5A898A311B480FFA00BECC26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5A898A371B480FFA00BECC26 /* KQ1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KQ1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A898A3C1B480FFA00BECC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A898A3D1B480FFA00BECC26 /* KQ1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KQ1Tests.m; sourceTree = "<group>"; };
+		5AE2B02C1B4835FB00482293 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		5AE2B02D1B4835FB00482293 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		5AE2B02F1B483BB200482293 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		5AE2B0301B483BB200482293 /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +86,14 @@
 			children = (
 				5A898A251B480FFA00BECC26 /* AppDelegate.h */,
 				5A898A261B480FFA00BECC26 /* AppDelegate.m */,
-				5A898A281B480FFA00BECC26 /* ViewController.h */,
-				5A898A291B480FFA00BECC26 /* ViewController.m */,
 				5A898A2B1B480FFA00BECC26 /* Main.storyboard */,
 				5A898A2E1B480FFA00BECC26 /* Images.xcassets */,
 				5A898A301B480FFA00BECC26 /* LaunchScreen.xib */,
 				5A898A211B480FFA00BECC26 /* Supporting Files */,
+				5AE2B02C1B4835FB00482293 /* HomeViewController.h */,
+				5AE2B02D1B4835FB00482293 /* HomeViewController.m */,
+				5AE2B02F1B483BB200482293 /* TodayViewController.h */,
+				5AE2B0301B483BB200482293 /* TodayViewController.m */,
 			);
 			path = KQ1;
 			sourceTree = "<group>";
@@ -219,9 +224,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A898A2A1B480FFA00BECC26 /* ViewController.m in Sources */,
+				5AE2B0311B483BB200482293 /* TodayViewController.m in Sources */,
 				5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */,
 				5A898A241B480FFA00BECC26 /* main.m in Sources */,
+				5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +354,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = KQ1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -358,6 +365,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = KQ1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -416,6 +424,7 @@
 				5A898A431B480FFA00BECC26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A898A441B480FFA00BECC26 /* Build configuration list for PBXNativeTarget "KQ1Tests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +433,7 @@
 				5A898A461B480FFA00BECC26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
