@@ -15,11 +15,11 @@
 @end
 
 @implementation ZeroReportViewController
-#pragma mark -property
+#pragma mark - property
 
 
 
-#pragma mark -life cycle
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -28,8 +28,8 @@
     
     [self.view addSubview:self.btn];
     
-    UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"零报告" image:[UIImage imageNamed:@"task_normal.png"] selectedImage:[UIImage imageNamed:@"task_selected.png"]];
-    self.tabBarItem = barItem;
+//    UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"零报告" image:[UIImage imageNamed:@"task_normal.png"] selectedImage:[UIImage imageNamed:@"task_selected.png"]];
+//    self.tabBarItem = barItem;
     
     
 }
@@ -53,13 +53,13 @@
 
 #pragma mark - UITabViewDelegate
 
-#pragma mark -CustumDelegate
+#pragma mark - CustumDelegate
 
-#pragma mark -event Response
+#pragma mark - event Response
 
-#pragma mark -private methods
+#pragma mark - private methods
 
-#pragma mark -getters and setters
+#pragma mark - getters and setters
 
 -(UIButton *) btn{
     if(_btn==nil){

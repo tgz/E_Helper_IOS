@@ -7,6 +7,8 @@
 //
 
 #import "TodayViewController.h"
+#import "Masonry.h"
+
 
 @interface TodayViewController ()
 @property (nonatomic,strong)UILabel *userInfo;
@@ -34,6 +36,10 @@
     [super viewWillAppear:animated];
     NSLog(@"TodayViewController_viewWillAppear");
     self.userInfo.frame = CGRectMake(60, 30, 300, 30);
+//    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.view);
+//    }];
+
 }
 
 
