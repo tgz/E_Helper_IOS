@@ -1,5 +1,5 @@
 //
-//  TodayViewController.h
+//  ZeroReportViewController.h
 //  KQ1
 //
 //  Created by 邱 士川 on 15/7/5.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TodayViewController : UIViewController
+@interface ZeroReportViewController : UIViewController
 
 @end

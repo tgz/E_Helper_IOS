@@ -14,7 +14,14 @@
 		5A898A321B480FFA00BECC26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A301B480FFA00BECC26 /* LaunchScreen.xib */; };
 		5A898A3E1B480FFA00BECC26 /* KQ1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A3D1B480FFA00BECC26 /* KQ1Tests.m */; };
 		5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B02D1B4835FB00482293 /* HomeViewController.m */; };
-		5AE2B0311B483BB200482293 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B0301B483BB200482293 /* TodayViewController.m */; };
+		5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B0331B483C3E00482293 /* TodayViewController.m */; };
+		5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B0361B48D43200482293 /* ZeroReportViewController.m */; };
+		5AE2B0401B48E54E00482293 /* me_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03A1B48E54E00482293 /* me_normal@2x.png */; };
+		5AE2B0411B48E54E00482293 /* me_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03B1B48E54E00482293 /* me_selected@2x.png */; };
+		5AE2B0421B48E54E00482293 /* project_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03C1B48E54E00482293 /* project_normal@2x.png */; };
+		5AE2B0431B48E54E00482293 /* project_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03D1B48E54E00482293 /* project_selected@2x.png */; };
+		5AE2B0441B48E54E00482293 /* task_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03E1B48E54E00482293 /* task_normal@2x.png */; };
+		5AE2B0451B48E54E00482293 /* task_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03F1B48E54E00482293 /* task_selected@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +48,16 @@
 		5A898A3D1B480FFA00BECC26 /* KQ1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KQ1Tests.m; sourceTree = "<group>"; };
 		5AE2B02C1B4835FB00482293 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		5AE2B02D1B4835FB00482293 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		5AE2B02F1B483BB200482293 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
-		5AE2B0301B483BB200482293 /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		5AE2B0321B483C3E00482293 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		5AE2B0331B483C3E00482293 /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		5AE2B0351B48D43200482293 /* ZeroReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZeroReportViewController.h; sourceTree = "<group>"; };
+		5AE2B0361B48D43200482293 /* ZeroReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZeroReportViewController.m; sourceTree = "<group>"; };
+		5AE2B03A1B48E54E00482293 /* me_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "me_normal@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/me_normal@2x.png"; sourceTree = "<group>"; };
+		5AE2B03B1B48E54E00482293 /* me_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "me_selected@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/me_selected@2x.png"; sourceTree = "<group>"; };
+		5AE2B03C1B48E54E00482293 /* project_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "project_normal@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/project_normal@2x.png"; sourceTree = "<group>"; };
+		5AE2B03D1B48E54E00482293 /* project_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "project_selected@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/project_selected@2x.png"; sourceTree = "<group>"; };
+		5AE2B03E1B48E54E00482293 /* task_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "task_normal@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/task_normal@2x.png"; sourceTree = "<group>"; };
+		5AE2B03F1B48E54E00482293 /* task_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "task_selected@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/task_selected@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +99,7 @@
 		5A898A201B480FFA00BECC26 /* KQ1 */ = {
 			isa = PBXGroup;
 			children = (
+				5AE2B0381B48E4D900482293 /* Images */,
 				5A898A251B480FFA00BECC26 /* AppDelegate.h */,
 				5A898A261B480FFA00BECC26 /* AppDelegate.m */,
 				5A898A2B1B480FFA00BECC26 /* Main.storyboard */,
@@ -92,8 +108,10 @@
 				5A898A211B480FFA00BECC26 /* Supporting Files */,
 				5AE2B02C1B4835FB00482293 /* HomeViewController.h */,
 				5AE2B02D1B4835FB00482293 /* HomeViewController.m */,
-				5AE2B02F1B483BB200482293 /* TodayViewController.h */,
-				5AE2B0301B483BB200482293 /* TodayViewController.m */,
+				5AE2B0321B483C3E00482293 /* TodayViewController.h */,
+				5AE2B0331B483C3E00482293 /* TodayViewController.m */,
+				5AE2B0351B48D43200482293 /* ZeroReportViewController.h */,
+				5AE2B0361B48D43200482293 /* ZeroReportViewController.m */,
 			);
 			path = KQ1;
 			sourceTree = "<group>";
@@ -122,6 +140,27 @@
 				5A898A3C1B480FFA00BECC26 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5AE2B0381B48E4D900482293 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5AE2B0391B48E4E200482293 /* tabbar */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		5AE2B0391B48E4E200482293 /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				5AE2B03A1B48E54E00482293 /* me_normal@2x.png */,
+				5AE2B03B1B48E54E00482293 /* me_selected@2x.png */,
+				5AE2B03C1B48E54E00482293 /* project_normal@2x.png */,
+				5AE2B03D1B48E54E00482293 /* project_selected@2x.png */,
+				5AE2B03E1B48E54E00482293 /* task_normal@2x.png */,
+				5AE2B03F1B48E54E00482293 /* task_selected@2x.png */,
+			);
+			name = tabbar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,11 +207,12 @@
 		5A898A161B480FF900BECC26 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = qsc;
 				TargetAttributes = {
 					5A898A1D1B480FFA00BECC26 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = GARYDKLD88;
 					};
 					5A898A361B480FFA00BECC26 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -204,9 +244,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE2B0451B48E54E00482293 /* task_selected@2x.png in Resources */,
+				5AE2B0411B48E54E00482293 /* me_selected@2x.png in Resources */,
 				5A898A2D1B480FFA00BECC26 /* Main.storyboard in Resources */,
+				5AE2B0441B48E54E00482293 /* task_normal@2x.png in Resources */,
 				5A898A321B480FFA00BECC26 /* LaunchScreen.xib in Resources */,
+				5AE2B0421B48E54E00482293 /* project_normal@2x.png in Resources */,
+				5AE2B0431B48E54E00482293 /* project_selected@2x.png in Resources */,
 				5A898A2F1B480FFA00BECC26 /* Images.xcassets in Resources */,
+				5AE2B0401B48E54E00482293 /* me_normal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +270,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AE2B0311B483BB200482293 /* TodayViewController.m in Sources */,
+				5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */,
+				5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */,
 				5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */,
 				5A898A241B480FFA00BECC26 /* main.m in Sources */,
 				5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */,
@@ -290,6 +337,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -353,9 +401,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = KQ1/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qsc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -364,9 +414,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = KQ1/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qsc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -385,6 +437,7 @@
 				);
 				INFOPLIST_FILE = KQ1Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qsc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KQ1.app/KQ1";
 			};
@@ -400,6 +453,7 @@
 				);
 				INFOPLIST_FILE = KQ1Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qsc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KQ1.app/KQ1";
 			};
