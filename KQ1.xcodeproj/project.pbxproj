@@ -15,6 +15,7 @@
 		5A78FC4F1B4ADDD100E9C38A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A78FC471B4ADDD100E9C38A /* FontAwesome.ttf */; };
 		5A78FC501B4ADDD100E9C38A /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC491B4ADDD100E9C38A /* UIFont+FontAwesome.m */; };
 		5A78FC511B4ADDD100E9C38A /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC4B1B4ADDD100E9C38A /* UIImage+FontAwesome.m */; };
+		5A78FC571B4C0AFD00E9C38A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC561B4C0AFD00E9C38A /* LoginViewController.m */; };
 		5A898A241B480FFA00BECC26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A231B480FFA00BECC26 /* main.m */; };
 		5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A261B480FFA00BECC26 /* AppDelegate.m */; };
 		5A898A2D1B480FFA00BECC26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A2B1B480FFA00BECC26 /* Main.storyboard */; };
@@ -60,6 +61,9 @@
 		5A78FC491B4ADDD100E9C38A /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
 		5A78FC4A1B4ADDD100E9C38A /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
 		5A78FC4B1B4ADDD100E9C38A /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
+		5A78FC551B4C0AFD00E9C38A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		5A78FC561B4C0AFD00E9C38A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		5A78FC581B4C36D600E9C38A /* import.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = import.h; sourceTree = "<group>"; };
 		5A898A1E1B480FFA00BECC26 /* KQ1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KQ1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A898A221B480FFA00BECC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A898A231B480FFA00BECC26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -235,6 +239,9 @@
 				5AE2B0331B483C3E00482293 /* TodayViewController.m */,
 				5AE2B0351B48D43200482293 /* ZeroReportViewController.h */,
 				5AE2B0361B48D43200482293 /* ZeroReportViewController.m */,
+				5A78FC551B4C0AFD00E9C38A /* LoginViewController.h */,
+				5A78FC561B4C0AFD00E9C38A /* LoginViewController.m */,
+				5A78FC581B4C36D600E9C38A /* import.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -424,6 +431,7 @@
 				5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */,
 				5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */,
 				5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */,
+				5A78FC571B4C0AFD00E9C38A /* LoginViewController.m in Sources */,
 				5A78FBFA1B4AD6C100E9C38A /* UIColor+expanded.m in Sources */,
 				5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */,
 				5AE7539D1B4ACB4C00D21BD4 /* User.m in Sources */,

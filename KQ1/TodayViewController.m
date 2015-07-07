@@ -7,8 +7,8 @@
 //
 
 #import "TodayViewController.h"
-#import "Masonry.h"
-#import "UIButton+Bootstrap.h"
+#import "import.h"
+#import "LoginViewController.h"
 
 
 @interface TodayViewController ()
@@ -26,7 +26,6 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    
     [self.view addSubview:self.userInfo];
     [self.view addSubview:self.loginButton];
     
@@ -41,10 +40,12 @@
 //    CGRect parentRect = self.view.frame;
 //    self.loginButton.frame = CGRectMake(parentRect.size.width-150, parentRect.size.height-100, 120, 30);
     
-    self.loginButton.center = CGPointMake(self.view.center.x, self.view.frame.size.height-100);
+    self.loginButton.center = CGPointMake(self.view.center.x, self.view.frame.size.height-kBorderBottom);
     
     NSLog(@"TodayViewController_viewWillAppear");
 //    self.userInfo.frame = CGRectMake(60, 30, 300, 30);
+    
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
 
 }
@@ -69,6 +70,10 @@
 - (void)GoToLogin
 {
     NSLog(@"goToLogin!");
+    LoginViewController *loginVC = [[LoginViewController alloc]init];
+    [loginVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self presentViewController:loginVC animated:YES completion:nil];
+    
 }
 
 #pragma mark - private methods
@@ -87,13 +92,7 @@
 
 - (UIButton *)loginButton{
     if(nil==_loginButton){
-//        _loginButton = [[UIButton alloc]init];
-//        [_loginButton setTitle:@"登陆" forState:UIControlStateNormal];
-//        [_loginButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-//        [_loginButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-//        _loginButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-
-        _loginButton = [UIButton buttonWithStyle:StrapSuccessStyle andTitle:@"登录" andFrame:CGRectMake(20, 300, 100, 40) target:self action:@selector(GoToLogin)];
+        _loginButton = [UIButton buttonWithStyle:StrapSuccessStyle andTitle:@"登录" andFrame:CGRectMake(20, 300, kButtonWidth, kButtonHeight) target:self action:@selector(GoToLogin)];
         
         
     }

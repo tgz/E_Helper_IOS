@@ -25,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    
+    
     NSMutableArray *tabBarArray = [[NSMutableArray alloc]init];
     
     TodayViewController *todayVC = [[TodayViewController alloc]init];
@@ -32,7 +35,7 @@
     
     ZeroReportViewController * zeroVC = [[ZeroReportViewController alloc]init];
     [tabBarArray addObject:zeroVC];
-    
+        
     [self setViewControllers:tabBarArray animated:YES];
     
     UITabBarItem *homeItem = [self.tabBar.items objectAtIndex:0];
@@ -47,6 +50,11 @@
     [reportItem setImage:[UIImage imageNamed:@"task_normal.png"]];
     [reportItem setTag:1];
 
+    
+    
+    //    zeroVC.tabBarItem = reportItem;
+    //    todayVC.tabBarItem = homeItem;
+    
     
 }
 
