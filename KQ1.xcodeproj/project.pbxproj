@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */; };
+		5A78FBFA1B4AD6C100E9C38A /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF91B4AD6C100E9C38A /* UIColor+expanded.m */; };
+		5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC421B4ADDD100E9C38A /* FAImageView.m */; };
+		5A78FC4D1B4ADDD100E9C38A /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC441B4ADDD100E9C38A /* NSString+FontAwesome.m */; };
+		5A78FC4E1B4ADDD100E9C38A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC451B4ADDD100E9C38A /* README.md */; };
+		5A78FC4F1B4ADDD100E9C38A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A78FC471B4ADDD100E9C38A /* FontAwesome.ttf */; };
+		5A78FC501B4ADDD100E9C38A /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC491B4ADDD100E9C38A /* UIFont+FontAwesome.m */; };
+		5A78FC511B4ADDD100E9C38A /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC4B1B4ADDD100E9C38A /* UIImage+FontAwesome.m */; };
 		5A898A241B480FFA00BECC26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A231B480FFA00BECC26 /* main.m */; };
 		5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A261B480FFA00BECC26 /* AppDelegate.m */; };
 		5A898A2D1B480FFA00BECC26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A2B1B480FFA00BECC26 /* Main.storyboard */; };
@@ -22,6 +30,7 @@
 		5AE2B0431B48E54E00482293 /* project_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03D1B48E54E00482293 /* project_selected@2x.png */; };
 		5AE2B0441B48E54E00482293 /* task_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03E1B48E54E00482293 /* task_normal@2x.png */; };
 		5AE2B0451B48E54E00482293 /* task_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03F1B48E54E00482293 /* task_selected@2x.png */; };
+		5AE7539D1B4ACB4C00D21BD4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7539C1B4ACB4C00D21BD4 /* User.m */; };
 		ECD53445812D72C0E3DF328D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F05DC5E581FAFCB71B072A4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +46,20 @@
 
 /* Begin PBXFileReference section */
 		1F05DC5E581FAFCB71B072A4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A78FBF11B4AD23200E9C38A /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Bootstrap.h"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIButton+Bootstrap.h"; sourceTree = "<group>"; };
+		5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Bootstrap.m"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIButton+Bootstrap.m"; sourceTree = "<group>"; };
+		5A78FBF81B4AD6C100E9C38A /* UIColor+expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+expanded.h"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIColor+expanded.h"; sourceTree = "<group>"; };
+		5A78FBF91B4AD6C100E9C38A /* UIColor+expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+expanded.m"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIColor+expanded.m"; sourceTree = "<group>"; };
+		5A78FC411B4ADDD100E9C38A /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
+		5A78FC421B4ADDD100E9C38A /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
+		5A78FC431B4ADDD100E9C38A /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		5A78FC441B4ADDD100E9C38A /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		5A78FC451B4ADDD100E9C38A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5A78FC471B4ADDD100E9C38A /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		5A78FC481B4ADDD100E9C38A /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
+		5A78FC491B4ADDD100E9C38A /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
+		5A78FC4A1B4ADDD100E9C38A /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
+		5A78FC4B1B4ADDD100E9C38A /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
 		5A898A1E1B480FFA00BECC26 /* KQ1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KQ1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A898A221B480FFA00BECC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A898A231B480FFA00BECC26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -60,6 +83,8 @@
 		5AE2B03D1B48E54E00482293 /* project_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "project_selected@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/project_selected@2x.png"; sourceTree = "<group>"; };
 		5AE2B03E1B48E54E00482293 /* task_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "task_normal@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/task_normal@2x.png"; sourceTree = "<group>"; };
 		5AE2B03F1B48E54E00482293 /* task_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "task_selected@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/task_selected@2x.png"; sourceTree = "<group>"; };
+		5AE7539B1B4ACB4C00D21BD4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5AE7539C1B4ACB4C00D21BD4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		92638005DF89E48B1D94AEA3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B9DB5CCF5A9EF0712EE973D0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +117,52 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5A78FBEF1B4AD1F300E9C38A /* ThirdPart */ = {
+			isa = PBXGroup;
+			children = (
+				5A78FC401B4ADDD100E9C38A /* FontAwesome+iOS */,
+				5A78FBF01B4AD20100E9C38A /* Category */,
+			);
+			name = ThirdPart;
+			sourceTree = "<group>";
+		};
+		5A78FBF01B4AD20100E9C38A /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				5A78FBF81B4AD6C100E9C38A /* UIColor+expanded.h */,
+				5A78FBF91B4AD6C100E9C38A /* UIColor+expanded.m */,
+				5A78FBF11B4AD23200E9C38A /* UIButton+Bootstrap.h */,
+				5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		5A78FC401B4ADDD100E9C38A /* FontAwesome+iOS */ = {
+			isa = PBXGroup;
+			children = (
+				5A78FC411B4ADDD100E9C38A /* FAImageView.h */,
+				5A78FC421B4ADDD100E9C38A /* FAImageView.m */,
+				5A78FC431B4ADDD100E9C38A /* NSString+FontAwesome.h */,
+				5A78FC441B4ADDD100E9C38A /* NSString+FontAwesome.m */,
+				5A78FC451B4ADDD100E9C38A /* README.md */,
+				5A78FC461B4ADDD100E9C38A /* Resources */,
+				5A78FC481B4ADDD100E9C38A /* UIFont+FontAwesome.h */,
+				5A78FC491B4ADDD100E9C38A /* UIFont+FontAwesome.m */,
+				5A78FC4A1B4ADDD100E9C38A /* UIImage+FontAwesome.h */,
+				5A78FC4B1B4ADDD100E9C38A /* UIImage+FontAwesome.m */,
+			);
+			name = "FontAwesome+iOS";
+			path = "../../Coding-IOS/Pods/FontAwesome+iOS";
+			sourceTree = "<group>";
+		};
+		5A78FC461B4ADDD100E9C38A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5A78FC471B4ADDD100E9C38A /* FontAwesome.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		5A898A151B480FF900BECC26 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +186,9 @@
 		5A898A201B480FFA00BECC26 /* KQ1 */ = {
 			isa = PBXGroup;
 			children = (
+				5A78FBEF1B4AD1F300E9C38A /* ThirdPart */,
+				5AE7539A1B4ACB1100D21BD4 /* Modle */,
+				5AD8113F1B4AC4AE00142CC6 /* Controller */,
 				5AE2B0381B48E4D900482293 /* Images */,
 				5A898A251B480FFA00BECC26 /* AppDelegate.h */,
 				5A898A261B480FFA00BECC26 /* AppDelegate.m */,
@@ -122,12 +196,6 @@
 				5A898A2E1B480FFA00BECC26 /* Images.xcassets */,
 				5A898A301B480FFA00BECC26 /* LaunchScreen.xib */,
 				5A898A211B480FFA00BECC26 /* Supporting Files */,
-				5AE2B02C1B4835FB00482293 /* HomeViewController.h */,
-				5AE2B02D1B4835FB00482293 /* HomeViewController.m */,
-				5AE2B0321B483C3E00482293 /* TodayViewController.h */,
-				5AE2B0331B483C3E00482293 /* TodayViewController.m */,
-				5AE2B0351B48D43200482293 /* ZeroReportViewController.h */,
-				5AE2B0361B48D43200482293 /* ZeroReportViewController.m */,
 			);
 			path = KQ1;
 			sourceTree = "<group>";
@@ -158,6 +226,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5AD8113F1B4AC4AE00142CC6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AE2B02C1B4835FB00482293 /* HomeViewController.h */,
+				5AE2B02D1B4835FB00482293 /* HomeViewController.m */,
+				5AE2B0321B483C3E00482293 /* TodayViewController.h */,
+				5AE2B0331B483C3E00482293 /* TodayViewController.m */,
+				5AE2B0351B48D43200482293 /* ZeroReportViewController.h */,
+				5AE2B0361B48D43200482293 /* ZeroReportViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		5AE2B0381B48E4D900482293 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +258,15 @@
 				5AE2B03F1B48E54E00482293 /* task_selected@2x.png */,
 			);
 			name = tabbar;
+			sourceTree = "<group>";
+		};
+		5AE7539A1B4ACB1100D21BD4 /* Modle */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7539B1B4ACB4C00D21BD4 /* User.h */,
+				5AE7539C1B4ACB4C00D21BD4 /* User.m */,
+			);
+			name = Modle;
 			sourceTree = "<group>";
 		};
 		B9344F9CB6EF4CE0D599C376 /* Frameworks */ = {
@@ -271,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AE2B0451B48E54E00482293 /* task_selected@2x.png in Resources */,
+				5A78FC4F1B4ADDD100E9C38A /* FontAwesome.ttf in Resources */,
 				5AE2B0411B48E54E00482293 /* me_selected@2x.png in Resources */,
 				5A898A2D1B480FFA00BECC26 /* Main.storyboard in Resources */,
 				5AE2B0441B48E54E00482293 /* task_normal@2x.png in Resources */,
@@ -329,11 +420,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A78FC4D1B4ADDD100E9C38A /* NSString+FontAwesome.m in Sources */,
+				5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */,
 				5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */,
 				5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */,
+				5A78FBFA1B4AD6C100E9C38A /* UIColor+expanded.m in Sources */,
+				5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */,
+				5AE7539D1B4ACB4C00D21BD4 /* User.m in Sources */,
 				5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */,
 				5A898A241B480FFA00BECC26 /* main.m in Sources */,
+				5A78FC511B4ADDD100E9C38A /* UIImage+FontAwesome.m in Sources */,
+				5A78FC4E1B4ADDD100E9C38A /* README.md in Sources */,
 				5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */,
+				5A78FC501B4ADDD100E9C38A /* UIFont+FontAwesome.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

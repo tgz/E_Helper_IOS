@@ -8,10 +8,12 @@
 
 #import "TodayViewController.h"
 #import "Masonry.h"
+#import "UIButton+Bootstrap.h"
 
 
 @interface TodayViewController ()
 @property (nonatomic,strong)UILabel *userInfo;
+@property (nonatomic,strong)UIButton *loginButton;
 @end
 
 @implementation TodayViewController
@@ -26,19 +28,24 @@
     
     
     [self.view addSubview:self.userInfo];
+    [self.view addSubview:self.loginButton];
     
     NSLog(@"TodayViewController_viewDidLoad");
-    
        //self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",9];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    self.userInfo.frame = CGRectMake(20, 20, self.view.frame.size.width-40, 40);
+//    CGRect parentRect = self.view.frame;
+//    self.loginButton.frame = CGRectMake(parentRect.size.width-150, parentRect.size.height-100, 120, 30);
+    
+    self.loginButton.center = CGPointMake(self.view.center.x, self.view.frame.size.height-100);
+    
     NSLog(@"TodayViewController_viewWillAppear");
-    self.userInfo.frame = CGRectMake(60, 30, 300, 30);
-//    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self.view);
-//    }];
+//    self.userInfo.frame = CGRectMake(60, 30, 300, 30);
+    
 
 }
 
@@ -59,6 +66,10 @@
 #pragma mark - CustumDelegate
 
 #pragma mark - event Response
+- (void)GoToLogin
+{
+    NSLog(@"goToLogin!");
+}
 
 #pragma mark - private methods
 
@@ -67,11 +78,25 @@
     if(nil ==_userInfo){
         _userInfo = [[UILabel alloc]init];
         _userInfo.text = @"用户信息";
-        _userInfo.font = [UIFont systemFontOfSize:18];
+        _userInfo.font = [UIFont systemFontOfSize:20];
         _userInfo.textColor = [UIColor blackColor];
+        _userInfo.textAlignment = NSTextAlignmentCenter;
     }
-    
     return _userInfo;
 }
 
+- (UIButton *)loginButton{
+    if(nil==_loginButton){
+//        _loginButton = [[UIButton alloc]init];
+//        [_loginButton setTitle:@"登陆" forState:UIControlStateNormal];
+//        [_loginButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//        [_loginButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+//        _loginButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+
+        _loginButton = [UIButton buttonWithStyle:StrapSuccessStyle andTitle:@"登录" andFrame:CGRectMake(20, 300, 100, 40) target:self action:@selector(GoToLogin)];
+        
+        
+    }
+    return _loginButton;
+}
 @end
