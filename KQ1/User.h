@@ -9,5 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface User : NSObject
-@property (nonatomic,strong) NSString *loginID, *userGuid ,*ouName;
+@property (nonatomic,strong) NSString *loginID,*userName, *userGuid ,*ouName;
+
++ (instancetype)userFromNSUserDefaults;
+- (instancetype)initWithNSUserDefaults;
+
++ (void)saveUserInfoWithName:(NSString *)userName
+                  andLoginID:(NSString *)loginID
+                 andUserGuid:(NSString *)userGuid
+                   andOUName:(NSString *)ouName;
 @end

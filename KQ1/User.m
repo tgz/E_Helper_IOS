@@ -10,4 +10,20 @@
 
 @implementation User
 
+
++ (User*)userFromNSUserDefaults{
+    return [[self alloc] initWithNSUserDefaults];
+}
+
+- (User*)initWithNSUserDefaults{
+    if(self = [super init]){
+        NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
+        self.loginID = [userDefaults valueForKey:@"LoginID"];
+        self.userGuid = [userDefaults valueForKey:@"UserGuid"];
+        self.userName = [userDefaults valueForKey:@"UserName"];
+    }
+    return self;
+}
+
+
 @end
