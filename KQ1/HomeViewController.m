@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "TodayViewController.h"
 #import "ZeroReportViewController.h"
+#import "AFNetworking.h"
 
 @interface HomeViewController ()
 
@@ -77,11 +78,26 @@
 #pragma mark - event Response
 - (void)tabBar:(nonnull UITabBar *)tabBar didSelectItem:(nonnull UITabBarItem *)item {
     
-    NSLog(@"-----%dHomeView_response_Clicked",item.tag);
+    NSLog(@"-----%ldHomeView_response_Clicked",(long)item.tag);
     
     
 }
 #pragma mark - private methods
+- (void)reach{
+    /**
+     AFNetworkReachabilityStatusUnknown          = -1,  // 未知
+     AFNetworkReachabilityStatusNotReachable     = 0,   // 无连接
+     AFNetworkReachabilityStatusReachableViaWWAN = 1,   // 3G 花钱
+     AFNetworkReachabilityStatusReachableViaWiFi = 2,   // 局域网络,不花钱
+     */
+    // 如果要检测网络状态的变化,必须用检测管理器的单例的startMonitoring
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
+    // 检测网络连接的单例,网络变化时的回调方法
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSLog(@"%ld", (long)status);
+    }];
+}
 
 #pragma mark - getters and setters
 

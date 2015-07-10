@@ -10,4 +10,5 @@
 
 @interface WebserviceHelper : NSObject
 
+- (NSString *)RequsetWebservice:(NSString *)url andPostMessage:(NSString *)messageBody;
 @end

@@ -10,4 +10,8 @@
 
 @interface VerifyTool : NSObject
 
++ (NSString *)CreateNewToken;
+
++ (NSString *)EncriptPasswordWithSha1:(NSString *) password;
+
 @end

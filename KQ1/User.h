@@ -14,8 +14,13 @@
 + (instancetype)userFromNSUserDefaults;
 - (instancetype)initWithNSUserDefaults;
 
-+ (void)saveUserInfoWithName:(NSString *)userName
-                  andLoginID:(NSString *)loginID
-                 andUserGuid:(NSString *)userGuid
-                   andOUName:(NSString *)ouName;
++ (BOOL)saveUserInfoWithName:(NSString *)userName
+                     loginID:(NSString *)loginID
+                    userGuid:(NSString *)userGuid
+                      oUName:(NSString *)ouName;
+
++ (void)saveUserInfo:(User *)user;
+
+- (User *)loginWithUserName:(NSString *)userName
+                andPassword:(NSString *)password;
 @end

@@ -22,6 +22,9 @@
 		5A898A2F1B480FFA00BECC26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A2E1B480FFA00BECC26 /* Images.xcassets */; };
 		5A898A321B480FFA00BECC26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A301B480FFA00BECC26 /* LaunchScreen.xib */; };
 		5A898A3E1B480FFA00BECC26 /* KQ1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A3D1B480FFA00BECC26 /* KQ1Tests.m */; };
+		5AA8E2FA1B4EBAE500E465C3 /* VerifyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8E2F91B4EBAE500E465C3 /* VerifyTool.m */; };
+		5AA8E2FD1B4EBD9400E465C3 /* StringXMLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8E2FC1B4EBD9400E465C3 /* StringXMLTool.m */; };
+		5AA8E3001B4EC25000E465C3 /* WebserviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8E2FF1B4EC25000E465C3 /* WebserviceHelper.m */; };
 		5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B02D1B4835FB00482293 /* HomeViewController.m */; };
 		5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B0331B483C3E00482293 /* TodayViewController.m */; };
 		5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B0361B48D43200482293 /* ZeroReportViewController.m */; };
@@ -75,6 +78,12 @@
 		5A898A371B480FFA00BECC26 /* KQ1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KQ1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A898A3C1B480FFA00BECC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A898A3D1B480FFA00BECC26 /* KQ1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KQ1Tests.m; sourceTree = "<group>"; };
+		5AA8E2F81B4EBAE500E465C3 /* VerifyTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyTool.h; sourceTree = "<group>"; };
+		5AA8E2F91B4EBAE500E465C3 /* VerifyTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyTool.m; sourceTree = "<group>"; };
+		5AA8E2FB1B4EBD9400E465C3 /* StringXMLTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringXMLTool.h; sourceTree = "<group>"; };
+		5AA8E2FC1B4EBD9400E465C3 /* StringXMLTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringXMLTool.m; sourceTree = "<group>"; };
+		5AA8E2FE1B4EC25000E465C3 /* WebserviceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceHelper.h; sourceTree = "<group>"; };
+		5AA8E2FF1B4EC25000E465C3 /* WebserviceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceHelper.m; sourceTree = "<group>"; };
 		5AE2B02C1B4835FB00482293 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		5AE2B02D1B4835FB00482293 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		5AE2B0321B483C3E00482293 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
@@ -190,6 +199,7 @@
 		5A898A201B480FFA00BECC26 /* KQ1 */ = {
 			isa = PBXGroup;
 			children = (
+				5AA8E2F71B4EBA4400E465C3 /* Util */,
 				5A78FBEF1B4AD1F300E9C38A /* ThirdPart */,
 				5AE7539A1B4ACB1100D21BD4 /* Modle */,
 				5AD8113F1B4AC4AE00142CC6 /* Controller */,
@@ -228,6 +238,19 @@
 				5A898A3C1B480FFA00BECC26 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5AA8E2F71B4EBA4400E465C3 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5AA8E2F81B4EBAE500E465C3 /* VerifyTool.h */,
+				5AA8E2F91B4EBAE500E465C3 /* VerifyTool.m */,
+				5AA8E2FB1B4EBD9400E465C3 /* StringXMLTool.h */,
+				5AA8E2FC1B4EBD9400E465C3 /* StringXMLTool.m */,
+				5AA8E2FE1B4EC25000E465C3 /* WebserviceHelper.h */,
+				5AA8E2FF1B4EC25000E465C3 /* WebserviceHelper.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 		5AD8113F1B4AC4AE00142CC6 /* Controller */ = {
@@ -427,13 +450,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AA8E2FD1B4EBD9400E465C3 /* StringXMLTool.m in Sources */,
 				5A78FC4D1B4ADDD100E9C38A /* NSString+FontAwesome.m in Sources */,
 				5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */,
 				5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */,
+				5AA8E3001B4EC25000E465C3 /* WebserviceHelper.m in Sources */,
 				5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */,
 				5A78FC571B4C0AFD00E9C38A /* LoginViewController.m in Sources */,
 				5A78FBFA1B4AD6C100E9C38A /* UIColor+expanded.m in Sources */,
 				5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */,
+				5AA8E2FA1B4EBAE500E465C3 /* VerifyTool.m in Sources */,
 				5AE7539D1B4ACB4C00D21BD4 /* User.m in Sources */,
 				5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */,
 				5A898A241B480FFA00BECC26 /* main.m in Sources */,

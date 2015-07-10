@@ -7,7 +7,12 @@
 //
 
 #import "WebserviceHelper.h"
-
+//#import "AFNetworking"
 @implementation WebserviceHelper
+
+- (NSString *)RequsetWebservice:(NSString *)url andPostMessage:(NSString *)messageBody{
+
+    return @"";
+}
 
 @end
