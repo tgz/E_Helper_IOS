@@ -53,8 +53,8 @@
 
 
 #pragma mark method
-- (User *)loginWithUserName:(NSString *)userName
-                andPassword:(NSString *)password{
++ (User *)loginWithUserName:(NSString *)userName
+                   password:(NSString *)password{
     NSString *validateDate = [VerifyTool CreateNewToken];
     NSString *encriptPassword = [VerifyTool EncriptPasswordWithSha1:password];
     
@@ -62,40 +62,61 @@
     
     
     NSString *address =@"http://oa.epoint.com.cn/EpointOAWebservice8V2/OAWebService.asmx";
-//    NSURL* url = [NSURL URLWithString:address];
-//    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSURL* url = [NSURL URLWithString:address];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    // 然后就是text/xml, 和content-Length必须有。
+    [theRequest addValue: @"text/xml; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    // 下面这行， 后面SOAPAction是规范， 而下面这个网址来自哪里呢，来自于上面加红加粗的部分。
+    [theRequest addValue: @"http://tempuri.org/UserLogin2" forHTTPHeaderField:@"SOAPAction"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [manager POST:address
-       parameters:soapMessage
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSString *response = [[NSString alloc]initWithData:responseObject
-                                                        encoding:NSUTF8StringEncoding];
-              NSLog(@"%@, %@",operation,response);
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              NSString *response = [[NSString alloc]initWithData:[operation responseObject]
-                                                        encoding:NSUTF8StringEncoding];
-              NSLog(@"%@, %@, %@",operation,error,response);
-          }];
+    NSLog(@"\nsoapMessage:\n%@\n",soapMessage);
     
+    NSURLResponse *response;
+    NSError *error = nil;
     
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                 returningResponse:&response
+                                                             error:&error];
+    NSMutableString * result = [[NSMutableString alloc]initWithData:responseData
+                                                           encoding:NSUTF8StringEncoding];
+    if(error)
+    {
+        NSLog(@"ReponseError:\n\n%@\n\nDebugDescription:\n%@\n",error.description,error.debugDescription);
+        return nil;
+    }
+    
+    NSLog(@"Return String is ======⬇️⬇️⬇️\n%@",result);
+    
+
+
+/*
+ *AFNetworking failed
+ *
+ */
     
 //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
-//    [manager.requestSerializer setValue:@"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-//    [manager.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, NSDictionary *parameters, NSError *__autoreleasing *error) {
-//        return soapMessage;
-//    }];
-//    [manager POST:@"http://www.webxml.com.cn/WebServices/WeatherWebService.asmx" parameters:soapMessage success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSString *response = [[NSString alloc] initWithData:(NSData *)responseObject encoding:NSUTF8StringEncoding];
-//        NSLog(@"%@, %@", operation, response);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSString *response = [[NSString alloc] initWithData:(NSData *)[operation responseObject] encoding:NSUTF8StringEncoding];
-//        NSLog(@"%@, %@", operation, error);
-//    }];
+//    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+
+//    [manager POST:address
+//       parameters:soapMessage
+//          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//              NSString *response = [[NSString alloc]initWithData:responseObject
+//                                                        encoding:NSUTF8StringEncoding];
+//              NSLog(@"%@, %@",operation,response);
+//          }
+//          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//              NSString *response = [[NSString alloc]initWithData:[operation responseObject]
+//                                                        encoding:NSUTF8StringEncoding];
+//              NSLog(@"%@, %@, %@",operation,error,response);
+//          }];
+   
+    
+    
 
     
 

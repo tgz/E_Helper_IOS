@@ -53,28 +53,7 @@
     self.password.center = passwordCenter;
     
     
-//    [self.loginID mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.view);
-//        make.left.equalTo(self.view).width.offset(kPadding);
-//        make.right.equalTo(self.view).width.offset(-kPadding);
-//    }];
-//    
-//    [self.password mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.size.equalTo(self.loginID);
-//    }];
-    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 
 #pragma mark - UITextFieldDelegate
@@ -93,8 +72,7 @@
 - (void)LoginBtnPress{
     NSLog(@"loginPress!");
     
-    User *user = [[User alloc]init];
-//    [user LoginWithUserName: andPassword:]
+    User *user = [User loginWithUserName:self.loginID.text password:self.password.text];
 }
 
 -(void)CancleBtnPress{

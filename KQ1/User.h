@@ -21,6 +21,6 @@
 
 + (void)saveUserInfo:(User *)user;
 
-- (User *)loginWithUserName:(NSString *)userName
-                andPassword:(NSString *)password;
++ (User *)loginWithUserName:(NSString *)userName
+                   password:(NSString *)password;
 @end
