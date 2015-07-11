@@ -76,6 +76,12 @@
     
     User *user = [[User alloc] loginWithUserName:self.loginID.text password:self.password.text];
     
+    //登陆成功后，回到主界面
+    if(user.isLogin){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+    
 }
 
 -(void)CancleBtnPress{

@@ -27,7 +27,7 @@
 - (User *)initWithNSUserDefaults{
     if(self = [super init]){
         NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
-        self.loginID = [userDefaults valueForKey:@"LoginID"];
+        self.ouName = [userDefaults valueForKey:@"OUName"];
         self.userGuid = [userDefaults valueForKey:@"UserGuid"];
         self.userName = [userDefaults valueForKey:@"UserName"];
     }
@@ -45,31 +45,34 @@
     }
     
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
-    [userDefaults setObject:loginID forKey:@"LoginID"];
+//    [userDefaults setObject:loginID forKey:@"LoginID"];
     [userDefaults setObject:userGuid forKey:@"UserGuid"];
     [userDefaults setObject:userName forKey:@"UserName"];
+    [userDefaults setObject:ouName forKey:@"OUName"];
     return YES;
 }
 
 + (void)saveUserInfo:(User *)user{
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
-    [userDefaults setObject:user.loginID forKey:@"LoginID"];
+//    [userDefaults setObject:user.loginID forKey:@"LoginID"];
     [userDefaults setObject:user.userGuid forKey:@"UserGuid"];
     [userDefaults setObject:user.userName forKey:@"UserName"];
+    [userDefaults setObject:user.ouName forKey:@"OUName"];
 }
 
 - (void)saveUserInfo {
     if (self.isLogin) {
         NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
-        [userDefaults setObject:self.loginID forKey:@"LoginID"];
+//        [userDefaults setObject:self.loginID forKey:@"LoginID"];
         [userDefaults setObject:self.userGuid forKey:@"UserGuid"];
         [userDefaults setObject:self.userName forKey:@"UserName"];
+        [userDefaults setObject:self.ouName forKey:@"OUName"];
     }
    
 }
 
 
-#pragma mark method
+#pragma mark - method
 - (User *)loginWithUserName:(NSString *)userName
                    password:(NSString *)password {
     NSString *validateDate = [VerifyTool CreateNewToken];
@@ -107,7 +110,7 @@
         return nil;
     }
     
-    NSLog(@"Return String is ======⬇️⬇️⬇️\n%@",result);
+    //NSLog(@"Return String is ======⬇️⬇️⬇️\n%@",result);
     
     
 
@@ -155,10 +158,6 @@
    
 }
 
-
-
-
-
 #pragma mark - AnalyzeResponseResult
 - (BOOL)analyzeResopnseResult:(NSData*)responseDatta parserError:(NSError *)error {
 
@@ -190,7 +189,7 @@
 
 - (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary<NSString *,NSString *> *)attributeDict {
     
-    NSLog(@"找到节点：%@",elementName);
+    //NSLog(@"找到节点：%@",elementName);
     if([elementName isEqualToString:@"UserLogin2Result"])
     {
         if(self.loginResult==nil) {
@@ -224,8 +223,8 @@
 
 
 - (void)parserDidEndDocument:(nonnull NSXMLParser *)parser {
-    //
-    NSLog(@"EndDocument:解析完成！\n%@",self.loginResult);
+    NSLog(@"EndDocument:解析完成");
+    //NSLog(@"EndDocument:解析完成！\n%@",self.loginResult);
 }
 
 

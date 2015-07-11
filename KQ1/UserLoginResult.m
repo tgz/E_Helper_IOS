@@ -46,7 +46,7 @@
 #pragma mark - XMLParser Delegate
 
 - (void)parserDidStartDocument:(nonnull NSXMLParser *)parser {
-    NSLog(@"开始解析");
+    //NSLog(@"开始解析");
     
 }
 
@@ -91,7 +91,7 @@
 
 
 - (void)parserDidEndDocument:(nonnull NSXMLParser *)parser {
-    NSLog(@"解析完成！");
+    //NSLog(@"解析完成！");
 }
 
 - (void)parser:(nonnull NSXMLParser *)parser parseErrorOccurred:(nonnull NSError *)parseError {
