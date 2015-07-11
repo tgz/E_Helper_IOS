@@ -11,6 +11,7 @@
 @interface User : NSObject
 @property (nonatomic,strong) NSString *loginID,*userName, *userGuid ,*ouName;
 @property (nonatomic,assign) BOOL isLogin;
+@property (nonatomic,copy) NSString *failDescription;
 
 + (instancetype)userFromNSUserDefaults;
 - (instancetype)initWithNSUserDefaults;
@@ -24,4 +25,6 @@
 
 - (User *)loginWithUserName:(NSString *)userName
                    password:(NSString *)password;
+
+
 @end

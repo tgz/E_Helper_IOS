@@ -10,8 +10,7 @@
 @class User;
 @interface UserLoginResult : NSObject
 @property(nonatomic,copy)NSString *loginDescription;
-@property(nonatomic,strong)User *user;
 
 - (instancetype)initWithResultContent:(NSString *)resultString;
-- (User *)ayalyzeLoginResult;
+- (BOOL)analyseLoginResultToUser:(User *)user;
 @end

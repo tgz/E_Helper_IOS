@@ -71,8 +71,11 @@
 #pragma mark - event Response
 - (void)LoginBtnPress{
     NSLog(@"loginPress!");
+    //按下登陆按钮时，关闭键盘;
+    [self.view endEditing:YES];
     
-    User *user = [User loginWithUserName:self.loginID.text password:self.password.text];
+    User *user = [[User alloc] loginWithUserName:self.loginID.text password:self.password.text];
+    
 }
 
 -(void)CancleBtnPress{

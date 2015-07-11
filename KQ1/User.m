@@ -9,6 +9,7 @@
 #import "User.h"
 #import "VerifyTool.h"
 #import "AFNetworking.h"
+#import "UserLoginResult.h"
 
 @interface User()  <NSXMLParserDelegate>
 @property(nonatomic,strong)NSDictionary *parserDict;
@@ -55,6 +56,16 @@
     [userDefaults setObject:user.loginID forKey:@"LoginID"];
     [userDefaults setObject:user.userGuid forKey:@"UserGuid"];
     [userDefaults setObject:user.userName forKey:@"UserName"];
+}
+
+- (void)saveUserInfo {
+    if (self.isLogin) {
+        NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
+        [userDefaults setObject:self.loginID forKey:@"LoginID"];
+        [userDefaults setObject:self.userGuid forKey:@"UserGuid"];
+        [userDefaults setObject:self.userName forKey:@"UserName"];
+    }
+   
 }
 
 
@@ -125,11 +136,23 @@
     
     
     NSError *xmlError = [[NSError alloc]init];
-    [self analyzeResopnseResult:responseData parserError:xmlError];
-    
-    [self analyzeResopnseResult:[self.loginResult dataUsingEncoding:NSUTF8StringEncoding] parserError:xmlError];
-    return [[User alloc]init];
+    if ([self analyzeResopnseResult:responseData parserError:xmlError]) {
+        UserLoginResult *loginResultAnalyser = [[UserLoginResult alloc]initWithResultContent:self.loginResult];
+        
+        if ([loginResultAnalyser analyseLoginResultToUser:self]) {
+            [self saveUserInfo];
+        }
+        
+        NSLog(@"IsLogin:%d,\nUserName:%@,\nOUName:%@,\nUserGuid:%@,\nFailDescription:%@",self.isLogin,self.userName,self.ouName,self.userGuid,self.failDescription);
+        return self;
 
+    } else {
+        self.isLogin = NO;
+        self.failDescription = xmlError.localizedDescription;
+        return self;
+    }
+    
+   
 }
 
 
@@ -149,7 +172,7 @@
     
     if(parseError && error){
         error = parseError;
-        NSLog(@"parseError:\n%@",[parseError description]);
+        NSLog(@"返回结果解析错误:\n%@",[parseError description]);
         return NO;
     }
     return YES;
