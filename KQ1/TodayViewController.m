@@ -33,8 +33,8 @@
        //self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",9];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
     
     self.userInfo.frame = CGRectMake(20, 20, self.view.frame.size.width-40, 40);
 //    CGRect parentRect = self.view.frame;

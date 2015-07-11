@@ -40,8 +40,8 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
     
     self.loginBtn.center = CGPointMake(self.view.center.x - kScreenWidth/5, self.view.frame.size.height/3+kBorderBottom);
     self.cancleBtn.center = CGPointMake(self.view.center.x +kScreenWidth/5, self.view.frame.size.height/3+kBorderBottom);

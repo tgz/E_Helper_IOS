@@ -10,8 +10,14 @@
 #import "VerifyTool.h"
 #import "AFNetworking.h"
 
-@implementation User
+@interface User()  <NSXMLParserDelegate>
+@property(nonatomic,strong)NSDictionary *parserDict;
+@property(nonatomic,strong)NSMutableArray *parserObjArray;
+@property(nonatomic,strong)NSMutableString *tempString;
+@property(nonatomic,copy)NSString *loginResult;
+@end
 
+@implementation User
 #pragma mark - init
 + (User *)userFromNSUserDefaults{
     return [[self alloc] initWithNSUserDefaults];
@@ -53,8 +59,8 @@
 
 
 #pragma mark method
-+ (User *)loginWithUserName:(NSString *)userName
-                   password:(NSString *)password{
+- (User *)loginWithUserName:(NSString *)userName
+                   password:(NSString *)password {
     NSString *validateDate = [VerifyTool CreateNewToken];
     NSString *encriptPassword = [VerifyTool EncriptPasswordWithSha1:password];
     
@@ -92,6 +98,7 @@
     
     NSLog(@"Return String is ======⬇️⬇️⬇️\n%@",result);
     
+    
 
 
 /*
@@ -117,12 +124,95 @@
    
     
     
-
+    NSError *xmlError = [[NSError alloc]init];
+    [self analyzeResopnseResult:responseData parserError:xmlError];
     
-
+    [self analyzeResopnseResult:[self.loginResult dataUsingEncoding:NSUTF8StringEncoding] parserError:xmlError];
     return [[User alloc]init];
 
 }
+
+
+
+
+
+#pragma mark - AnalyzeResponseResult
+- (BOOL)analyzeResopnseResult:(NSData*)responseDatta parserError:(NSError *)error {
+
+    NSXMLParser *parser = [[NSXMLParser alloc]initWithData:responseDatta];
+    parser.delegate = self;
+    [parser parse];
+    
+    [parser setShouldProcessNamespaces:NO];
+    
+    NSError *parseError = [parser parserError];
+    
+    if(parseError && error){
+        error = parseError;
+        NSLog(@"parseError:\n%@",[parseError description]);
+        return NO;
+    }
+    return YES;
+}
+
+
+
+#pragma mark - xmlDelegate
+- (void)parserDidStartDocument:(nonnull NSXMLParser *)parser{
+    _parserDict = [[NSDictionary alloc]init];
+    _parserObjArray = [[NSMutableArray alloc]init];
+    _tempString =nil;
+}
+
+
+- (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary<NSString *,NSString *> *)attributeDict {
+    
+    NSLog(@"找到节点：%@",elementName);
+    if([elementName isEqualToString:@"UserLogin2Result"])
+    {
+        if(self.loginResult==nil) {
+            self.loginResult = [[NSString alloc]init];
+        }
+    }
+    if(self.tempString==nil) {
+        self.tempString = [[NSMutableString alloc]init];
+    }
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(nonnull NSString *)string {
+//    NSLog(@"FoundCharacters:%@",string);
+    [_tempString appendString:string];
+}
+
+//- (void)parser:(nonnull NSXMLParser *)parser foundCDATA:(nonnull NSData *)CDATABlock {
+//    NSLog(@"FoundCDATA:%@",CDATABlock);
+//}
+
+- (void)parser:(nonnull NSXMLParser *)parser didEndElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName {
+    if( [elementName isEqualToString:@"UserLogin2Result"] ) {
+        NSLog(@"UserLogin2Result解析完成！");
+        self.loginResult = _tempString;
+    }
+    
+    
+    _tempString = nil;
+    
+}
+
+
+- (void)parserDidEndDocument:(nonnull NSXMLParser *)parser {
+    //
+    NSLog(@"EndDocument:解析完成！\n%@",self.loginResult);
+}
+
+
+- (void)parser:(NSXMLParser *)parser parserErrorOccurred:(NSError *)parserError {
+    NSLog(@"%@",parserError.localizedDescription);
+    self.loginResult = nil;
+}
+
+
+
 
 
 @end
