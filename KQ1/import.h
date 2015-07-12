@@ -16,6 +16,6 @@
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width 
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kBorderBottom 100
-#define kButtonWidth 100
+#define kButtonWidth 80
 #define kButtonHeight 40
 

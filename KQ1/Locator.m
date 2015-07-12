@@ -9,9 +9,12 @@
 #import "Locator.h"
 #import "StringXMLTool.h"
 #import "VerifyTool.h"
+#import "AttendanceRecord.h"
 
 @interface Locator()<NSXMLParserDelegate>
 @property (nonatomic,strong)NSMutableString *tempString;
+@property (nonatomic,copy)NSString *attendanceInsertResult;
+@property (nonatomic,strong)AttendanceRecord *tempAttendRecord;
 @end
 
 @implementation Locator
@@ -64,8 +67,24 @@
                                                  returningResponse:&response
                                                              error:&error];
     
+    NSLog(@"Result:\n%@\n", [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]);
+    
     [self analyseResult:responseData];
-
+    
+    //解析成功的情况下，继续解析实际列表
+    if (self.isSuccess) {
+        self.attendanceInsertResult = [NSString stringWithFormat:@"<Result>%@</Result>",self.attendanceInsertResult];
+        [self analyseResult:[self.attendanceInsertResult dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    [self.locations enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
+        if ([obj isKindOfClass:[AttendanceRecord class]]) {
+            NSLog(@"%d,%@",idx,obj);
+        }
+        
+    }];
+    
+    NSLog(@"%@",self.locations);
 }
 
 
@@ -202,12 +221,20 @@
 
 - (void)parserDidStartDocument:(nonnull NSXMLParser *)parser {
     NSLog(@"开始解析");
+    self.attendanceInsertResult = [[NSString alloc]init];
+    self.locations = [[NSMutableArray alloc]init];
+    
 }
 
 - (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary<NSString *,NSString *> *)attributeDict {
 
     NSLog(@"StartElement:%@",elementName);
     [self.tempString setString:@""];
+    
+    if (!self.tempAttendRecord) {
+        self.tempAttendRecord = [[AttendanceRecord alloc]init] ;
+       
+    }
 }
 
 - (void)parser:(nonnull NSXMLParser *)parser foundCharacters:(nonnull NSString *)string {
@@ -221,16 +248,38 @@
 
 - (void)parser:(nonnull NSXMLParser *)parser didEndElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName {
 
-    NSLog(@"%@读取完毕！:%@",elementName,self.tempString);
+    //NSLog(@"%@读取完毕！:%@",elementName,self.tempString);
+    if ([elementName isEqualToString:@"MobileWorkAttendanceInsertResult"]) {
+        self.attendanceInsertResult = self.tempString;
+        
+        NSLog(@"获取到签到列表内容：%@",self.attendanceInsertResult); 
+    }
+    
+    if ([elementName isEqualToString:@"AttendTime"]) {
+        //
+        self.tempAttendRecord.AttendTime = self.tempString;
+    }
+    if ([elementName isEqualToString:@"AttendLocation"]) {
+        //
+        
+        self.tempAttendRecord.AttendLocation = self.tempString;
+    }
+    
+    if ([elementName isEqualToString:@"Record"]) {
+        [self.locations addObject:self.tempAttendRecord];
+        self.tempAttendRecord = nil;
+    }
 }
 
 - (void)parser:(nonnull NSXMLParser *)parser parseErrorOccurred:(nonnull NSError *)parseError {
     NSLog(@"解析发生错误！%@",parseError.localizedDescription);
-
+    self.isSuccess = NO;
+    self.failDescription = parseError.localizedDescription;
 }
 
 - (void)parserDidEndDocument:(nonnull NSXMLParser *)parser {
     NSLog(@"XML解析完毕");
+    self.isSuccess = YES;
 }
 
 
@@ -239,7 +288,14 @@
 
 
 
+#pragma mark - getters 
 
+//- (AttendanceRecord *)tempAttendRecord {
+//    if (_tempAttendRecord ==nil) {
+//        _tempAttendRecord = [[AttendanceRecord alloc]init];
+//    }
+//    return _tempAttendRecord;//[_tempAttendRecord copy];
+//}
 
 
 

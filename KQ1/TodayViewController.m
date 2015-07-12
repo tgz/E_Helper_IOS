@@ -12,6 +12,7 @@
 #import "User.h"
 #import "Locator.h"
 
+
 @interface TodayViewController () <UITextFieldDelegate,UITextViewDelegate>
 @property (nonatomic,strong)UILabel *userInfo;
 @property (nonatomic,strong)UIButton *loginButton;
@@ -39,7 +40,7 @@
     [self.view addSubview:self.ouName];
     
     [self.view addSubview:self.location];
-    
+    [self.view addSubview:self.kaoQinButton];
 
     
         
@@ -52,8 +53,12 @@
     [super viewWillLayoutSubviews];
     
     self.userInfo.frame = CGRectMake(20, 40, self.view.frame.size.width-40, 40);
-    self.loginButton.center = CGPointMake(self.view.center.x, self.view.frame.size.height-kBorderBottom);
-    NSLog(@"TodayViewController_viewWillLayoutSubviews");
+    
+    self.loginButton.center = CGPointMake(kScreenWidth*2/3, kScreenHeight - kBorderBottom);
+    
+    
+    self.kaoQinButton.center = CGPointMake(kScreenWidth/3, kScreenHeight - kBorderBottom);
+    
 }
 
 - (void)viewDidLayoutSubviews {
@@ -85,6 +90,8 @@
         make.width.mas_equalTo(self.view.frame.size.width);
         
     }];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -171,10 +178,19 @@
             if(locator.isSuccess){
                 //考勤成功后，显示考勤记录
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
+                NSArray *array = [locator.locations copy];
+                
+                NSMutableString *message = [[NSMutableString alloc]init];
+                
+                [array enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
+                    [message appendString:[NSString stringWithFormat:@"%@\n",obj]];
+                }];
+                
+                [self alertWaitWithTitle:@"考勤成功！" message:message cancelButtonTitle:@"确定"];
                 
             }else{
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
-                [self alertWaitWithTitle:@"登陆失败！" message:locator.failDescription cancelButtonTitle:@"确定"];
+                [self alertWaitWithTitle:@"考勤失败！" message:locator.failDescription cancelButtonTitle:@"确定"];
             }
         });
     });
@@ -272,7 +288,7 @@
 
 - (UIButton *)kaoQinButton {
     if(nil == _kaoQinButton){
-        _kaoQinButton = [UIButton buttonWithStyle:StrapDefaultStyle
+        _kaoQinButton = [UIButton buttonWithStyle:StrapPrimaryStyle
                                          andTitle:@"考勤"
                                          andFrame:CGRectMake(0, 0, kButtonWidth,kButtonHeight)
                                            target:self
