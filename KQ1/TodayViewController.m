@@ -10,11 +10,18 @@
 #import "import.h"
 #import "LoginViewController.h"
 #import "User.h"
+#import "Locator.h"
 
-@interface TodayViewController ()
+@interface TodayViewController () <UITextFieldDelegate,UITextViewDelegate>
 @property (nonatomic,strong)UILabel *userInfo;
 @property (nonatomic,strong)UIButton *loginButton;
 @property (nonatomic,strong)UILabel *ouName;
+@property (nonatomic,strong)UITextView *location;
+@property (nonatomic,strong)UIButton *kaoQinButton;
+@property (nonatomic,strong)User *user;
+
+@property(nonatomic,strong)UIAlertView *alertWait;
+
 @end
 
 @implementation TodayViewController
@@ -30,6 +37,12 @@
     [self.view addSubview:self.userInfo];
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.ouName];
+    
+    [self.view addSubview:self.location];
+    
+
+    
+        
     NSLog(@"TodayViewController_viewDidLoad");
        //self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",9];
 }
@@ -39,26 +52,14 @@
     [super viewWillLayoutSubviews];
     
     self.userInfo.frame = CGRectMake(20, 40, self.view.frame.size.width-40, 40);
-    
-//    CGRect parentRect = self.view.frame;
-//    self.loginButton.frame = CGRectMake(parentRect.size.width-150, parentRect.size.height-100, 120, 30);
-    
     self.loginButton.center = CGPointMake(self.view.center.x, self.view.frame.size.height-kBorderBottom);
-    
-    
-    
     NSLog(@"TodayViewController_viewWillLayoutSubviews");
-//    self.userInfo.frame = CGRectMake(60, 30, 300, 30);
-    
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    
-
 }
 
 - (void)viewDidLayoutSubviews {
     NSLog(@"TodayVC---> viewDidLayoutSubviews");
     
+    [super viewDidLayoutSubviews];
     
 //    [self.userInfo mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.top.equalTo(self.view).width.offset(60);
@@ -72,6 +73,18 @@
         make.width.equalTo(self.view);
         make.top.equalTo(self.userInfo.mas_bottom);
     }];
+    
+    [self.location mas_makeConstraints:^(MASConstraintMaker *make) {
+        //        make.left.mas_equalTo(self.view).width.offset(20);
+        //        make.right.mas_equalTo(self.view).width.offset(-20);
+        
+        make.centerX.equalTo(self.view);
+        make.height.mas_equalTo(@50);
+        make.top.mas_equalTo(self.ouName.mas_bottom);
+        
+        make.width.mas_equalTo(self.view.frame.size.width);
+        
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,11 +92,10 @@
     NSLog(@"TodayVC---> viewWillAppear");
     [super viewWillAppear:animated];
     
-    User *user = [[User alloc]initWithNSUserDefaults];
     
-    self.userInfo.text = user.userName;
-    self.ouName.text = user.ouName;
-    NSLog(@"viewWillAppear：读取用户信息：%@,%@,%@,%d",user.userName , user.userGuid, user.ouName , user.isLogin);
+    self.userInfo.text = self.user.userName;
+    self.ouName.text = self.user.ouName;
+    NSLog(@"viewWillAppear：读取用户信息：%@,%@,%@,%d",self.user.userName , self.user.userGuid, self.user.ouName , self.user.isLogin);
 }
 
 
@@ -102,9 +114,35 @@
 
 #pragma mark - CustumDelegate
 
-#pragma mark - event Response
-- (void)GoToLogin
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(nonnull UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+#pragma mark UITextViewDelegate
+- (BOOL)textViewShouldEndEditing:(nonnull UITextView *)textView {
+    [textView resignFirstResponder];
+    
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range  replacementText:(NSString *)text
 {
+    // Any new character added is passed in as the "text" parameter
+    if ([text isEqualToString:@"\n"]) {
+        // Be sure to test for equality using the "isEqualToString" message
+        [textView resignFirstResponder];
+        
+        // Return FALSE so that the final '\n' character doesn't get added
+        return FALSE;
+    }
+    // For any other character return TRUE so that the text gets added to the view
+    return TRUE;
+}
+#pragma mark - event Response
+- (void)GoToLogin {
     NSLog(@"goToLogin!");
     LoginViewController *loginVC = [[LoginViewController alloc]init];
     [loginVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
@@ -112,9 +150,72 @@
     
 }
 
+- (void)KaoQin{
+    NSLog(@"Kaoqin!");
+
+    
+    [self alertWaitWithTitle:@"正在考勤" message:@"请稍后..." cancelButtonTitle:nil];
+    
+    //按下按钮时，关闭键盘;
+    [self.view endEditing:YES];
+
+    
+    dispatch_queue_t queue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t main_queue = dispatch_get_main_queue();
+    dispatch_async(queue, ^{
+        Locator *locator = [[Locator alloc]initWithUser:self.user.userGuid location:self.location.text];
+        
+        [locator kaoQin];
+        
+        dispatch_async(main_queue, ^{
+            if(locator.isSuccess){
+                //考勤成功后，显示考勤记录
+                [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
+                
+            }else{
+                [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
+                [self alertWaitWithTitle:@"登陆失败！" message:locator.failDescription cancelButtonTitle:@"确定"];
+            }
+        });
+    });
+
+   
+}
+
+- (void)touchesBegan:(nonnull NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
 #pragma mark - private methods
+- (void)alertWaitWithTitle:(NSString *)title  message:(NSString *)message  cancelButtonTitle:(NSString *)cancelButtonTitle{
+    self.alertWait = [[UIAlertView alloc]initWithTitle:title message:message
+                                              delegate:self
+                                     cancelButtonTitle:cancelButtonTitle
+                                     otherButtonTitles:nil];
+    //    if (cancelButtonTitle) {
+    //        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]
+    //                                              initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    //        indicator.center = CGPointMake(self.alertWait.bounds.size.width/2.0f, self.alertWait.bounds.size.height/2.0f);
+    //        indicator.frame = CGRectMake(20, 20, self.alertWait.bounds.size.width-40, self.alertWait.bounds.size.height-40);
+    //        [indicator startAnimating];
+    //        [self.alertWait addSubview:indicator];
+    //    }
+    
+    [self.alertWait show];
+}
 
 #pragma mark - getters and setters
+
+- (User *)user{
+    if(nil ==_user){
+        _user = [[User alloc]initWithNSUserDefaults];
+    }
+    return _user;
+}
+
+
+
+
 - (UILabel *) userInfo{
     if(nil ==_userInfo){
         _userInfo = [[UILabel alloc]init];
@@ -128,9 +229,11 @@
 
 - (UIButton *)loginButton{
     if(nil==_loginButton){
-        _loginButton = [UIButton buttonWithStyle:StrapSuccessStyle andTitle:@"登录" andFrame:CGRectMake(20, 300, kButtonWidth, kButtonHeight) target:self action:@selector(GoToLogin)];
-        
-        
+        _loginButton = [UIButton buttonWithStyle:StrapSuccessStyle
+                                        andTitle:@"登录"
+                                        andFrame:CGRectMake(20, 300, kButtonWidth, kButtonHeight)
+                                          target:self
+                                          action:@selector(GoToLogin)];
     }
     return _loginButton;
 }
@@ -145,5 +248,37 @@
     }
     return _ouName;
 
+}
+
+- (UITextView *)location{
+    if (nil==_location) {
+        _location = [[UITextView alloc]init];
+        _location.textAlignment = NSTextAlignmentLeft;
+        _location.font = [UIFont systemFontOfSize:14];
+//        _location.placeholder = @"请输入考勤地点";
+//        _location.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _location.textColor = [UIColor blackColor];
+//        _location.borderStyle = UITextBorderStyleRoundedRect;
+        _location.returnKeyType = UIReturnKeyDone;
+        _location.tag = 0;
+        _location.delegate = self;
+        _location.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _location.layer.borderColor = [UIColor grayColor].CGColor;
+        _location.layer.cornerRadius = 6;
+        _location.layer.borderWidth = 1.0;
+    }
+    return _location;
+}
+
+- (UIButton *)kaoQinButton {
+    if(nil == _kaoQinButton){
+        _kaoQinButton = [UIButton buttonWithStyle:StrapDefaultStyle
+                                         andTitle:@"考勤"
+                                         andFrame:CGRectMake(0, 0, kButtonWidth,kButtonHeight)
+                                           target:self
+                                           action:@selector(KaoQin)];
+    }
+    
+    return _kaoQinButton;
 }
 @end

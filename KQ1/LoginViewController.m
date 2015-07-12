@@ -21,6 +21,8 @@
 @property(nonatomic,strong)UIButton *loginBtn;
 @property(nonatomic,strong)UIButton *cancleBtn;
 
+@property(nonatomic,strong)UIAlertView *alertWait;
+
 @end
 
 @implementation LoginViewController
@@ -55,10 +57,10 @@
     
 }
 
+#pragma mark - CustumDelegate
 
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(nonnull UITextField *)textField
-{
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(nonnull UITextField *)textField{
     NSInteger index = textField.tag;
     [textField resignFirstResponder];
     if(index<1){
@@ -66,22 +68,31 @@
     }
     return YES;
 }
-#pragma mark - CustumDelegate
+
 
 #pragma mark - event Response
 - (void)LoginBtnPress{
-    NSLog(@"loginPress!");
+
+    [self alertWaitWithTitle:@"正在登陆中..." message:nil cancelButtonTitle:nil];
+    
     //按下登陆按钮时，关闭键盘;
     [self.view endEditing:YES];
     
-    User *user = [[User alloc] loginWithUserName:self.loginID.text password:self.password.text];
-    
-    //登陆成功后，回到主界面
-    if(user.isLogin){
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    
-    
+    dispatch_queue_t queue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t main_queue = dispatch_get_main_queue();
+    dispatch_async(queue, ^{
+        User *user = [[User alloc] loginWithUserName:self.loginID.text password:self.password.text];
+        dispatch_async(main_queue, ^{
+            if(user.isLogin){
+                //登陆成功后，回到主界面
+                [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }else{
+                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
+                [self alertWaitWithTitle:@"登陆失败！" message:user.failDescription cancelButtonTitle:@"确定"];
+            }
+        });
+    });
 }
 
 -(void)CancleBtnPress{
@@ -93,6 +104,26 @@
     [self.view endEditing:YES];
 }
 #pragma mark - private methods
+- (void)alertWaitWithTitle:(NSString *)title  message:(NSString *)message  cancelButtonTitle:(NSString *)cancelButtonTitle{
+    self.alertWait = [[UIAlertView alloc]initWithTitle:title message:message
+                                              delegate:self
+                                     cancelButtonTitle:cancelButtonTitle
+                                     otherButtonTitles:nil];
+//    if (cancelButtonTitle) {
+//        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]
+//                                              initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//        indicator.center = CGPointMake(self.alertWait.bounds.size.width/2.0f, self.alertWait.bounds.size.height/2.0f);
+//        indicator.frame = CGRectMake(20, 20, self.alertWait.bounds.size.width-40, self.alertWait.bounds.size.height-40);
+//        [indicator startAnimating];
+//        [self.alertWait addSubview:indicator];
+//    }
+    
+    [self.alertWait show];
+    
+    
+
+}
+
 
 #pragma mark - getters and setters
 - (UIButton *)loginBtn{
@@ -142,6 +173,7 @@
         _password.borderStyle = UITextBorderStyleRoundedRect;
         _password.autocapitalizationType = UITextAutocapitalizationTypeNone;
         _password.delegate = self;
+        _password.secureTextEntry =YES;
 
     }
     return _password;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0E2A531B528BFC00566899 /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E2A521B528BFC00566899 /* Locator.m */; };
 		5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */; };
 		5A78FBFA1B4AD6C100E9C38A /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF91B4AD6C100E9C38A /* UIColor+expanded.m */; };
 		5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC421B4ADDD100E9C38A /* FAImageView.m */; };
@@ -51,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		1F05DC5E581FAFCB71B072A4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A0E2A511B528BFC00566899 /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
+		5A0E2A521B528BFC00566899 /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		5A78FBF11B4AD23200E9C38A /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Bootstrap.h"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Bootstrap.m"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIButton+Bootstrap.m"; sourceTree = "<group>"; };
 		5A78FBF81B4AD6C100E9C38A /* UIColor+expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+expanded.h"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIColor+expanded.h"; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 				5AE7539C1B4ACB4C00D21BD4 /* User.m */,
 				5AF2262B1B51151100F846C1 /* UserLoginResult.h */,
 				5AF2262C1B51151100F846C1 /* UserLoginResult.m */,
+				5A0E2A511B528BFC00566899 /* Locator.h */,
+				5A0E2A521B528BFC00566899 /* Locator.m */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -469,6 +474,7 @@
 				5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */,
 				5A898A241B480FFA00BECC26 /* main.m in Sources */,
 				5A78FC511B4ADDD100E9C38A /* UIImage+FontAwesome.m in Sources */,
+				5A0E2A531B528BFC00566899 /* Locator.m in Sources */,
 				5A78FC4E1B4ADDD100E9C38A /* README.md in Sources */,
 				5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */,
 				5A78FC501B4ADDD100E9C38A /* UIFont+FontAwesome.m in Sources */,

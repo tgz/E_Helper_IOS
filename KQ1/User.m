@@ -30,6 +30,7 @@
         self.ouName = [userDefaults valueForKey:@"OUName"];
         self.userGuid = [userDefaults valueForKey:@"UserGuid"];
         self.userName = [userDefaults valueForKey:@"UserName"];
+        self.isLogin = [userDefaults boolForKey:@"IsLogin"];
     }
     return self;
 }
@@ -49,6 +50,7 @@
     [userDefaults setObject:userGuid forKey:@"UserGuid"];
     [userDefaults setObject:userName forKey:@"UserName"];
     [userDefaults setObject:ouName forKey:@"OUName"];
+    [userDefaults setBool:YES forKey:@"IsLogin"];
     return YES;
 }
 
@@ -58,6 +60,7 @@
     [userDefaults setObject:user.userGuid forKey:@"UserGuid"];
     [userDefaults setObject:user.userName forKey:@"UserName"];
     [userDefaults setObject:user.ouName forKey:@"OUName"];
+    [userDefaults setBool:user.isLogin forKey:@"IsLogin"];
 }
 
 - (void)saveUserInfo {
@@ -67,12 +70,13 @@
         [userDefaults setObject:self.userGuid forKey:@"UserGuid"];
         [userDefaults setObject:self.userName forKey:@"UserName"];
         [userDefaults setObject:self.ouName forKey:@"OUName"];
+        [userDefaults setBool:self.isLogin forKey:@"IsLogin"];
     }
    
 }
 
 
-#pragma mark - method
+#pragma mark - Login
 - (User *)loginWithUserName:(NSString *)userName
                    password:(NSString *)password {
     NSString *validateDate = [VerifyTool CreateNewToken];
@@ -102,12 +106,15 @@
     NSData *responseData = [NSURLConnection sendSynchronousRequest:theRequest
                                                  returningResponse:&response
                                                              error:&error];
-    NSMutableString * result = [[NSMutableString alloc]initWithData:responseData
-                                                           encoding:NSUTF8StringEncoding];
+//    NSMutableString * result = [[NSMutableString alloc]initWithData:responseData
+//                                                           encoding:NSUTF8StringEncoding];
     if(error)
     {
         NSLog(@"ReponseError:\n\n%@\n\nDebugDescription:\n%@\n",error.description,error.debugDescription);
-        return nil;
+       
+        self.isLogin = NO;
+        self.failDescription = error.description;
+        return self;
     }
     
     //NSLog(@"Return String is ======⬇️⬇️⬇️\n%@",result);
