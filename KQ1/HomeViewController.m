@@ -32,11 +32,13 @@
     NSMutableArray *tabBarArray = [[NSMutableArray alloc]init];
     
     TodayViewController *todayVC = [[TodayViewController alloc]init];
-    [tabBarArray addObject:todayVC];
+    UINavigationController *todayNC = [[UINavigationController alloc]initWithRootViewController:todayVC];
+    [tabBarArray addObject:todayNC];
     
     ZeroReportViewController * zeroVC = [[ZeroReportViewController alloc]init];
-    [tabBarArray addObject:zeroVC];
-        
+    UINavigationController *zeroNC = [[UINavigationController alloc]initWithRootViewController:zeroVC];
+    [tabBarArray addObject:zeroNC];
+    
     [self setViewControllers:tabBarArray animated:YES];
     
     UITabBarItem *homeItem = [self.tabBar.items objectAtIndex:0];

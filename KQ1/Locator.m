@@ -84,6 +84,59 @@
         
     }];
     
+    //考勤后，把考勤地点记录下来备用。
+    [self saveLocation];
+    
+    
+    NSLog(@"%@",self.locations);
+}
+
+- (void)getAttendanceRecord {
+    NSString *validateData = [VerifyTool CreateNewToken];
+    
+    NSString *datetime = @"2015-07-13";//[[NSString alloc]init];
+    
+    NSString *soapMessage = [NSString stringWithFormat:@"<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:v=\"http://schemas.xmlsoap.org/soap/envelope/\"><v:Header /><v:Body><GetWorkAttendanceRecord xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><Token i:type=\"d:string\">%@</Token><UserGuid i:type=\"d:string\">%@</UserGuid><dt i:type=\"d:string\">%@</dt></GetWorkAttendanceRecord></v:Body></v:Envelope>",validateData,self.userGuid,datetime];
+    
+    //创建URL
+    NSString *address =@"http://oa.epoint.com.cn/WebServiceManage/EMWebService.asmx";
+    NSURL* url = [NSURL URLWithString:address];
+    //创建请求
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    
+    [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    // 下面这行， 后面SOAPAction是规范， 而下面这个网址来自哪里呢，来自于上面加红加粗的部分。
+    [theRequest addValue: @"http://tempuri.org/GetWorkAttendanceRecord" forHTTPHeaderField:@"SOAPAction"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"\nsoapMessage:\n%@\n",soapMessage);
+    
+    NSURLResponse *response;
+    NSError *error = nil;
+    
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                 returningResponse:&response
+                                                             error:&error];
+    
+    NSLog(@"Result:\n%@\n", [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]);
+    
+    [self analyseResult:responseData];
+    
+    //解析成功的情况下，继续解析实际列表
+    if (self.isSuccess) {
+        self.attendanceInsertResult = [NSString stringWithFormat:@"<Result>%@</Result>",self.attendanceInsertResult];
+        [self analyseResult:[self.attendanceInsertResult dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    [self.locations enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
+        if ([obj isKindOfClass:[AttendanceRecord class]]) {
+            NSLog(@"%d,%@",idx,obj);
+        }
+    }];
+    
     NSLog(@"%@",self.locations);
 }
 
@@ -194,6 +247,12 @@
     
 }
 
+- (void)saveLocation {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self.location forKey:@"Location"];
+    [userDefaults synchronize];
+}
+
 +(BOOL)SaveLocation:(NSString *)location
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -249,7 +308,8 @@
 - (void)parser:(nonnull NSXMLParser *)parser didEndElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName {
 
     //NSLog(@"%@读取完毕！:%@",elementName,self.tempString);
-    if ([elementName isEqualToString:@"MobileWorkAttendanceInsertResult"]) {
+    if ([elementName isEqualToString:@"MobileWorkAttendanceInsertResult"]
+        || [elementName isEqualToString:@"GetWorkAttendanceRecordResult"]) {
         self.attendanceInsertResult = self.tempString;
         
         NSLog(@"获取到签到列表内容：%@",self.attendanceInsertResult); 

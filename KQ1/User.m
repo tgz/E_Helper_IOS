@@ -51,6 +51,8 @@
     [userDefaults setObject:userName forKey:@"UserName"];
     [userDefaults setObject:ouName forKey:@"OUName"];
     [userDefaults setBool:YES forKey:@"IsLogin"];
+    
+    [userDefaults synchronize];
     return YES;
 }
 
@@ -61,6 +63,7 @@
     [userDefaults setObject:user.userName forKey:@"UserName"];
     [userDefaults setObject:user.ouName forKey:@"OUName"];
     [userDefaults setBool:user.isLogin forKey:@"IsLogin"];
+     [userDefaults synchronize];
 }
 
 - (void)saveUserInfo {
@@ -71,6 +74,7 @@
         [userDefaults setObject:self.userName forKey:@"UserName"];
         [userDefaults setObject:self.ouName forKey:@"OUName"];
         [userDefaults setBool:self.isLogin forKey:@"IsLogin"];
+        [userDefaults synchronize];
     }
    
 }

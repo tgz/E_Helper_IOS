@@ -20,6 +20,7 @@
 @property (nonatomic,strong)UITextView *location;
 @property (nonatomic,strong)UIButton *kaoQinButton;
 @property (nonatomic,strong)User *user;
+@property (nonatomic,strong)UIButton *getLocationHistory;
 
 @property(nonatomic,strong)UIAlertView *alertWait;
 
@@ -41,37 +42,9 @@
     
     [self.view addSubview:self.location];
     [self.view addSubview:self.kaoQinButton];
+    
+    [self.view addSubview:self.getLocationHistory];
 
-    
-        
-    NSLog(@"TodayViewController_viewDidLoad");
-       //self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",9];
-}
-
-- (void)viewWillLayoutSubviews{
-    NSLog(@"TodayVC---> viewWillLayoutSubviews");
-    [super viewWillLayoutSubviews];
-    
-    self.userInfo.frame = CGRectMake(20, 40, self.view.frame.size.width-40, 40);
-    
-    self.loginButton.center = CGPointMake(kScreenWidth*2/3, kScreenHeight - kBorderBottom);
-    
-    
-    self.kaoQinButton.center = CGPointMake(kScreenWidth/3, kScreenHeight - kBorderBottom);
-    
-}
-
-- (void)viewDidLayoutSubviews {
-    NSLog(@"TodayVC---> viewDidLayoutSubviews");
-    
-    [super viewDidLayoutSubviews];
-    
-//    [self.userInfo mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view).width.offset(60);
-//        make.width.equalTo(self.view);
-//        make.centerX.equalTo(self.view);
-//    }];
-    
     
     [self.ouName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -90,19 +63,59 @@
         make.width.mas_equalTo(self.view.frame.size.width);
         
     }];
+    //隐藏基项部导航栏
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
+    NSLog(@"TodayViewController_viewDidLoad");
+       //self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",9];
+}
+
+- (void)viewWillLayoutSubviews{
+    NSLog(@"TodayVC---> viewWillLayoutSubviews");
+    [super viewWillLayoutSubviews];
+    
+    self.userInfo.frame = CGRectMake(20, 40, self.view.frame.size.width-40, 40);
+    
+    self.loginButton.center = CGPointMake(kScreenWidth/6, kScreenHeight - kBorderBottom);
+    
+    
+    self.kaoQinButton.center = CGPointMake(kScreenWidth/2, kScreenHeight - kBorderBottom);
+    
+    self.getLocationHistory.center = CGPointMake(kScreenWidth*5/6, kScreenHeight-kBorderBottom);
     
 }
+
+//- (void)viewDidLayoutSubviews {
+//    NSLog(@"TodayVC---> viewDidLayoutSubviews");
+//    
+//    
+//    
+////    [self.userInfo mas_makeConstraints:^(MASConstraintMaker *make) {
+////        make.top.equalTo(self.view).width.offset(60);
+////        make.width.equalTo(self.view);
+////        make.centerX.equalTo(self.view);
+////    }];
+//    
+//        [super viewDidLayoutSubviews];
+//    
+//}
 
 - (void)viewWillAppear:(BOOL)animated {
     
     NSLog(@"TodayVC---> viewWillAppear");
     [super viewWillAppear:animated];
-    
+    //隐藏顶部导航栏动画
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     self.userInfo.text = self.user.userName;
     self.ouName.text = self.user.ouName;
     NSLog(@"viewWillAppear：读取用户信息：%@,%@,%@,%d",self.user.userName , self.user.userGuid, self.user.ouName , self.user.isLogin);
+  
+    NSString *lastLocation = [Locator ReadLocation];
+    if (![lastLocation isEqualToString:@""]) {
+        lastLocation = @"请输入地点";
+    }
+    self.location.text = lastLocation;
 }
 
 
@@ -196,6 +209,47 @@
     });
 
    
+}
+
+- (void)KaoQinHistory{
+    NSLog(@"Kaoqin!");
+    
+    
+    [self alertWaitWithTitle:@"正在查询" message:@"请稍后..." cancelButtonTitle:nil];
+    
+    //按下按钮时，关闭键盘;
+    [self.view endEditing:YES];
+    
+    
+    dispatch_queue_t queue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t main_queue = dispatch_get_main_queue();
+    dispatch_async(queue, ^{
+        Locator *locator = [[Locator alloc]initWithUser:self.user.userGuid location:self.location.text];
+        
+        [locator getAttendanceRecord];
+        
+        dispatch_async(main_queue, ^{
+            if(locator.isSuccess){
+                //考勤成功后，显示考勤记录
+                [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
+                NSArray *array = [locator.locations copy];
+                
+                NSMutableString *message = [[NSMutableString alloc]init];
+                
+                [array enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
+                    [message appendString:[NSString stringWithFormat:@"%@\n",obj]];
+                }];
+                
+                [self alertWaitWithTitle:@"获取记录成功！" message:message cancelButtonTitle:@"确定"];
+                
+            }else{
+                [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
+                [self alertWaitWithTitle:@"考勤失败！" message:locator.failDescription cancelButtonTitle:@"确定"];
+            }
+        });
+    });
+    
+    
 }
 
 - (void)touchesBegan:(nonnull NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event{
@@ -296,5 +350,16 @@
     }
     
     return _kaoQinButton;
+}
+
+- (UIButton *)getLocationHistory{
+    if(nil==_getLocationHistory){
+        _getLocationHistory = [UIButton buttonWithStyle:StrapPrimaryStyle
+                                               andTitle:@"考勤记录"
+                                               andFrame:CGRectMake(0, 0, kButtonWidth, kButtonHeight)
+                                                 target:self
+                                                 action:@selector(KaoQinHistory)];
+    }
+    return _getLocationHistory;
 }
 @end

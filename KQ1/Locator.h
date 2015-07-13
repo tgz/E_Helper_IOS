@@ -16,6 +16,7 @@
 - (instancetype)initWithUser:(NSString *)userGuid location:(NSString *)location;
 + (instancetype)locatorWithUser:(NSString *)userGuid location:(NSString *)location;
 - (void)kaoQin;
+- (void)getAttendanceRecord;
 
 +(BOOL)DoKaoQin:(NSString *)Location UserGuid:(NSString *)userGuid;
 +(NSString *)DoKaoQin4XML:(NSString *)Location UserGuid:(NSString *)userGuid;
