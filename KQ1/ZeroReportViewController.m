@@ -36,7 +36,7 @@
 -  (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.btn.frame = CGRectMake(30, 50, 100, 30);
+    self.btn.frame = CGRectMake(30, 80, 100, 30);
 }
 
 /*

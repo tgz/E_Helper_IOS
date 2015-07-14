@@ -10,7 +10,7 @@
 #import "import.h"
 #import "User.h"
 #import "Masonry.h"
-
+#import "TodayViewController.h"
 #define kPadding 20
 
 @interface LoginViewController() <UITextFieldDelegate>
@@ -83,6 +83,8 @@
     dispatch_async(queue, ^{
         User *user = [[User alloc] loginWithUserName:self.loginID.text password:self.password.text];
         dispatch_async(main_queue, ^{
+            //通过delegate将登录后的User传到第一个页面。
+            [self.delegate passUser:user];
             if(user.isLogin){
                 //登陆成功后，回到主界面
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
@@ -100,7 +102,7 @@
     NSLog(@"CanclePress");
 }
 
-- (void)touchesBegan:(nonnull NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
 #pragma mark - private methods

@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class User;
 
 @interface TodayViewController : UIViewController
+
+@end
+
+
+@protocol TodayViewPassValueDelegate
+
+- (void)passUser:(User *)user;
 
 @end

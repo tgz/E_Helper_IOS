@@ -94,8 +94,14 @@
 - (void)getAttendanceRecord {
     NSString *validateData = [VerifyTool CreateNewToken];
     
-    NSString *datetime = @"2015-07-13";//[[NSString alloc]init];
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
     
+    [dateFormater setDateFormat:@"yyyy-MM-dd"];
+    NSDate *currentDate = [NSDate date];
+    
+    
+    NSString *datetime =[dateFormater stringFromDate:currentDate]; // @"2015-07-13";//[[NSString alloc]init];
+    NSLog(@"======> currentDate: %@", datetime);
     NSString *soapMessage = [NSString stringWithFormat:@"<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:v=\"http://schemas.xmlsoap.org/soap/envelope/\"><v:Header /><v:Body><GetWorkAttendanceRecord xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><Token i:type=\"d:string\">%@</Token><UserGuid i:type=\"d:string\">%@</UserGuid><dt i:type=\"d:string\">%@</dt></GetWorkAttendanceRecord></v:Body></v:Envelope>",validateData,self.userGuid,datetime];
     
     //创建URL
@@ -285,7 +291,7 @@
     
 }
 
-- (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary<NSString *,NSString *> *)attributeDict {
+- (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary *)attributeDict {
 
     NSLog(@"StartElement:%@",elementName);
     [self.tempString setString:@""];

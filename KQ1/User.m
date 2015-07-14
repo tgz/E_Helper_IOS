@@ -63,7 +63,7 @@
     [userDefaults setObject:user.userName forKey:@"UserName"];
     [userDefaults setObject:user.ouName forKey:@"OUName"];
     [userDefaults setBool:user.isLogin forKey:@"IsLogin"];
-     [userDefaults synchronize];
+    [userDefaults synchronize];
 }
 
 - (void)saveUserInfo {
@@ -198,7 +198,7 @@
 }
 
 
-- (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary<NSString *,NSString *> *)attributeDict {
+- (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary *)attributeDict {
     
     //NSLog(@"找到节点：%@",elementName);
     if([elementName isEqualToString:@"UserLogin2Result"])

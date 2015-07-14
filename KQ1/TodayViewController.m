@@ -13,7 +13,7 @@
 #import "Locator.h"
 
 
-@interface TodayViewController () <UITextFieldDelegate,UITextViewDelegate>
+@interface TodayViewController () <UITextFieldDelegate,UITextViewDelegate,TodayViewPassValueDelegate>
 @property (nonatomic,strong)UILabel *userInfo;
 @property (nonatomic,strong)UIButton *loginButton;
 @property (nonatomic,strong)UILabel *ouName;
@@ -113,7 +113,10 @@
   
     NSString *lastLocation = [Locator ReadLocation];
     if (![lastLocation isEqualToString:@""]) {
-        lastLocation = @"请输入地点";
+        lastLocation = @"草场门大街88号东门江苏建设大厦附近";
+        self.location.textColor = [UIColor blackColor];
+    }else{
+        self.location.textColor = [UIColor blackColor];
     }
     self.location.text = lastLocation;
 }
@@ -133,6 +136,13 @@
 #pragma mark - UITabViewDelegate
 
 #pragma mark - CustumDelegate
+- (void)passUser:(User *)user {
+    self.user.userName = user.userName;
+    self.user.userGuid = user.userGuid;
+    self.user.ouName = user.ouName;
+    self.user.isLogin = user.isLogin;
+}
+
 
 #pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(nonnull UITextField *)textField {
@@ -144,9 +154,29 @@
 #pragma mark UITextViewDelegate
 - (BOOL)textViewShouldEndEditing:(nonnull UITextView *)textView {
     [textView resignFirstResponder];
-    
+    if (textView.tag == 0 && [textView.text length]==0) {
+        textView.text = @"请输入地点";
+        textView.textColor = [UIColor lightGrayColor];
+        
+    }
     return YES;
 }
+- (BOOL)textViewShouldBeginEditing:(nonnull UITextView *)textView {
+    if (textView.tag == 0 && [textView.text isEqualToString:@"请输入地点"]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+    }
+    return YES;
+}
+
+
+//- (void)textViewDidChange:(nonnull UITextView *)textView {
+//    if (textView.tag == 0 && [textView.text length]==0) {
+//        textView.text = @"请输入地点";
+//        textView.textColor = [UIColor lightGrayColor];
+//        
+//    }
+//}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range  replacementText:(NSString *)text
 {
@@ -165,6 +195,7 @@
 - (void)GoToLogin {
     NSLog(@"goToLogin!");
     LoginViewController *loginVC = [[LoginViewController alloc]init];
+    loginVC.delegate = self;
     [loginVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:loginVC animated:YES completion:nil];
     
@@ -198,7 +229,9 @@
                 [array enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
                     [message appendString:[NSString stringWithFormat:@"%@\n",obj]];
                 }];
-                
+                if ([message isEqualToString:@""]) {
+                    [message setString: @"没有记录！"];
+                }
                 [self alertWaitWithTitle:@"考勤成功！" message:message cancelButtonTitle:@"确定"];
                 
             }else{
@@ -239,12 +272,14 @@
                 [array enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
                     [message appendString:[NSString stringWithFormat:@"%@\n",obj]];
                 }];
-                
+                if ([message isEqualToString:@""]) {
+                    [message setString: @"没有记录！"];
+                }
                 [self alertWaitWithTitle:@"获取记录成功！" message:message cancelButtonTitle:@"确定"];
                 
             }else{
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
-                [self alertWaitWithTitle:@"考勤失败！" message:locator.failDescription cancelButtonTitle:@"确定"];
+                [self alertWaitWithTitle:@"获取记录失败！" message:locator.failDescription cancelButtonTitle:@"确定"];
             }
         });
     });
@@ -252,7 +287,7 @@
     
 }
 
-- (void)touchesBegan:(nonnull NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event{
+- (void)touchesBegan:(nonnull NSSet *)touches withEvent:(nullable UIEvent *)event{
     [self.view endEditing:YES];
 }
 
