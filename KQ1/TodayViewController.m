@@ -109,7 +109,7 @@
     
     self.userInfo.text = self.user.userName;
     self.ouName.text = self.user.ouName;
-    NSLog(@"viewWillAppear：读取用户信息：%@,%@,%@,%d",self.user.userName , self.user.userGuid, self.user.ouName , self.user.isLogin);
+    NSLog(@"viewWillAppear：当前用户信息：%@,%@,%@,%d",self.user.userName , self.user.userGuid, self.user.ouName , self.user.isLogin);
   
     NSString *lastLocation = [Locator ReadLocation];
     if (![lastLocation isEqualToString:@""]) {
@@ -200,7 +200,9 @@
     [self presentViewController:loginVC animated:YES completion:nil];
     
 }
-
+/**
+ 考勤
+ */
 - (void)KaoQin{
     NSLog(@"Kaoqin!");
     //如果没有地点，不进行考勤。
