@@ -203,7 +203,11 @@
 
 - (void)KaoQin{
     NSLog(@"Kaoqin!");
-
+    //如果没有地点，不进行考勤。
+    if ([self.location.text isEqualToString:@""]) {
+        [self alertWaitWithTitle:@"警告！" message:@"未输入考勤地点！" cancelButtonTitle:@"确定"];
+        return;
+    }
     
     [self alertWaitWithTitle:@"正在考勤" message:@"请稍后..." cancelButtonTitle:nil];
     
