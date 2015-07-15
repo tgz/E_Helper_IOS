@@ -23,15 +23,30 @@
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 //    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    [self.navigationController setTitle:@"考勤记录"];
+    [self setTitle:@"考勤记录"];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, kScreenWidth, kScreenHeight-44)];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+
+
+    UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                target:self action:nil];
+    //[self.navigationItem setLeftBarButtonItem:leftBarItem];
+    
+    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                 target:self action:nil];
+    [self.navigationItem setRightBarButtonItem:rightBarItem];
+    
+    //[self.navigationItem setTitle:@"考勤记录"];
+    
+    //[self.navigationItem setBackBarButtonItem:rightBarItem];
     
 }
 

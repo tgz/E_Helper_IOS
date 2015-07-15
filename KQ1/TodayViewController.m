@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "User.h"
 #import "Locator.h"
+#import "AttendLocationViewController.h"
 
 
 @interface TodayViewController () <UITextFieldDelegate,UITextViewDelegate,TodayViewPassValueDelegate>
@@ -109,7 +110,7 @@
     
     self.userInfo.text = self.user.userName;
     self.ouName.text = self.user.ouName;
-    NSLog(@"viewWillAppear：当前用户信息：%@,%@,%@,%d",self.user.userName , self.user.userGuid, self.user.ouName , self.user.isLogin);
+    NSLog(@"viewWillAppear：读取用户信息：%@,%@,%@,%d",self.user.userName , self.user.userGuid, self.user.ouName , self.user.isLogin);
   
     NSString *lastLocation = [Locator ReadLocation];
     if (![lastLocation isEqualToString:@""]) {
@@ -253,7 +254,19 @@
 - (void)KaoQinHistory{
     NSLog(@"Kaoqin!");
     
+    AttendLocationViewController *alvc = [[AttendLocationViewController alloc]init];
     
+    [self.navigationController pushViewController:alvc animated:YES];
+    
+    
+    /*
+     *以下为直接查询考勤历史的方法。
+     *替换为打开新页面，List页面展示考勤历史。
+     *
+     */
+    
+    
+    /*
     [self alertWaitWithTitle:@"正在查询" message:@"请稍后..." cancelButtonTitle:nil];
     
     //按下按钮时，关闭键盘;
@@ -289,6 +302,11 @@
             }
         });
     });
+     
+     
+     
+     */
+     
     
     
 }

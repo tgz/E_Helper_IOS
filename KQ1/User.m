@@ -95,7 +95,7 @@
     
     // 然后就是text/xml, 和content-Length必须有。
     [theRequest addValue: @"text/xml; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
-    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
     [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
     // 下面这行， 后面SOAPAction是规范， 而下面这个网址来自哪里呢，来自于上面加红加粗的部分。
     [theRequest addValue: @"http://tempuri.org/UserLogin2" forHTTPHeaderField:@"SOAPAction"];
