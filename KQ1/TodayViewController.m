@@ -252,11 +252,7 @@
 }
 
 - (void)KaoQinHistory{
-    NSLog(@"Kaoqin!");
-    
-    AttendLocationViewController *alvc = [[AttendLocationViewController alloc]init];
-    
-    [self.navigationController pushViewController:alvc animated:YES];
+    NSLog(@"KaoqinHistory!");
     
     
     /*
@@ -266,7 +262,7 @@
      */
     
     
-    /*
+    
     [self alertWaitWithTitle:@"正在查询" message:@"请稍后..." cancelButtonTitle:nil];
     
     //按下按钮时，关闭键盘;
@@ -285,27 +281,41 @@
                 //考勤成功后，显示考勤记录
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
                 NSArray *array = [locator.locations copy];
+
+                /**弹窗提醒的方法*/
+//                NSMutableString *message = [[NSMutableString alloc]init];
+//                
+//                [array enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
+//                    [message appendString:[NSString stringWithFormat:@"%@\n",obj]];
+//                }];
+//                if ([message isEqualToString:@""]) {
+//                    [message setString: @"没有记录！"];
+//                }
+                //[self alertWaitWithTitle:@"获取记录成功！" message:message cancelButtonTitle:@"确定"];
                 
-                NSMutableString *message = [[NSMutableString alloc]init];
                 
-                [array enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
-                    [message appendString:[NSString stringWithFormat:@"%@\n",obj]];
-                }];
-                if ([message isEqualToString:@""]) {
-                    [message setString: @"没有记录！"];
+                /**跳转到TableView的方法*/
+                /**补充：如果没有考勤过，则弹出提示*/
+                if(array.count<1){
+                    [self alertWaitWithTitle:@"获取记录成功！" message:@"没有考勤记录！" cancelButtonTitle:@"确定"];
+                } else {
+                    
+                    AttendLocationViewController *alvc = [[AttendLocationViewController alloc]init];
+                    alvc.locations = array;
+                    [self.navigationController pushViewController:alvc animated:YES];
                 }
-                [self alertWaitWithTitle:@"获取记录成功！" message:message cancelButtonTitle:@"确定"];
-                
-            }else{
+            } else { 
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
                 [self alertWaitWithTitle:@"获取记录失败！" message:locator.failDescription cancelButtonTitle:@"确定"];
+                
             }
+            
         });
     });
      
      
      
-     */
+    
      
     
     

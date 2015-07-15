@@ -73,13 +73,14 @@
     
     //解析成功的情况下，继续解析实际列表
     if (self.isSuccess) {
+        
         self.attendanceInsertResult = [NSString stringWithFormat:@"<Result>%@</Result>",self.attendanceInsertResult];
         [self analyseResult:[self.attendanceInsertResult dataUsingEncoding:NSUTF8StringEncoding]];
     }
     
     [self.locations enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
         if ([obj isKindOfClass:[AttendanceRecord class]]) {
-            NSLog(@"%d,%@",idx,obj);
+            NSLog(@"%lu,%@",(unsigned long)idx,obj);
         }
         
     }];
@@ -100,7 +101,7 @@
     NSDate *currentDate = [NSDate date];
     
     
-    NSString *datetime =[dateFormater stringFromDate:currentDate]; // @"2015-07-13";//[[NSString alloc]init];
+    NSString *datetime = [dateFormater stringFromDate:currentDate]; // @"2015-07-13";//[[NSString alloc]init];
     NSLog(@"======> currentDate: %@", datetime);
     NSString *soapMessage = [NSString stringWithFormat:@"<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:v=\"http://schemas.xmlsoap.org/soap/envelope/\"><v:Header /><v:Body><GetWorkAttendanceRecord xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><Token i:type=\"d:string\">%@</Token><UserGuid i:type=\"d:string\">%@</UserGuid><dt i:type=\"d:string\">%@</dt></GetWorkAttendanceRecord></v:Body></v:Envelope>",validateData,self.userGuid,datetime];
     
@@ -346,6 +347,7 @@
 - (void)parserDidEndDocument:(nonnull NSXMLParser *)parser {
     NSLog(@"XML解析完毕");
     self.isSuccess = YES;
+    
 }
 
 
