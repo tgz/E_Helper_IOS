@@ -75,7 +75,7 @@
 }
 
 - (CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return 40;
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -91,6 +91,10 @@
     AttendanceRecord *record = [self.locations objectAtIndex:indexPath.row];
     cell.textLabel.text = record.AttendLocation;
     cell.detailTextLabel.text = record.AttendTime;
+    cell.textLabel.numberOfLines=2;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    
     return  cell;
 }
 

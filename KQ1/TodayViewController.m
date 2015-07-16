@@ -38,7 +38,8 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self.view addSubview:self.userInfo];
-    [self.view addSubview:self.loginButton];
+    /**用户登录按钮屏蔽，自动判断是否需要跳转*/
+    //[self.view addSubview:self.loginButton];
     [self.view addSubview:self.ouName];
     
     [self.view addSubview:self.location];
@@ -77,12 +78,13 @@
     
     self.userInfo.frame = CGRectMake(20, 40, self.view.frame.size.width-40, 40);
     
-    self.loginButton.center = CGPointMake(kScreenWidth/6, kScreenHeight - kBorderBottom);
+    /**用户登录按钮屏蔽，自动判断是否需要跳转*/
+    //self.loginButton.center = CGPointMake(kScreenWidth/6, kScreenHeight - kBorderBottom);
     
     
-    self.kaoQinButton.center = CGPointMake(kScreenWidth/2, kScreenHeight - kBorderBottom);
+    self.kaoQinButton.center = CGPointMake(kScreenWidth*5/6, kScreenHeight - kBorderBottom);
     
-    self.getLocationHistory.center = CGPointMake(kScreenWidth*5/6, kScreenHeight-kBorderBottom);
+    self.getLocationHistory.center = CGPointMake(kScreenWidth/6, kScreenHeight-kBorderBottom);
     
 }
 
@@ -105,6 +107,13 @@
     
     NSLog(@"TodayVC---> viewWillAppear");
     [super viewWillAppear:animated];
+    
+    /**如果没有用户Guid 则说明没有登录过，跳转到登陆界面*/
+    if (!self.user.isLogin) {
+        [self GoToLogin];
+    }
+    
+    
     //隐藏顶部导航栏动画
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
@@ -120,6 +129,10 @@
         self.location.textColor = [UIColor blackColor];
     }
     self.location.text = lastLocation;
+    
+    
+    
+    
 }
 
 
@@ -231,6 +244,15 @@
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
                 NSArray *array = [locator.locations copy];
                 
+                if (array.count > 0) {
+                    [self gotoAttendHistory:array];
+                } else {
+                    [self alertWaitWithTitle:@"获取记录成功！" message:@"没有考勤记录！" cancelButtonTitle:@"确定"];
+                }
+                
+                return;
+                /**以下弹出提示框的方法舍弃*/
+                /*
                 NSMutableString *message = [[NSMutableString alloc]init];
                 
                 [array enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
@@ -240,6 +262,7 @@
                     [message setString: @"没有记录！"];
                 }
                 [self alertWaitWithTitle:@"考勤成功！" message:message cancelButtonTitle:@"确定"];
+                */
                 
             }else{
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
@@ -299,12 +322,10 @@
                 if(array.count<1){
                     [self alertWaitWithTitle:@"获取记录成功！" message:@"没有考勤记录！" cancelButtonTitle:@"确定"];
                 } else {
-                    
-                    AttendLocationViewController *alvc = [[AttendLocationViewController alloc]init];
-                    alvc.locations = array;
-                    [self.navigationController pushViewController:alvc animated:YES];
+                    [self gotoAttendHistory:array];
+                   
                 }
-            } else { 
+            } else {
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
                 [self alertWaitWithTitle:@"获取记录失败！" message:locator.failDescription cancelButtonTitle:@"确定"];
                 
@@ -341,6 +362,12 @@
     //    }
     
     [self.alertWait show];
+}
+
+- (void)gotoAttendHistory:(NSArray *)attendRecord {
+    AttendLocationViewController *alvc = [[AttendLocationViewController alloc]init];
+    alvc.locations = attendRecord;
+    [self.navigationController pushViewController:alvc animated:YES];
 }
 
 #pragma mark - getters and setters
@@ -393,7 +420,7 @@
     if (nil==_location) {
         _location = [[UITextView alloc]init];
         _location.textAlignment = NSTextAlignmentLeft;
-        _location.font = [UIFont systemFontOfSize:14];
+        _location.font = [UIFont systemFontOfSize:15];
 //        _location.placeholder = @"请输入考勤地点";
 //        _location.clearButtonMode = UITextFieldViewModeWhileEditing;
         _location.textColor = [UIColor blackColor];

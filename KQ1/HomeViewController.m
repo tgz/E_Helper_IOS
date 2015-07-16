@@ -10,6 +10,8 @@
 #import "TodayViewController.h"
 #import "ZeroReportViewController.h"
 #import "AFNetworking.h"
+#import "SwicthUserViewController.h"
+
 
 @interface HomeViewController ()
 
@@ -31,15 +33,28 @@
     
     NSMutableArray *tabBarArray = [[NSMutableArray alloc]init];
     
+    /**主功能界面添加*/
     TodayViewController *todayVC = [[TodayViewController alloc]init];
     UINavigationController *todayNC = [[UINavigationController alloc]initWithRootViewController:todayVC];
     [tabBarArray addObject:todayNC];
     
+    
+    
+    /**零报告View添加*/
     ZeroReportViewController * zeroVC = [[ZeroReportViewController alloc]init];
     UINavigationController *zeroNC = [[UINavigationController alloc]initWithRootViewController:zeroVC];
     [tabBarArray addObject:zeroNC];
     
-    [self setViewControllers:tabBarArray animated:YES];
+   
+
+    /**切换用户功能界面添加*/
+    SwicthUserViewController *switchVC = [[SwicthUserViewController alloc]init];
+    UINavigationController *switchNC = [[UINavigationController alloc]initWithRootViewController:switchVC];
+    [tabBarArray addObject:switchNC];
+    
+     [self setViewControllers:tabBarArray animated:YES];
+    
+    /**TabbarItem*/
     
     UITabBarItem *homeItem = [self.tabBar.items objectAtIndex:0];
     [homeItem setTitle:@"Today"];
@@ -52,12 +67,16 @@
     [reportItem setSelectedImage:[UIImage imageNamed:@"task_selected.png"]];
     [reportItem setImage:[UIImage imageNamed:@"task_normal.png"]];
     [reportItem setTag:1];
-
+    
+    UITabBarItem *switchUserItem = [self.tabBar.items objectAtIndex:2];
+    [switchUserItem setTitle:@"用户"];
+    [switchUserItem setSelectedImage:[UIImage imageNamed:@"me_selected.png"]];
+    [switchUserItem setImage:[UIImage imageNamed:@"me_normal.png"]];
+    [switchUserItem setTag:2];
     
     
-    //    zeroVC.tabBarItem = reportItem;
-    //    todayVC.tabBarItem = homeItem;
     
+   
     
 }
 

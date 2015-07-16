@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0B05D21B57F0E900298DBA /* SwicthUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B05D11B57F0E900298DBA /* SwicthUserViewController.m */; };
 		5A0E2A531B528BFC00566899 /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E2A521B528BFC00566899 /* Locator.m */; };
 		5A0E2A561B52C6CE00566899 /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E2A551B52C6CE00566899 /* AttendanceRecord.m */; };
 		5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */; };
@@ -54,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		1F05DC5E581FAFCB71B072A4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A0B05D01B57F0E900298DBA /* SwicthUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwicthUserViewController.h; sourceTree = "<group>"; };
+		5A0B05D11B57F0E900298DBA /* SwicthUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwicthUserViewController.m; sourceTree = "<group>"; };
 		5A0E2A511B528BFC00566899 /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
 		5A0E2A521B528BFC00566899 /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		5A0E2A541B52C6CE00566899 /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
@@ -279,6 +282,8 @@
 				5A78FC581B4C36D600E9C38A /* import.h */,
 				5AFB22281B54079A00CC731A /* AttendLocationViewController.h */,
 				5AFB22291B54079A00CC731A /* AttendLocationViewController.m */,
+				5A0B05D01B57F0E900298DBA /* SwicthUserViewController.h */,
+				5A0B05D11B57F0E900298DBA /* SwicthUserViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -485,6 +490,7 @@
 				5A898A241B480FFA00BECC26 /* main.m in Sources */,
 				5A78FC511B4ADDD100E9C38A /* UIImage+FontAwesome.m in Sources */,
 				5A0E2A531B528BFC00566899 /* Locator.m in Sources */,
+				5A0B05D21B57F0E900298DBA /* SwicthUserViewController.m in Sources */,
 				5A0E2A561B52C6CE00566899 /* AttendanceRecord.m in Sources */,
 				5A78FC4E1B4ADDD100E9C38A /* README.md in Sources */,
 				5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */,
