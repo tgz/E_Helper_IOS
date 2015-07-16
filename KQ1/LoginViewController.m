@@ -40,6 +40,7 @@
 
     
     
+    
 }
 
 
@@ -54,6 +55,12 @@
     
     self.loginID.center = loginCenter;
     self.password.center = passwordCenter;
+    
+    if (![User userFromNSUserDefaults].isLogin){
+        /**不存在已登陆用户，取消按钮隐藏*/
+        [self.cancleBtn removeFromSuperview];
+        self.loginBtn.center = CGPointMake(self.view.center.x, self.view.frame.size.height/3+kBorderBottom);
+    }
     
     
 }
