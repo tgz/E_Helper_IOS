@@ -33,7 +33,7 @@
 - (IBAction)goToLogin {
     NSLog(@"goToLogin!");
     LoginViewController *loginVC = [[LoginViewController alloc]init];
-    loginVC.delegate = self;
+   
     [loginVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:loginVC animated:YES completion:nil];
     

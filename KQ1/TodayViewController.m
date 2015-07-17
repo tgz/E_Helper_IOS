@@ -65,8 +65,16 @@
         make.width.mas_equalTo(self.view.frame.size.width);
         
     }];
-    //隐藏基项部导航栏
+    ///隐藏基项部导航栏
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    
+    /**添加通知监听--是否变更用户*/
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadUserFromUserDefaults)
+                                                 name:@"SC_UserChanged" object:nil];
+    
+
     
     NSLog(@"TodayViewController_viewDidLoad");
        //self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",9];
@@ -346,6 +354,14 @@
     [self.view endEditing:YES];
 }
 
+
+- (void)tabBar:(nonnull UITabBar *)tabBar didSelectItem:(nonnull UITabBarItem *)item {
+    
+    NSLog(@"-----%ldTodayView_response_Clicked",(long)item.tag);
+    
+    
+}
+
 #pragma mark - private methods
 - (void)alertWaitWithTitle:(NSString *)title  message:(NSString *)message  cancelButtonTitle:(NSString *)cancelButtonTitle{
     self.alertWait = [[UIAlertView alloc]initWithTitle:title message:message
@@ -368,6 +384,13 @@
     AttendLocationViewController *alvc = [[AttendLocationViewController alloc]init];
     alvc.locations = attendRecord;
     [self.navigationController pushViewController:alvc animated:YES];
+}
+
+
+- (void)reloadUserFromUserDefaults {
+    self.user = [User userFromNSUserDefaults];
+    
+    NSLog(@"收到通知--->SC_UserChanged---->重新加载用户");
 }
 
 #pragma mark - getters and setters
