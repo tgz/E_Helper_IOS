@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A0B05D21B57F0E900298DBA /* SwicthUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B05D11B57F0E900298DBA /* SwicthUserViewController.m */; };
+		5A0B05D41B5AA9E600298DBA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0B05D31B5AA9E600298DBA /* CoreData.framework */; };
 		5A0E2A531B528BFC00566899 /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E2A521B528BFC00566899 /* Locator.m */; };
 		5A0E2A561B52C6CE00566899 /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E2A551B52C6CE00566899 /* AttendanceRecord.m */; };
 		5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */; };
@@ -57,6 +58,7 @@
 		1F05DC5E581FAFCB71B072A4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A0B05D01B57F0E900298DBA /* SwicthUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwicthUserViewController.h; sourceTree = "<group>"; };
 		5A0B05D11B57F0E900298DBA /* SwicthUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwicthUserViewController.m; sourceTree = "<group>"; };
+		5A0B05D31B5AA9E600298DBA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5A0E2A511B528BFC00566899 /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
 		5A0E2A521B528BFC00566899 /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		5A0E2A541B52C6CE00566899 /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A0B05D41B5AA9E600298DBA /* CoreData.framework in Frameworks */,
 				ECD53445812D72C0E3DF328D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +330,7 @@
 		B9344F9CB6EF4CE0D599C376 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A0B05D31B5AA9E600298DBA /* CoreData.framework */,
 				1F05DC5E581FAFCB71B072A4 /* libPods.a */,
 			);
 			name = Frameworks;
