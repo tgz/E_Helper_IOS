@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A0B05D21B57F0E900298DBA /* SwicthUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B05D11B57F0E900298DBA /* SwicthUserViewController.m */; };
 		5A0B05D41B5AA9E600298DBA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0B05D31B5AA9E600298DBA /* CoreData.framework */; };
+		5A0B05D71B5AAEB000298DBA /* KQ1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B05D51B5AAEB000298DBA /* KQ1.xcdatamodeld */; };
 		5A0E2A531B528BFC00566899 /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E2A521B528BFC00566899 /* Locator.m */; };
 		5A0E2A561B52C6CE00566899 /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E2A551B52C6CE00566899 /* AttendanceRecord.m */; };
 		5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */; };
@@ -59,6 +60,7 @@
 		5A0B05D01B57F0E900298DBA /* SwicthUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwicthUserViewController.h; sourceTree = "<group>"; };
 		5A0B05D11B57F0E900298DBA /* SwicthUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwicthUserViewController.m; sourceTree = "<group>"; };
 		5A0B05D31B5AA9E600298DBA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5A0B05D61B5AAEB000298DBA /* KQ1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KQ1.xcdatamodel; sourceTree = "<group>"; };
 		5A0E2A511B528BFC00566899 /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
 		5A0E2A521B528BFC00566899 /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		5A0E2A541B52C6CE00566899 /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				5AE2B0381B48E4D900482293 /* Images */,
 				5A898A251B480FFA00BECC26 /* AppDelegate.h */,
 				5A898A261B480FFA00BECC26 /* AppDelegate.m */,
+				5A0B05D51B5AAEB000298DBA /* KQ1.xcdatamodeld */,
 				5A898A2B1B480FFA00BECC26 /* Main.storyboard */,
 				5A898A2E1B480FFA00BECC26 /* Images.xcassets */,
 				5A898A301B480FFA00BECC26 /* LaunchScreen.xib */,
@@ -483,6 +486,7 @@
 				5A78FC4D1B4ADDD100E9C38A /* NSString+FontAwesome.m in Sources */,
 				5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */,
 				5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */,
+				5A0B05D71B5AAEB000298DBA /* KQ1.xcdatamodeld in Sources */,
 				5AA8E3001B4EC25000E465C3 /* WebserviceHelper.m in Sources */,
 				5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */,
 				5A78FC571B4C0AFD00E9C38A /* LoginViewController.m in Sources */,
@@ -718,6 +722,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5A0B05D51B5AAEB000298DBA /* KQ1.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5A0B05D61B5AAEB000298DBA /* KQ1.xcdatamodel */,
+			);
+			currentVersion = 5A0B05D61B5AAEB000298DBA /* KQ1.xcdatamodel */;
+			path = KQ1.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5A898A161B480FF900BECC26 /* Project object */;
 }
