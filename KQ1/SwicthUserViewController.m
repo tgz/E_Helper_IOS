@@ -23,7 +23,14 @@
                                                                                  target:self action:@selector(goToLogin)];
     [self.navigationItem setRightBarButtonItem:rightBarItem];
     
+    /**添加通知--->切换页面**/
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(switchPage)
+                                                 name:@"SC_UserChanged" object:nil];
+
+    
 }
+
 
 #pragma mark - UITabViewDelegate
 
@@ -39,6 +46,13 @@
     
 }
 #pragma mark - private methods
+#pragma mark - Notification
+
+- (void)switchPage {
+    [self.tabBarController setSelectedIndex:0];
+    NSLog(@"switch--->Tabbar-0");
+}
+
 
 #pragma mark - getters and setters
 
