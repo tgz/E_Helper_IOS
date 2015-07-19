@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 @class User;
-@interface SwicthUserViewController : UIViewController 
+@interface SwicthUserViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)User *user;
 @end
