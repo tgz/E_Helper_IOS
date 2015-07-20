@@ -11,12 +11,13 @@
 #import "User.h"
 #import "import.h"
 #import "AppDelegate.h"
-#import <CoreData/CoreData.h>
+#import  "UserDal.h"
 
 @interface SwicthUserViewController()
 
 @property(strong,nonatomic)UITableView *userList;
 @property(strong,nonatomic)AppDelegate *appDelegate;
+@property(nonatomic,strong)NSArray *userArray;
 @end
 
 @implementation SwicthUserViewController
@@ -52,9 +53,9 @@
     [self.view addSubview:self.userList];
     
     /**CoreDate用*/
-    [self loadUserList];
+    UserDal *userDal =  [[UserDal alloc]init];
 
-    
+    self.userArray = [userDal loadUserList];
 }
 
 
@@ -66,7 +67,7 @@
 
 - (int)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section==0) {
-        return 5;
+        return self.userArray.count;
     }else
         return 1;
 }
@@ -81,9 +82,7 @@
 
 - (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NSLog(@"选择了%d个Section的第%d行！",indexPath.section,indexPath.row);
-    User *user = [User userFromNSUserDefaults];
-    user.userName =[NSString stringWithFormat:@"%@%d",user.userName,indexPath.row];
-    [self InsertUser:user];
+    
 }
 
 - (nullable NSString *)tableView:(nonnull UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -108,8 +107,10 @@
 //    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    cell.textLabel.text = @"Name";
-    cell.detailTextLabel.text = @"OUName";
+    User *user = [self.userArray objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = user.userName;
+    cell.detailTextLabel.text = user.ouName;
 //    cell.textLabel.numberOfLines=2;
 //    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
@@ -164,50 +165,6 @@
 }
 #pragma mark - private methods
 
-- (void)InsertUser:(User *)user {
-    //插入数据
-    User *myuser=(User *)[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.appDelegate.managedObjectContext];
-    [myuser setUserName:user.userName];
-    [myuser setUserGuid:user.userGuid];
-    [myuser setOuName:user.ouName];
-    NSError* error;
-    BOOL isSaveSuccess=[self.appDelegate.managedObjectContext save:&error];
-    if (!isSaveSuccess) {
-        NSLog(@"Error:%@",error);
-    }else{
-        NSLog(@"Save successful!");
-    }
-}
-
-- (void)loadUserList {
-    //获取托管对象上下文
-    NSManagedObjectContext *context = [self.appDelegate managedObjectContext];
-    //创建FetchRequset
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
-    //创建实体 相当于表
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
-    //设置查询实体
-    [fetchRequest setEntity:entityDescription];
-    //排序描述
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"orderNum" ascending:YES];
-    NSArray *sortArray = [[NSArray alloc]initWithObjects:sortDescriptor ,nil];
-    [fetchRequest setSortDescriptors:sortArray];
-    //创建查询条件
- //   NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name like %@)",@"李"];
-//    [fetchRequest setPredicate:pred]
-    NSError* error=nil;
-    NSMutableArray* mutableFetchResult=[[self.appDelegate.managedObjectContext executeFetchRequest:fetchRequest
-                                                                                             error:&error] mutableCopy];
-    if (mutableFetchResult==nil) {
-        NSLog(@"Error:%@",error);
-    }
-    NSLog(@"The count of entry: %i",[mutableFetchResult count]);
-    for (User* user in mutableFetchResult) {
-        NSLog(@"name:%@----guid:%@------ou:%@",user.userName,user.userGuid,user.ouName);
-    }
-    
-}
-
 
 
 #pragma mark - Notification
@@ -230,11 +187,6 @@
     return _userList;
 }
 
-- (AppDelegate *)appDelegate {
-    if (_appDelegate == nil) {
-        _appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    }
-    return _appDelegate;
-}
+
 
 @end

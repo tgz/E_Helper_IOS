@@ -40,6 +40,7 @@
 		5AE2B0441B48E54E00482293 /* task_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03E1B48E54E00482293 /* task_normal@2x.png */; };
 		5AE2B0451B48E54E00482293 /* task_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AE2B03F1B48E54E00482293 /* task_selected@2x.png */; };
 		5AE7539D1B4ACB4C00D21BD4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7539C1B4ACB4C00D21BD4 /* User.m */; };
+		5AEC904D1B5D53A200C35FA3 /* UserDal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC904C1B5D53A200C35FA3 /* UserDal.m */; };
 		5AF2262D1B51151100F846C1 /* UserLoginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF2262C1B51151100F846C1 /* UserLoginResult.m */; };
 		5AFB222A1B54079A00CC731A /* AttendLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFB22291B54079A00CC731A /* AttendLocationViewController.m */; };
 		ECD53445812D72C0E3DF328D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F05DC5E581FAFCB71B072A4 /* libPods.a */; };
@@ -113,6 +114,8 @@
 		5AE2B03F1B48E54E00482293 /* task_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "task_selected@2x.png"; path = "../../Coding-IOS/Coding_iOS/Images/tabbar/task_selected@2x.png"; sourceTree = "<group>"; };
 		5AE7539B1B4ACB4C00D21BD4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		5AE7539C1B4ACB4C00D21BD4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		5AEC904B1B5D53A200C35FA3 /* UserDal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDal.h; sourceTree = "<group>"; };
+		5AEC904C1B5D53A200C35FA3 /* UserDal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDal.m; sourceTree = "<group>"; };
 		5AF2262B1B51151100F846C1 /* UserLoginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginResult.h; sourceTree = "<group>"; };
 		5AF2262C1B51151100F846C1 /* UserLoginResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginResult.m; sourceTree = "<group>"; };
 		5AFB22281B54079A00CC731A /* AttendLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendLocationViewController.h; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				5A0E2A521B528BFC00566899 /* Locator.m */,
 				5A0E2A541B52C6CE00566899 /* AttendanceRecord.h */,
 				5A0E2A551B52C6CE00566899 /* AttendanceRecord.m */,
+				5AEC904B1B5D53A200C35FA3 /* UserDal.h */,
+				5AEC904C1B5D53A200C35FA3 /* UserDal.m */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -486,6 +491,7 @@
 				5A78FC4D1B4ADDD100E9C38A /* NSString+FontAwesome.m in Sources */,
 				5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */,
 				5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */,
+				5AEC904D1B5D53A200C35FA3 /* UserDal.m in Sources */,
 				5A0B05D71B5AAEB000298DBA /* KQ1.xcdatamodeld in Sources */,
 				5AA8E3001B4EC25000E465C3 /* WebserviceHelper.m in Sources */,
 				5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */,

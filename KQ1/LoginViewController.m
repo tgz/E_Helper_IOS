@@ -11,6 +11,7 @@
 #import "User.h"
 #import "Masonry.h"
 #import "TodayViewController.h"
+#import "UserDal.h"
 #define kPadding 20
 
 @interface LoginViewController() <UITextFieldDelegate>
@@ -108,6 +109,10 @@
             
             if(user.isLogin){
                 //登陆成功后，回到主界面
+                ///保存到数据库
+                UserDal *userDal =  [[UserDal alloc]init];
+                [userDal InsertUser:user];
+                
                 [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }else{
