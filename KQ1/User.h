@@ -12,6 +12,7 @@
 @property (nonatomic,strong) NSString *loginID,*userName, *userGuid ,*ouName;
 @property (nonatomic,assign) BOOL isLogin;
 @property (nonatomic,copy) NSString *failDescription;
+@property (nonatomic,assign) NSInteger orderNum;
 
 + (instancetype)userFromNSUserDefaults;
 - (instancetype)initWithNSUserDefaults;
