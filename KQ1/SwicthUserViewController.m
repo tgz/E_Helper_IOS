@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self setTitle:@"用户管理"];
+    [self setTitle:@"用户切换"];
     
     ///右侧的添加按钮
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -52,10 +52,16 @@
     
     [self.view addSubview:self.userList];
     
-    /**CoreDate用*/
-    UserDal *userDal =  [[UserDal alloc]init];
+   
+}
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    UserDal *userDal =  [[UserDal alloc]init];
+    
     self.userArray = [userDal loadUserList];
+    
+    [self.userList reloadData];
 }
 
 
@@ -82,6 +88,12 @@
 
 - (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NSLog(@"选择了%d个Section的第%d行！",indexPath.section,indexPath.row);
+    User *user = [self.userArray objectAtIndex:indexPath.row];
+    
+    [User saveUserInfo:user ];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SC_UserChanged" object:nil];
+    NSLog(@"发出通知--->SC_UserChanged");
     
 }
 

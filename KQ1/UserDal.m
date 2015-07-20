@@ -27,12 +27,13 @@
     [myuser setUserName:user.userName];
     [myuser setUserGuid:user.userGuid];
     [myuser setOuName:user.ouName];
+    
     NSError* error;
     BOOL isSaveSuccess=[self.appDelegate.managedObjectContext save:&error];
     if (!isSaveSuccess) {
         NSLog(@"Error:%@",error);
     }else{
-        NSLog(@"Save successful!");
+        NSLog(@"Save successful! %@,%@,%@,%d",myuser.ouName,myuser.userName,myuser.userGuid,myuser.isLogin);
     }
 }
 

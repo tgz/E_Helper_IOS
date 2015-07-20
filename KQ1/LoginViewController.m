@@ -96,18 +96,17 @@
     dispatch_async(queue, ^{
         User *user = [[User alloc] loginWithUserName:self.loginID.text password:self.password.text];
         dispatch_async(main_queue, ^{
-            //通过delegate将登录后的User传到第一个页面。
-            
-            //设置了代理的话，执行代理方法--->设置已登陆的用户。
-            if (self.delegate) {
-                [self.delegate passUser:user];
-            }else { ///未设置代理对象，则发送通知
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"SC_UserChanged" object:nil];
-                NSLog(@"发出通知--->SC_UserChanged");
-            }
-            
             if(user.isLogin){
+                //通过delegate将登录后的User传到第一个页面。
+                //设置了代理的话，执行代理方法--->设置已登陆的用户。
+                if (self.delegate) {
+                    [self.delegate passUser:user];
+                }else { ///未设置代理对象，则发送通知
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"SC_UserChanged" object:nil];
+                    NSLog(@"发出通知--->SC_UserChanged");
+                }
+                
                 //登陆成功后，回到主界面
                 ///保存到数据库
                 UserDal *userDal =  [[UserDal alloc]init];
