@@ -6,6 +6,7 @@
  - 零报告
  - 考勤提醒
  - 自动勾选零报告
+ - 多用户保存/切换 `功能已完成`
 
 ## 主要技术
 1. 界面布局
@@ -18,17 +19,19 @@
  - Cocoa Pods `第三方开源控件的管理`
  - Git `版本管理`
 3. 其它
- - 代理创建和使用 `delegate`
+ - 代理创建和使用
  - NSUserDefaults的使用
+ - NSNotification的使用
  - 加密算法的使用
  - IOS界面控件的使用`纯代码`
  - NSXMLParser
  - NSUrlConnection NSurlResponse
  - block
+ - CoreData
 4. 待整合
  - 网络请求更换为AFNetworking
  - 下拉刷新
- - CoreData
+ 
  
    
  
