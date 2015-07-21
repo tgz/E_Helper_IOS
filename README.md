@@ -3,7 +3,7 @@
 
 ## 主要功能
  - 考勤签到 `功能已完成`
- - 零报告
+ - 零报告 `整合中`
  - 考勤提醒
  - 自动勾选零报告
  - 多用户保存/切换 `功能已完成`
@@ -14,25 +14,37 @@
   - UIButton + Bootstrap `方便地创建一些风格一致的按钮`
   - UIColer + expanded `方便地自定义颜色`
   - Masonry `方便地创建约束`
+  - TableView的使用
   - 常用控件
 2. 代码管理
  - Cocoa Pods `第三方开源控件的管理`
  - Git `版本管理`
 3. 其它
- - 代理创建和使用
+ - 代理的使用
  - NSUserDefaults的使用
  - NSNotification的使用
  - 加密算法的使用
- - IOS界面控件的使用`纯代码`
+ - IOS界面控件的使用`此项目使用纯代码的方式`
  - NSXMLParser
  - NSUrlConnection NSurlResponse
  - block
  - CoreData
-4. 待整合
+ - GCD的使用
+4. 计划
  - 网络请求更换为AFNetworking
  - 下拉刷新
+ - 定时提醒功能
+ - 工作日判断
+ - 界面设计优化
+ ---
  
+ ##目前的界面截图
+  
+ ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.45.51.png?imageView2/2/w/350/q/90) ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.35.png?imageView2/2/w/350/q/90)
  
+ ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.37.png?imageView2/2/w/350/q/90) ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.40.png?imageView2/2/w/350/q/90)
+ 
+ ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.53.png?imageView2/2/w/350/q/90) ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.47.00.png?imageView2/2/w/350/q/90)
    
  
 
