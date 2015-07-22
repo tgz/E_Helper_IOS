@@ -12,6 +12,7 @@
 #import "User.h"
 #import "Locator.h"
 #import "AttendLocationViewController.h"
+#import "ZeroReport.h"
 
 
 @interface TodayViewController () <UITextFieldDelegate,UITextViewDelegate,TodayViewPassValueDelegate>
@@ -22,6 +23,7 @@
 @property (nonatomic,strong)UIButton *kaoQinButton;
 @property (nonatomic,strong)User *user;
 @property (nonatomic,strong)UIButton *getLocationHistory;
+@property (nonatomic,strong)UIButton *zeroReport;
 
 @property(nonatomic,strong)UIAlertView *alertWait;
 
@@ -46,6 +48,7 @@
     [self.view addSubview:self.kaoQinButton];
     
     [self.view addSubview:self.getLocationHistory];
+    [self.view addSubview:self.zeroReport];
 
     
     [self.ouName mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,6 +92,7 @@
     /**用户登录按钮屏蔽，自动判断是否需要跳转*/
     //self.loginButton.center = CGPointMake(kScreenWidth/6, kScreenHeight - kBorderBottom);
     
+    self.zeroReport.center = CGPointMake(kScreenWidth/2, kScreenHeight-kBorderBottom);
     
     self.kaoQinButton.center = CGPointMake(kScreenWidth*5/6, kScreenHeight - kBorderBottom);
     
@@ -362,6 +366,15 @@
     
 }
 
+/**
+ *零报告
+ */
+- (void)reportZero {
+    ZeroReport *zeroReport = [[ZeroReport alloc]init];
+    NSData *data = [NSData data];
+    [zeroReport reportZero:data UserGuid:self.user.userGuid];
+}
+
 #pragma mark - private methods
 - (void)alertWaitWithTitle:(NSString *)title  message:(NSString *)message  cancelButtonTitle:(NSString *)cancelButtonTitle{
     self.alertWait = [[UIAlertView alloc]initWithTitle:title message:message
@@ -480,5 +493,12 @@
                                                  action:@selector(KaoQinHistory)];
     }
     return _getLocationHistory;
+}
+
+- (UIButton *)zeroReport {
+    if (_zeroReport == nil) {
+        _zeroReport = [UIButton buttonWithStyle:StrapPrimaryStyle andTitle:@"零报告" andFrame:CGRectMake(0, 0, kButtonWidth,kButtonHeight) target:self action:@selector(reportZero)];
+    }
+    return _zeroReport;
 }
 @end

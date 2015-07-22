@@ -1,0 +1,180 @@
+//
+//  ZeroReport.m
+//  KQ1
+//
+//  Created by 邱 士川 on 15/7/21.
+//  Copyright © 2015年 qsc. All rights reserved.
+//
+
+#import "ZeroReport.h"
+#import "VerifyTool.h"
+
+@interface ZeroReport()<NSXMLParserDelegate> 
+@property (nonatomic,strong)NSMutableString *tempString;
+@property (nonatomic,copy)NSString *zReportInsertResult;
+@property (nonatomic,assign)BOOL status;
+@property (nonatomic,copy)NSString  *failDescription;
+@end
+
+
+@implementation ZeroReport
+
+
+#pragma mark - NSXMLParserDelegate
+
+- (void)parserDidStartDocument:(nonnull NSXMLParser *)parser {
+    
+}
+
+
+- (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary<NSString *,NSString *> *)attributeDict {
+    //解析到新节点，清空临时变量的值
+    [self.tempString setString:@""];
+}
+
+
+- (void)parser:(nonnull NSXMLParser *)parser foundCharacters:(nonnull NSString *)string {
+    if (self.tempString == nil) {
+        self.tempString = [[NSMutableString alloc]init];
+    }
+    [self.tempString appendString:string];
+}
+
+- (void)parser:(nonnull NSXMLParser *)parser didEndElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName {
+    if ([elementName isEqualToString:@"ZReport_InsertResult"]) {
+        self.zReportInsertResult = [NSString stringWithString:self.tempString];
+        
+        NSLog(@"%@",self.zReportInsertResult);
+    }
+    
+    if ([elementName isEqualToString:@"Status"]) {
+        if ([self.tempString isEqualToString:@"True"]) {
+            self.status = YES;
+        }else {
+            self.status = NO;
+        }
+    }
+    
+    if ([elementName isEqualToString:@"Description"]) {
+        self.failDescription = self.tempString;
+    }
+    
+    
+}
+
+
+- (void)parserDidEndDocument:(nonnull NSXMLParser *)parser {
+    if (![self.zReportInsertResult isEqualToString:@""]) {
+        //开始解析具体内容
+    }
+}
+
+- (void)parser:(nonnull NSXMLParser *)parser parseErrorOccurred:(nonnull NSError *)parseError {
+    NSLog(@"%@",parseError.localizedDescription);
+    self.zReportInsertResult = nil;
+}
+
+#pragma mark - analyseResult
+- (BOOL)analyseResult:(NSData *)response {
+    NSXMLParser *parser = [[NSXMLParser alloc]initWithData:response];
+    parser.delegate = self;
+    [parser parse];
+    
+    [parser setShouldProcessNamespaces:NO];
+    
+    NSError *parseError = [parser parserError];
+    
+    if(parseError){
+        
+        NSLog(@"返回结果解析错误:\n%@",[parseError description]);
+        return NO;
+    }
+    
+    /**解析具体的返回状态信息*/
+    if (self.zReportInsertResult) {
+        [self analyseStatus];
+    }
+    
+    if (self.status) {
+        return YES;
+    }else{
+        return NO;
+    }
+    
+    
+    
+    return NO;
+    
+}
+
+- (void)analyseStatus {
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSXMLParser *parser = [[NSXMLParser alloc]initWithData:[self.zReportInsertResult dataUsingEncoding:enc]];
+    parser.delegate = self;
+    
+    [parser setShouldProcessNamespaces:NO];
+    
+    [parser parse];
+    
+    NSError *parError = [parser parserError];
+    if (parError) {
+        self.status = NO;
+        NSLog(@"Status解析错误：\n%@",[parError description]);
+        self.failDescription = [parError description];
+    }
+}
+
+#pragma mark - reportZero
+
+- (BOOL)reportZero:(NSData *)data UserGuid:(NSString *)userGuid {
+    
+    //初始化时间为今天：
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];//实例化一个NSDateFormatter对象
+    
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];//设定时间格式,这里可以设置成自己需要的格式
+    
+    NSString *currentDateStr = [dateFormat stringFromDate:[NSDate date]];
+    NSString *validateData = [VerifyTool CreateNewToken];
+    NSString *rowGuid = [[NSUUID UUID]UUIDString];
+    NSString *soapMessage = [NSString stringWithFormat:@"<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:v=\"http://schemas.xmlsoap.org/soap/envelope/\"><v:Header /><v:Body><ZReport_Insert xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><ValidateData i:type=\"d:string\">%@</ValidateData><ParasXml i:type=\"d:string\">&lt;?xml version=\"1.0\" encoding=\"gb2312\"?&gt;&lt;paras&gt;&lt;RowGuid&gt;%@&lt;/RowGuid&gt;&lt;UserGuid&gt;%@&lt;/UserGuid&gt;&lt;RecordData&gt;%@&lt;/RecordData&gt;&lt;Content&gt;&lt;/Content&gt;&lt;IsNullProblem&gt;1&lt;/IsNullProblem&gt;&lt;Status&gt;0&lt;/Status&gt;&lt;OUGuid&gt;&lt;/OUGuid&gt;&lt;/paras&gt;</ParasXml></ZReport_Insert></v:Body></v:Envelope>",validateData,rowGuid,userGuid,currentDateStr];
+    
+    NSLog(@"零报告：%@,%@",userGuid,currentDateStr);
+    
+    
+    NSString *address =@"http://oa.epoint.com.cn/ZreportServiceV2/ZreportServer.asmx";
+    NSURL* url = [NSURL URLWithString:address];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    
+    
+    
+    // 然后就是text/xml, 和content-Length必须有。
+    [theRequest addValue: @"text/xml; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    // 下面这行， 后面SOAPAction是规范， 而下面这个网址来自哪里呢，来自于上面加红加粗的部分。
+    [theRequest addValue: @"http://tempuri.org/ZReport_Insert" forHTTPHeaderField:@"SOAPAction"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    NSURLResponse *response;
+    NSError *error = nil;
+    
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                 returningResponse:&response
+                                                             error:&error];
+    NSMutableString * result = [[NSMutableString alloc]initWithData:responseData
+                                                           encoding:NSUTF8StringEncoding];
+    if(error)
+    {
+        NSLog(@"ReponseError:\n\n%@\n\nDebugDescription:\n%@\n",error.description,error.debugDescription);
+        return NO;
+    }
+    NSLog(@"Return String is ======⬇️⬇️⬇️\n%@",result);
+    
+    
+    return [self analyseResult:responseData];
+}
+
+
+@end
