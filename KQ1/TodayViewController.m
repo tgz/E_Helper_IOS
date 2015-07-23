@@ -372,7 +372,14 @@
 - (void)reportZero {
     ZeroReport *zeroReport = [[ZeroReport alloc]init];
     NSData *data = [NSData data];
-    [zeroReport reportZero:data UserGuid:self.user.userGuid];
+    BOOL success = [zeroReport reportZero:data UserGuid:self.user.userGuid];
+    if (success) {
+        NSLog(@"零报告成功");
+        //TODO 零报告查询
+    }else {
+        [self alertWaitWithTitle:@"零报告失败！" message:zeroReport.failDescription cancelButtonTitle:@"确定"];
+    
+    }
 }
 
 #pragma mark - private methods

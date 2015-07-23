@@ -10,7 +10,10 @@
 @class ZereReportEntity;
 
 @interface ZeroReport : NSObject
+@property (nonatomic,assign)BOOL status;
+@property (nonatomic,copy)NSString  *failDescription;
+@property (nonatomic,strong)NSMutableArray *zReportList;
 
 - (BOOL)reportZero:(NSData *)data UserGuid:(NSString *)userGuid;
-
+- (void)queryZReportStatus:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
 @end

@@ -7,10 +7,13 @@
 //
 
 #import "ZeroReportViewController.h"
-
+#import "import.h"
+#import "ZeroReport.h"
+#import "User.h"
 @interface ZeroReportViewController ()
 
 @property(nonatomic,strong) UIButton *btn;
+@property(nonatomic,strong) User *user;
 
 @end
 
@@ -55,6 +58,11 @@
 #pragma mark - CustumDelegate
 
 #pragma mark - event Response
+- (void)queryTodayStatus {
+    ZeroReport *zeroReport = [[ZeroReport alloc]init];
+    NSDate *date = [NSDate date];
+    [zeroReport queryZReportStatus:self.user.userGuid fromDate:date toDate:date];
+}
 
 #pragma mark - private methods
 
@@ -62,12 +70,14 @@
 
 -(UIButton *) btn{
     if(_btn==nil){
-        _btn = [[UIButton alloc]init];
-        [_btn setTitle:@"testAdd" forState:UIControlStateNormal];
-        [_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        
+        _btn = [UIButton buttonWithStyle:StrapPrimaryStyle andTitle:@"查询" andFrame:CGRectMake(0, 0, kButtonWidth, kButtonHeight) target:self action:@selector(queryTodayStatus)];
     }
     return _btn;
 }
-
+-(User *)user {
+    if (_user == nil) {
+        _user = [User userFromNSUserDefaults];
+    }
+    return _user;
+}
 @end

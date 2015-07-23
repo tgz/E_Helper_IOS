@@ -8,12 +8,13 @@
 
 #import "ZeroReport.h"
 #import "VerifyTool.h"
-
+#import "ZereReportEntity.h"
 @interface ZeroReport()<NSXMLParserDelegate> 
 @property (nonatomic,strong)NSMutableString *tempString;
 @property (nonatomic,copy)NSString *zReportInsertResult;
-@property (nonatomic,assign)BOOL status;
-@property (nonatomic,copy)NSString  *failDescription;
+@property (nonatomic,copy)NSString *zReportUserViewResult;
+@property (nonatomic,strong)ZereReportEntity *zeroReportEntity;
+
 @end
 
 
@@ -30,6 +31,7 @@
 - (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary<NSString *,NSString *> *)attributeDict {
     //解析到新节点，清空临时变量的值
     [self.tempString setString:@""];
+    self.zeroReportEntity = [[ZereReportEntity alloc]init];
 }
 
 
@@ -47,6 +49,10 @@
         NSLog(@"%@",self.zReportInsertResult);
     }
     
+    if ([elementName isEqualToString:@"ZReport_UserViewResult"]) {
+        self.zReportUserViewResult = [NSString stringWithString:self.tempString];
+    }
+    
     if ([elementName isEqualToString:@"Status"]) {
         if ([self.tempString isEqualToString:@"True"]) {
             self.status = YES;
@@ -57,6 +63,24 @@
     
     if ([elementName isEqualToString:@"Description"]) {
         self.failDescription = self.tempString;
+    }
+    
+    if ([elementName isEqualToString:@"RecordData"]) {
+        self.zeroReportEntity.recordDate = self.tempString;
+    }
+    if ([elementName isEqualToString:@"IsNullProblem"]) {
+        if ([self.tempString isEqualToString:@"1"]) {
+            self.zeroReportEntity.isNullProblem = YES;
+        }else {
+            self.zeroReportEntity.isNullProblem = NO;
+        }
+    }
+    if ([elementName isEqualToString:@"Content"]) {
+        self.zeroReportEntity.Content = [NSString stringWithString:self.tempString];
+    }
+    
+    if ([elementName isEqualToString:@"Report"]) {
+        [self.zReportList addObject:[self.zeroReportEntity copy]];
     }
     
     
@@ -87,6 +111,8 @@
     if(parseError){
         
         NSLog(@"返回结果解析错误:\n%@",[parseError description]);
+        self.status = NO;
+        self.failDescription = [parseError description];
         return NO;
     }
     
@@ -100,8 +126,6 @@
     }else{
         return NO;
     }
-    
-    
     
     return NO;
     
@@ -176,5 +200,55 @@
     return [self analyseResult:responseData];
 }
 
+- (void)queryZReportStatus:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate {
+    //初始化时间为今天：
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];//实例化一个NSDateFormatter对象
+    
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];//设定时间格式,这里可以设置成自己需要的格式
+    
+    NSString *fromDateStr = [dateFormat stringFromDate:fromDate];
+    NSString *toDateStr = [dateFormat stringFromDate:toDate];
+    NSString *validateData = [VerifyTool CreateNewToken];
+    NSString *soapMessage = [NSString stringWithFormat:@"<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:v=\"http://schemas.xmlsoap.org/soap/envelope/\"><v:Header /><v:Body><ZReport_UserView xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><ValidateData i:type=\"d:string\">%@</ValidateData><ParasXml i:type=\"d:string\">&lt;?xml version=\"1.0\" encoding=\"gb2312\"?&gt;&lt;paras&gt;&lt;UserGuid&gt;%@&lt;/UserGuid&gt;&lt;StartDate&gt;%@&lt;/StartDate&gt;&lt;EndDate&gt;%@&lt;/EndDate&gt;&lt;IsShowContent&gt;1&lt;/IsShowContent&gt;&lt;/paras&gt;</ParasXml></ZReport_UserView></v:Body></v:Envelope>",validateData,userGuid,fromDateStr,toDateStr];
+    
+    NSLog(@"零报告查询：%@,%@ ~ %@",userGuid,fromDateStr,toDateStr);
+    
+    
+    NSString *address =@"http://oa.epoint.com.cn/ZreportServiceV2/ZreportServer.asmx";
+    NSURL* url = [NSURL URLWithString:address];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    
+    
+    
+    // 然后就是text/xml, 和content-Length必须有。
+    [theRequest addValue: @"text/xml; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    // 下面这行， 后面SOAPAction是规范， 而下面这个网址来自哪里呢，来自于上面加红加粗的部分。
+    [theRequest addValue: @"http://tempuri.org/ZReport_UserView" forHTTPHeaderField:@"SOAPAction"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    NSURLResponse *response;
+    NSError *error = nil;
+    
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                 returningResponse:&response
+                                                             error:&error];
+    NSMutableString * result = [[NSMutableString alloc]initWithData:responseData
+                                                           encoding:NSUTF8StringEncoding];
+    if(error)
+    {
+        NSLog(@"ReponseError:\n\n%@\n\nDebugDescription:\n%@\n",error.description,error.debugDescription);
+        
+    }
+    NSLog(@"Return String is ======⬇️⬇️⬇️\n%@",result);
+    
+    [self analyseResult:responseData];
+    
+    NSLog(@"ZReportUserView:\n%@",self.zReportUserViewResult);
+
+}
 
 @end

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface ZereReportEntity : NSObject
-@property (nonatomic,copy)NSString *dateTime;
-
+@property (nonatomic,copy)NSString *recordDate;
+@property (nonatomic,assign)BOOL isNullProblem;
+@property (nonatomic,copy)NSString *status;
+@property (nonatomic,copy)NSString *Content;
 @end
