@@ -81,6 +81,13 @@
 }
 
 #pragma mark - private methods
+/**
+ *  弹出带标题的提示框
+ *
+ *  @param title             窗口标题
+ *  @param message           提示框主体内容
+ *  @param cancelButtonTitle 关闭提示框的按钮名<取消按钮>
+ */
 - (void)alertWaitWithTitle:(NSString *)title  message:(NSString *)message  cancelButtonTitle:(NSString *)cancelButtonTitle{
     self.alertWait = [[UIAlertView alloc]initWithTitle:title message:message
                                               delegate:self

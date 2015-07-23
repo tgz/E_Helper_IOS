@@ -30,6 +30,7 @@
  - block
  - CoreData
  - GCD的使用
+ - VVDocumenter-Xcode
 4. 计划
  - 网络请求更换为AFNetworking
  - 下拉刷新
