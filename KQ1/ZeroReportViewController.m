@@ -10,11 +10,15 @@
 #import "import.h"
 #import "ZeroReport.h"
 #import "User.h"
+#import "ZereReportEntity.h"
+
+
 @interface ZeroReportViewController ()
 
 @property(nonatomic,strong) UIButton *btn;
 @property(nonatomic,strong) User *user;
 
+@property(nonatomic,strong)UIAlertView *alertWait;
 @end
 
 @implementation ZeroReportViewController
@@ -62,10 +66,37 @@
     ZeroReport *zeroReport = [[ZeroReport alloc]init];
     NSDate *date = [NSDate date];
     [zeroReport queryZReportStatus:self.user.userGuid fromDate:date toDate:date];
+    
+    NSArray *zReport = [zeroReport.zReportList copy];
+    NSMutableString *message = [[NSMutableString alloc]init];
+    [zReport enumerateObjectsUsingBlock:^(ZereReportEntity   *obj, NSUInteger idx, BOOL * __nonnull stop) {
+    
+        [message appendString:[NSString stringWithFormat:@"%@ -> %@\n",obj.recordDate ,obj.isNullProblem?@"零":@"NO" ]];
+    }];
+    
+    [self alertWaitWithTitle:@"查询结果" message:message cancelButtonTitle:@"确定"];
+    
+
+
 }
 
 #pragma mark - private methods
-
+- (void)alertWaitWithTitle:(NSString *)title  message:(NSString *)message  cancelButtonTitle:(NSString *)cancelButtonTitle{
+    self.alertWait = [[UIAlertView alloc]initWithTitle:title message:message
+                                              delegate:self
+                                     cancelButtonTitle:cancelButtonTitle
+                                     otherButtonTitles:nil];
+    //    if (cancelButtonTitle) {
+    //        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]
+    //                                              initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    //        indicator.center = CGPointMake(self.alertWait.bounds.size.width/2.0f, self.alertWait.bounds.size.height/2.0f);
+    //        indicator.frame = CGRectMake(20, 20, self.alertWait.bounds.size.width-40, self.alertWait.bounds.size.height-40);
+    //        [indicator startAnimating];
+    //        [self.alertWait addSubview:indicator];
+    //    }
+    
+    [self.alertWait show];
+}
 #pragma mark - getters and setters
 
 -(UIButton *) btn{

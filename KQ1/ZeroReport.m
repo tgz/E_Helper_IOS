@@ -31,7 +31,13 @@
 - (void)parser:(nonnull NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary<NSString *,NSString *> *)attributeDict {
     //解析到新节点，清空临时变量的值
     [self.tempString setString:@""];
-    self.zeroReportEntity = [[ZereReportEntity alloc]init];
+    if ([elementName isEqualToString:@"Report"]){
+        self.zeroReportEntity = [[ZereReportEntity alloc]init];
+    }
+    
+//    if ([elementName isEqualToString:@"ZReport_UserViewResult"]) {
+//        self.zReportList = [[NSMutableArray alloc]init];
+//    }
 }
 
 
@@ -80,7 +86,7 @@
     }
     
     if ([elementName isEqualToString:@"Report"]) {
-        [self.zReportList addObject:[self.zeroReportEntity copy]];
+        [self.zReportList addObject:self.zeroReportEntity];
     }
     
     
@@ -89,7 +95,7 @@
 
 - (void)parserDidEndDocument:(nonnull NSXMLParser *)parser {
     if (![self.zReportInsertResult isEqualToString:@""]) {
-        //开始解析具体内容
+        //解析具体内容
     }
 }
 
@@ -134,6 +140,23 @@
 - (void)analyseStatus {
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSXMLParser *parser = [[NSXMLParser alloc]initWithData:[self.zReportInsertResult dataUsingEncoding:enc]];
+    parser.delegate = self;
+    
+    [parser setShouldProcessNamespaces:NO];
+    
+    [parser parse];
+    
+    NSError *parError = [parser parserError];
+    if (parError) {
+        self.status = NO;
+        NSLog(@"Status解析错误：\n%@",[parError description]);
+        self.failDescription = [parError description];
+    }
+}
+
+- (void)analyseReportList {
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSXMLParser *parser = [[NSXMLParser alloc]initWithData:[self.zReportUserViewResult dataUsingEncoding:enc]];
     parser.delegate = self;
     
     [parser setShouldProcessNamespaces:NO];
@@ -248,7 +271,22 @@
     [self analyseResult:responseData];
     
     NSLog(@"ZReportUserView:\n%@",self.zReportUserViewResult);
+    
+    [self analyseReportList];
+    
+    [self.zReportList enumerateObjectsUsingBlock:^(ZereReportEntity  __nonnull *obj, NSUInteger idx, BOOL * __nonnull stop) {
+        
+        NSLog(@"%@,%d",obj.recordDate,obj.isNullProblem);
+    
+    }];
+    
+}
 
+- (NSMutableArray *)zReportList {
+    if (_zReportList ==nil) {
+        _zReportList = [[NSMutableArray alloc]init];
+    }
+    return _zReportList;
 }
 
 @end
