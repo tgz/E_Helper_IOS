@@ -15,7 +15,8 @@
   - UIColer + expanded `方便地自定义颜色`
   - Masonry `方便地创建约束`
   - TableView的使用
-  - 常用控件
+  - 常用UI控件
+  - JTCalendar `一个第三方日历控件`
 2. 代码管理
  - Cocoa Pods `第三方开源控件的管理`
  - Git `版本管理`
