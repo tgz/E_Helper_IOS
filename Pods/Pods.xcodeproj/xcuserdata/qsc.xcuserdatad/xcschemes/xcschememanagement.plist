@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-JTCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>AE4420BBB6D028629B324C5C</key>
+		<key>044ECF1512373DD6F25F7A2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ECEB9DBE9DFB4B1FC098EB10</key>
+		<key>AE108CEF729615C6D4E5517F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EFA51A78A44F33F06BC492D1</key>
+		<key>B756D8144AC01349609E3F60</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE4718C647F4CFDB2B824661</key>
 		<dict>
 			<key>primary</key>
 			<true/>
