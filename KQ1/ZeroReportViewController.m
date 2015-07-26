@@ -67,9 +67,14 @@ UIAlertView *remoteAlertView;
     
     ///右侧的添加按钮
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
-                                                                                 target:self action:@selector(queryTodayStatus)];
+                                                                                 target:self
+                                                                                 action:@selector(queryTodayStatus)];
     [self.navigationItem setRightBarButtonItem:rightBarItem];
     
+    UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                                                                target:self
+                                                                                action:@selector(reloadMonthView)];
+    [self.navigationItem setLeftBarButtonItem:leftBarItem];
     
     [self loadStatus];
     
@@ -202,6 +207,14 @@ UIAlertView *remoteAlertView;
     [self alertWaitWithTitle:@"查询结果" message:message cancelButtonTitle:@"确定"];
     
 }
+/**
+ *  重新加载数据
+ */
+- (void)reloadMonthView{
+    _statusByDate = nil;
+    _dateSelected = nil;
+    [self loadStatus];
+}
 
 #pragma mark - private methods
 /**
@@ -272,16 +285,14 @@ UIAlertView *remoteAlertView;
         ZeroReport *zeroReport = [[ZeroReport alloc]init];
         BOOL success = [zeroReport reportZero:date UserGuid:self.user.userGuid];
         
-        if(success){
-            self.statusByDate = nil;
-            [self loadStatus];
-        }
+        
         
         dispatch_async(main_queue, ^{
             if (success) {
                 NSLog(@"零报告成功");
-                [self.calendarManager reload];
+                
                 [self alertWaitWithTitle:@"零报告成功！" message:[self.dateFormatter stringFromDate:date] cancelButtonTitle:@"确定"];
+                //[self.calendarManager reload];
                 //TODO 零报告查询
             }else {
                 [self alertWaitWithTitle:@"零报告失败！" message:zeroReport.failDescription cancelButtonTitle:@"确定"];
@@ -289,11 +300,6 @@ UIAlertView *remoteAlertView;
             }
         });
     });
-    
-
-    
-    
-    
 }
 
 #pragma mark - LoadMonthData
