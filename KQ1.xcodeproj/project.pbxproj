@@ -27,6 +27,7 @@
 		5A898A2F1B480FFA00BECC26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A2E1B480FFA00BECC26 /* Images.xcassets */; };
 		5A898A321B480FFA00BECC26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A301B480FFA00BECC26 /* LaunchScreen.xib */; };
 		5A898A3E1B480FFA00BECC26 /* KQ1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A3D1B480FFA00BECC26 /* KQ1Tests.m */; };
+		5AA097B91B63E73800C0FEB9 /* ZeroReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA097B81B63E73800C0FEB9 /* ZeroReportViewController.xib */; };
 		5AA8E2FA1B4EBAE500E465C3 /* VerifyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8E2F91B4EBAE500E465C3 /* VerifyTool.m */; };
 		5AA8E2FD1B4EBD9400E465C3 /* StringXMLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8E2FC1B4EBD9400E465C3 /* StringXMLTool.m */; };
 		5AA8E3001B4EC25000E465C3 /* WebserviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8E2FF1B4EC25000E465C3 /* WebserviceHelper.m */; };
@@ -96,6 +97,7 @@
 		5A898A371B480FFA00BECC26 /* KQ1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KQ1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A898A3C1B480FFA00BECC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A898A3D1B480FFA00BECC26 /* KQ1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KQ1Tests.m; sourceTree = "<group>"; };
+		5AA097B81B63E73800C0FEB9 /* ZeroReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZeroReportViewController.xib; sourceTree = "<group>"; };
 		5AA8E2F81B4EBAE500E465C3 /* VerifyTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyTool.h; sourceTree = "<group>"; };
 		5AA8E2F91B4EBAE500E465C3 /* VerifyTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyTool.m; sourceTree = "<group>"; };
 		5AA8E2FB1B4EBD9400E465C3 /* StringXMLTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringXMLTool.h; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				5AE2B0331B483C3E00482293 /* TodayViewController.m */,
 				5AE2B0351B48D43200482293 /* ZeroReportViewController.h */,
 				5AE2B0361B48D43200482293 /* ZeroReportViewController.m */,
+				5AA097B81B63E73800C0FEB9 /* ZeroReportViewController.xib */,
 				5A78FC551B4C0AFD00E9C38A /* LoginViewController.h */,
 				5A78FC561B4C0AFD00E9C38A /* LoginViewController.m */,
 				5A78FC581B4C36D600E9C38A /* import.h */,
@@ -437,6 +440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AA097B91B63E73800C0FEB9 /* ZeroReportViewController.xib in Resources */,
 				5AE2B0451B48E54E00482293 /* task_selected@2x.png in Resources */,
 				5A78FC4F1B4ADDD100E9C38A /* FontAwesome.ttf in Resources */,
 				5AE2B0411B48E54E00482293 /* me_selected@2x.png in Resources */,

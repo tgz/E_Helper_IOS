@@ -15,7 +15,8 @@
   - UIColer + expanded `方便地自定义颜色`
   - Masonry `方便地创建约束`
   - TableView的使用
-  - 常用控件
+  - 常用UI控件
+  - JTCalendar `一个第三方日历控件`
 2. 代码管理
  - Cocoa Pods `第三方开源控件的管理`
  - Git `版本管理`
@@ -47,7 +48,7 @@
  
  ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.53.png?imageView2/2/w/350/q/90) ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.47.00.png?imageView2/2/w/350/q/90)
    
- 
+ ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月26日%20下午11.50.10.png?imageView2/2/w/350/q/90)
 
 
 
