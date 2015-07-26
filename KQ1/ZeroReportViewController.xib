@@ -19,11 +19,6 @@
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRc-hn-mS1">
                     <rect key="frame" x="0.0" y="22" width="600" height="44"/>
-                    <items>
-                        <navigationItem id="ZR4-ak-8gs">
-                            <nil key="title"/>
-                        </navigationItem>
-                    </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XhR-HZ-jwk" customClass="JTCalendarMenuView">
                     <rect key="frame" x="0.0" y="66" width="600" height="45"/>

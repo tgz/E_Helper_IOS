@@ -72,7 +72,12 @@
     }
     
     if ([elementName isEqualToString:@"RecordData"]) {
-        self.zeroReportEntity.recordDate = self.tempString;
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        self.zeroReportEntity.recordDate = [formatter dateFromString:self.tempString];
+        
+        
     }
     if ([elementName isEqualToString:@"IsNullProblem"]) {
         if ([self.tempString isEqualToString:@"1"]) {
@@ -173,14 +178,14 @@
 
 #pragma mark - reportZero
 
-- (BOOL)reportZero:(NSData *)data UserGuid:(NSString *)userGuid {
+- (BOOL)reportZero:(NSDate *)data UserGuid:(NSString *)userGuid {
     
     //初始化时间为今天：
     NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];//实例化一个NSDateFormatter对象
     
     [dateFormat setDateFormat:@"yyyy-MM-dd"];//设定时间格式,这里可以设置成自己需要的格式
     
-    NSString *currentDateStr = [dateFormat stringFromDate:[NSDate date]];
+    NSString *currentDateStr = [dateFormat stringFromDate:data];
     NSString *validateData = [VerifyTool CreateNewToken];
     NSString *rowGuid = [[NSUUID UUID]UUIDString];
     NSString *soapMessage = [NSString stringWithFormat:@"<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:v=\"http://schemas.xmlsoap.org/soap/envelope/\"><v:Header /><v:Body><ZReport_Insert xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><ValidateData i:type=\"d:string\">%@</ValidateData><ParasXml i:type=\"d:string\">&lt;?xml version=\"1.0\" encoding=\"gb2312\"?&gt;&lt;paras&gt;&lt;RowGuid&gt;%@&lt;/RowGuid&gt;&lt;UserGuid&gt;%@&lt;/UserGuid&gt;&lt;RecordData&gt;%@&lt;/RecordData&gt;&lt;Content&gt;&lt;/Content&gt;&lt;IsNullProblem&gt;1&lt;/IsNullProblem&gt;&lt;Status&gt;0&lt;/Status&gt;&lt;OUGuid&gt;&lt;/OUGuid&gt;&lt;/paras&gt;</ParasXml></ZReport_Insert></v:Body></v:Envelope>",validateData,rowGuid,userGuid,currentDateStr];
@@ -223,7 +228,7 @@
     return [self analyseResult:responseData];
 }
 
-- (void)queryZReportStatus:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate {
+- (NSDictionary *)queryZReportStatus:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate {
     //初始化时间为今天：
     NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];//实例化一个NSDateFormatter对象
     
@@ -274,11 +279,22 @@
     
     [self analyseReportList];
     
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    
     [self.zReportList enumerateObjectsUsingBlock:^(ZereReportEntity  __nonnull *obj, NSUInteger idx, BOOL * __nonnull stop) {
         
-        NSLog(@"%@,%d",obj.recordDate,obj.isNullProblem);
+        
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *key =[formatter stringFromDate:obj.recordDate];
+        
+        [dict setObject:obj forKey:key];
+        
+        NSLog(@"%@,%d",key,obj.isNullProblem);
     
     }];
+    return [dict copy];
     
 }
 

@@ -371,7 +371,7 @@
  */
 - (void)reportZero {
     ZeroReport *zeroReport = [[ZeroReport alloc]init];
-    NSData *data = [NSData data];
+    NSDate *data = [NSDate date];
     BOOL success = [zeroReport reportZero:data UserGuid:self.user.userGuid];
     if (success) {
         NSLog(@"零报告成功");

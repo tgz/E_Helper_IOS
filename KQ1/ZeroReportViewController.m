@@ -11,16 +11,18 @@
 #import "ZeroReport.h"
 #import "User.h"
 #import "ZereReportEntity.h"
+#import <JTDateHelper.h>
 
-
-@interface ZeroReportViewController ()
+@interface ZeroReportViewController (){
+UIAlertView *remoteAlertView;
+}
 
 @property(nonatomic,strong) UIButton *btn;
 @property(nonatomic,strong) User *user;
 @property(nonatomic,strong) NSDate *dateSelected;
-@property(nonatomic,strong)NSDateFormatter *dateFormatter;
-@property(nonatomic,strong)UIAlertView *alertWait;
-@property(nonatomic,strong)NSMutableDictionary *eventsByDate;
+@property(nonatomic,strong) NSDateFormatter *dateFormatter;
+@property(nonatomic,strong) UIAlertView *alertWait;
+@property(nonatomic,strong) NSDictionary *statusByDate;
 @end
 
 @implementation ZeroReportViewController
@@ -68,12 +70,15 @@
                                                                                  target:self action:@selector(queryTodayStatus)];
     [self.navigationItem setRightBarButtonItem:rightBarItem];
     
+    
+    [self loadStatus];
+    
+    
 }
 
 -  (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    //self.btn.frame = CGRectMake(30, 80, 100, 30);
 }
 
 /*
@@ -116,17 +121,20 @@
     // Another day of the current month
     else{
         dayView.circleView.hidden = YES;
-        dayView.dotView.backgroundColor = [UIColor redColor];
+        //dayView.dotView.backgroundColor = [UIColor redColor];
         dayView.textLabel.textColor = [UIColor blackColor];
     }
     
     // Your method to test if a date have an event for example
-    if([self haveEventForDay:dayView.date]){
+    if([self isZeroReportForDay:dayView.date]){
+        dayView.dotView.backgroundColor = [UIColor greenColor];
         dayView.dotView.hidden = NO;
     }
     else{
         dayView.dotView.hidden = YES;
     }
+    
+    
 }
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
 {
@@ -152,18 +160,30 @@
             [_calendarContentView loadPreviousPageWithAnimation];
         }
     }
-}
-
-- (BOOL)haveEventForDay:(NSDate *)date
-{
-    NSString *key = [[self dateFormatter] stringFromDate:date];
     
-    if(_eventsByDate[key] && [_eventsByDate[key] count] > 0){
-        return YES;
+    ZereReportEntity *zeroStatus = [self.statusByDate objectForKey:[self.dateFormatter stringFromDate:_dateSelected]];
+    if (!zeroStatus.isNullProblem) {
+        NSString *dateStr = [self.dateFormatter stringFromDate:_dateSelected];
+        NSString *message = [NSString stringWithFormat:@"确认补填%@的零报告？",dateStr];
+        UIAlertView *confirmAlert = [[UIAlertView alloc]initWithTitle:@"提醒：" message:message  delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认",nil];
+        confirmAlert.tag=0;
+        [confirmAlert show];
     }
     
-    return NO;
-    
+}
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==0)
+    {
+        if(buttonIndex==1)
+        {
+            NSLog(@"%@",@"确认补零报告！");
+            /**补零报告*/
+            [self reportZero:_dateSelected];
+        }
+    }
 }
 
 #pragma mark - event Response
@@ -181,8 +201,6 @@
     
     [self alertWaitWithTitle:@"查询结果" message:message cancelButtonTitle:@"确定"];
     
-
-
 }
 
 #pragma mark - private methods
@@ -209,6 +227,102 @@
     
     [self.alertWait show];
 }
+
+
+- (BOOL)isZeroReportForDay:(NSDate *)date{
+    NSString *key = [[self dateFormatter]stringFromDate:date];
+    
+    
+    if(_statusByDate[key] ){
+        ZereReportEntity *reportEntity = [_statusByDate objectForKey:key];
+        
+        return reportEntity.isNullProblem;
+    }
+    return NO;
+    
+}
+
+/**
+ *  判断日期是否在Dictionary内
+ *
+ *  @param date 要判断的日期
+ *
+ *  @return YES/NO
+ */
+- (BOOL)haveEventForDay:(NSDate *)date
+{
+    NSString *key = [[self dateFormatter] stringFromDate:date];
+    
+    if(_statusByDate[key]){
+        return YES;
+    }
+    return NO;
+}
+
+/**
+ *  补填指定日期的零报告
+ *
+ *  @param date 要补的日期
+ */
+- (void)reportZero:(NSDate *)date {
+    
+    dispatch_queue_t queue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t main_queue = dispatch_get_main_queue();
+    dispatch_async(queue, ^{
+        ZeroReport *zeroReport = [[ZeroReport alloc]init];
+        BOOL success = [zeroReport reportZero:date UserGuid:self.user.userGuid];
+        
+        if(success){
+            self.statusByDate = nil;
+            [self loadStatus];
+        }
+        
+        dispatch_async(main_queue, ^{
+            if (success) {
+                NSLog(@"零报告成功");
+                [self.calendarManager reload];
+                [self alertWaitWithTitle:@"零报告成功！" message:[self.dateFormatter stringFromDate:date] cancelButtonTitle:@"确定"];
+                //TODO 零报告查询
+            }else {
+                [self alertWaitWithTitle:@"零报告失败！" message:zeroReport.failDescription cancelButtonTitle:@"确定"];
+                
+            }
+        });
+    });
+    
+
+    
+    
+    
+}
+
+#pragma mark - LoadMonthData
+- (void)loadStatus{
+    
+    [self alertWaitWithTitle:@"正在加载数据..." message:nil cancelButtonTitle:nil];
+    
+    dispatch_queue_t queue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t main_queue = dispatch_get_main_queue();
+    dispatch_async(queue, ^{
+        ZeroReport *zeroReport = [[ZeroReport alloc]init];
+        
+        JTDateHelper *dateHelper = [[JTDateHelper alloc]init];
+        NSDate *today = [NSDate date];
+        NSDate *toDate = [dateHelper lastDayOfMonth:today];
+        NSDate *fromDate = [dateHelper firstDayOfMonth:today];
+        
+        self.statusByDate = [zeroReport queryZReportStatus:self.user.userGuid fromDate:fromDate toDate:toDate];
+        dispatch_async(main_queue, ^{
+            
+            [self.calendarManager reload];
+            
+            [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
+           
+        });
+    });
+}
+
+
 #pragma mark - getters and setters
 
 -(UIButton *) btn{
@@ -236,7 +350,7 @@
     static NSDateFormatter *dateFormatter;
     if(!dateFormatter){
         dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"dd-MM-yyyy";
+        dateFormatter.dateFormat = @"yyyy-MM-dd";
     }
     
     return dateFormatter;

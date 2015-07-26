@@ -14,6 +14,6 @@
 @property (nonatomic,copy)NSString  *failDescription;
 @property (nonatomic,strong)NSMutableArray *zReportList;
 
-- (BOOL)reportZero:(NSData *)data UserGuid:(NSString *)userGuid;
-- (void)queryZReportStatus:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
+- (BOOL)reportZero:(NSDate *)data UserGuid:(NSString *)userGuid;
+- (NSDictionary *)queryZReportStatus:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
 @end
