@@ -367,19 +367,36 @@
 }
 
 /**
- *零报告
+ *  零报告
  */
 - (void)reportZero {
-    ZeroReport *zeroReport = [[ZeroReport alloc]init];
-    NSDate *data = [NSDate date];
-    BOOL success = [zeroReport reportZero:data UserGuid:self.user.userGuid];
-    if (success) {
-        NSLog(@"零报告成功");
-        //TODO 零报告查询
-    }else {
-        [self alertWaitWithTitle:@"零报告失败！" message:zeroReport.failDescription cancelButtonTitle:@"确定"];
     
-    }
+    [self alertWaitWithTitle:@"真在零报告" message:@"请稍后..." cancelButtonTitle:nil];
+    
+    //按下按钮时，关闭键盘;
+    [self.view endEditing:YES];
+    
+    
+    dispatch_queue_t queue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t main_queue = dispatch_get_main_queue();
+    dispatch_async(queue, ^{
+        ZeroReport *zeroReport = [[ZeroReport alloc]init];
+        NSDate *data = [NSDate date];
+        BOOL success = [zeroReport reportZero:data UserGuid:self.user.userGuid];
+        
+        dispatch_async(main_queue, ^{
+            [self.alertWait dismissWithClickedButtonIndex:0 animated:NO];
+            if (success) {
+                NSLog(@"零报告成功");
+                 [self alertWaitWithTitle:@"零报告成功！" message:nil cancelButtonTitle:@"确定"];
+                //TODO 零报告查询
+            }else {
+                [self alertWaitWithTitle:@"零报告失败！" message:zeroReport.failDescription cancelButtonTitle:@"确定"];
+            }
+            
+        });
+    });
+    
 }
 
 #pragma mark - private methods
