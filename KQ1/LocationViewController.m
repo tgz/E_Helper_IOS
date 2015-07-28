@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -39,6 +40,16 @@
     self.locationService.delegate = self;
     
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    NSLog(@"ViewDidAppear");
+    [self.locationService startUserLocationService];
+    self.mapView.showsUserLocation=NO;
+    self.mapView.userTrackingMode = BMKUserTrackingModeFollow;//BMKUserTrackingModeNone;
+    self.mapView.showsUserLocation = YES;
+    self.mapView.zoomLevel=15.0;
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated{
     
@@ -51,14 +62,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    NSLog(@"ViewDidAppear");
-    [self.locationService startUserLocationService];
-    self.mapView.showsUserLocation=NO;
-    self.mapView.userTrackingMode = BMKUserTrackingModeFollow;//BMKUserTrackingModeNone;
-    self.mapView.showsUserLocation = YES;
 }
 /*
 #pragma mark - Navigation
