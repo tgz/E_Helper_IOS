@@ -33,14 +33,19 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    NSLog(@"viewWillAppear");
     [self.mapView viewWillAppear];
     self.mapView.delegate = self;
+    self.locationService.delegate = self;
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    
     self.mapView.showsUserLocation = NO;
     [self.mapView viewWillDisappear];
     self.mapView.delegate = nil;
+    self.locationService.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,9 +54,10 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    NSLog(@"ViewDidAppear");
     [self.locationService startUserLocationService];
     self.mapView.showsUserLocation=NO;
-    self.mapView.userTrackingMode = BMKUserTrackingModeNone;
+    self.mapView.userTrackingMode = BMKUserTrackingModeFollow;//BMKUserTrackingModeNone;
     self.mapView.showsUserLocation = YES;
 }
 /*
@@ -72,8 +78,8 @@
  */
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-    [_mapView updateLocationData:userLocation];
+        NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    [self.mapView updateLocationData:userLocation];
     
 }
 
@@ -85,6 +91,15 @@
 - (void)didFailToLocateUserWithError:(NSError *)error
 {
     NSLog(@"location error");
+}
+
+/**
+ *在地图View将要启动定位时，会调用此函数
+ *@param mapView 地图View
+ */
+- (void)willStartLocatingUser
+{
+    NSLog(@"start locate");
 }
 
 
