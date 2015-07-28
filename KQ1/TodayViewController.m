@@ -13,6 +13,7 @@
 #import "Locator.h"
 #import "AttendLocationViewController.h"
 #import "ZeroReport.h"
+#import "LocationViewController.h"
 
 
 @interface TodayViewController () <UITextFieldDelegate,UITextViewDelegate,TodayViewPassValueDelegate>
@@ -24,6 +25,8 @@
 @property (nonatomic,strong)User *user;
 @property (nonatomic,strong)UIButton *getLocationHistory;
 @property (nonatomic,strong)UIButton *zeroReport;
+
+@property (nonatomic,strong)UIButton *openMap;
 
 @property(nonatomic,strong)UIAlertView *alertWait;
 
@@ -49,6 +52,8 @@
     
     [self.view addSubview:self.getLocationHistory];
     [self.view addSubview:self.zeroReport];
+    
+    [self.view addSubview:self.openMap];
 
     
     [self.ouName mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -98,6 +103,7 @@
     
     self.getLocationHistory.center = CGPointMake(kScreenWidth/6, kScreenHeight-kBorderBottom);
     
+    self.openMap.center = CGPointMake(kScreenWidth/2, kScreenHeight-kBorderBottom*2);
 }
 
 //- (void)viewDidLayoutSubviews {
@@ -226,6 +232,15 @@
     [self presentViewController:loginVC animated:YES completion:nil];
     
 }
+
+- (void)goToMap{
+    NSLog(@"OpenMap");
+    LocationViewController *mapVC = [[LocationViewController alloc]init];
+    //UINavigationController *mapNC = [[UINavigationController alloc]initWithRootViewController:mapVC];
+    [mapVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self presentViewController:mapVC animated:YES completion:nil];
+}
+
 /**
  考勤
  */
@@ -525,4 +540,14 @@
     }
     return _zeroReport;
 }
+
+- (UIButton *)openMap {
+    if (_openMap == nil) {
+        _openMap = [UIButton buttonWithStyle:StrapPrimaryStyle andTitle:@"地图" andFrame:CGRectMake(0, 0, kButtonWidth, kButtonHeight) target:self action:@selector(goToMap)];
+    }
+    return _openMap;
+}
+
+
+
 @end

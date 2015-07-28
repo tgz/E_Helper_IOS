@@ -12,6 +12,16 @@
 		5A0B05D71B5AAEB000298DBA /* KQ1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B05D51B5AAEB000298DBA /* KQ1.xcdatamodeld */; };
 		5A0E2A531B528BFC00566899 /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E2A521B528BFC00566899 /* Locator.m */; };
 		5A0E2A561B52C6CE00566899 /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E2A551B52C6CE00566899 /* AttendanceRecord.m */; };
+		5A1656081B67BF3A00C5348F /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1656061B67BF3A00C5348F /* LocationViewController.m */; };
+		5A1656091B67BF3A00C5348F /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A1656071B67BF3A00C5348F /* LocationViewController.xib */; };
+		5A16560D1B67D2A700C5348F /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16560C1B67D2A700C5348F /* BaiduMapAPI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		5A36271F1B67AE010046555E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A36271E1B67AE010046555E /* CoreLocation.framework */; };
+		5A3627211B67AE220046555E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3627201B67AE220046555E /* QuartzCore.framework */; };
+		5A3627231B67AE2F0046555E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3627221B67AE2F0046555E /* OpenGLES.framework */; };
+		5A3627251B67AE420046555E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3627241B67AE420046555E /* SystemConfiguration.framework */; };
+		5A3627271B67AE4D0046555E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3627261B67AE4D0046555E /* CoreGraphics.framework */; };
+		5A3627291B67AE540046555E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3627281B67AE540046555E /* Security.framework */; };
+		5A36272B1B67AFED0046555E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5A36272A1B67AFED0046555E /* mapapi.bundle */; };
 		5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */; };
 		5A78FBFA1B4AD6C100E9C38A /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF91B4AD6C100E9C38A /* UIColor+expanded.m */; };
 		5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC421B4ADDD100E9C38A /* FAImageView.m */; };
@@ -22,7 +32,7 @@
 		5A78FC511B4ADDD100E9C38A /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC4B1B4ADDD100E9C38A /* UIImage+FontAwesome.m */; };
 		5A78FC571B4C0AFD00E9C38A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC561B4C0AFD00E9C38A /* LoginViewController.m */; };
 		5A898A241B480FFA00BECC26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A231B480FFA00BECC26 /* main.m */; };
-		5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A261B480FFA00BECC26 /* AppDelegate.m */; };
+		5A898A271B480FFA00BECC26 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A261B480FFA00BECC26 /* AppDelegate.mm */; };
 		5A898A2D1B480FFA00BECC26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A2B1B480FFA00BECC26 /* Main.storyboard */; };
 		5A898A2F1B480FFA00BECC26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A2E1B480FFA00BECC26 /* Images.xcassets */; };
 		5A898A321B480FFA00BECC26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A898A301B480FFA00BECC26 /* LaunchScreen.xib */; };
@@ -69,6 +79,17 @@
 		5A0E2A521B528BFC00566899 /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
 		5A0E2A541B52C6CE00566899 /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
 		5A0E2A551B52C6CE00566899 /* AttendanceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceRecord.m; sourceTree = "<group>"; };
+		5A1656051B67BF3A00C5348F /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
+		5A1656061B67BF3A00C5348F /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
+		5A1656071B67BF3A00C5348F /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
+		5A16560C1B67D2A700C5348F /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI.framework; path = KQ1/BaiduMapAPI.framework; sourceTree = "<group>"; };
+		5A36271E1B67AE010046555E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5A3627201B67AE220046555E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5A3627221B67AE2F0046555E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		5A3627241B67AE420046555E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5A3627261B67AE4D0046555E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5A3627281B67AE540046555E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5A36272A1B67AFED0046555E /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		5A78FBF11B4AD23200E9C38A /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Bootstrap.h"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Bootstrap.m"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIButton+Bootstrap.m"; sourceTree = "<group>"; };
 		5A78FBF81B4AD6C100E9C38A /* UIColor+expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+expanded.h"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIColor+expanded.h"; sourceTree = "<group>"; };
@@ -90,7 +111,7 @@
 		5A898A221B480FFA00BECC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A898A231B480FFA00BECC26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5A898A251B480FFA00BECC26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		5A898A261B480FFA00BECC26 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5A898A261B480FFA00BECC26 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		5A898A2C1B480FFA00BECC26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A898A2E1B480FFA00BECC26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5A898A311B480FFA00BECC26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -137,6 +158,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A16560D1B67D2A700C5348F /* BaiduMapAPI.framework in Frameworks */,
+				5A3627291B67AE540046555E /* Security.framework in Frameworks */,
+				5A3627271B67AE4D0046555E /* CoreGraphics.framework in Frameworks */,
+				5A3627251B67AE420046555E /* SystemConfiguration.framework in Frameworks */,
+				5A3627231B67AE2F0046555E /* OpenGLES.framework in Frameworks */,
+				5A3627211B67AE220046555E /* QuartzCore.framework in Frameworks */,
+				5A36271F1B67AE010046555E /* CoreLocation.framework in Frameworks */,
 				5A0B05D41B5AA9E600298DBA /* CoreData.framework in Frameworks */,
 				ECD53445812D72C0E3DF328D /* libPods.a in Frameworks */,
 			);
@@ -236,11 +264,12 @@
 				5AD8113F1B4AC4AE00142CC6 /* Controller */,
 				5AE2B0381B48E4D900482293 /* Images */,
 				5A898A251B480FFA00BECC26 /* AppDelegate.h */,
-				5A898A261B480FFA00BECC26 /* AppDelegate.m */,
+				5A898A261B480FFA00BECC26 /* AppDelegate.mm */,
 				5A0B05D51B5AAEB000298DBA /* KQ1.xcdatamodeld */,
 				5A898A2B1B480FFA00BECC26 /* Main.storyboard */,
 				5A898A2E1B480FFA00BECC26 /* Images.xcassets */,
 				5A898A301B480FFA00BECC26 /* LaunchScreen.xib */,
+				5A36272A1B67AFED0046555E /* mapapi.bundle */,
 				5A898A211B480FFA00BECC26 /* Supporting Files */,
 			);
 			path = KQ1;
@@ -302,6 +331,9 @@
 				5AFB22291B54079A00CC731A /* AttendLocationViewController.m */,
 				5A0B05D01B57F0E900298DBA /* SwicthUserViewController.h */,
 				5A0B05D11B57F0E900298DBA /* SwicthUserViewController.m */,
+				5A1656051B67BF3A00C5348F /* LocationViewController.h */,
+				5A1656061B67BF3A00C5348F /* LocationViewController.m */,
+				5A1656071B67BF3A00C5348F /* LocationViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -351,6 +383,13 @@
 		B9344F9CB6EF4CE0D599C376 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A16560C1B67D2A700C5348F /* BaiduMapAPI.framework */,
+				5A3627281B67AE540046555E /* Security.framework */,
+				5A3627261B67AE4D0046555E /* CoreGraphics.framework */,
+				5A3627241B67AE420046555E /* SystemConfiguration.framework */,
+				5A3627221B67AE2F0046555E /* OpenGLES.framework */,
+				5A3627201B67AE220046555E /* QuartzCore.framework */,
+				5A36271E1B67AE010046555E /* CoreLocation.framework */,
 				5A0B05D31B5AA9E600298DBA /* CoreData.framework */,
 				1F05DC5E581FAFCB71B072A4 /* libPods.a */,
 			);
@@ -443,12 +482,14 @@
 				5AA097B91B63E73800C0FEB9 /* ZeroReportViewController.xib in Resources */,
 				5AE2B0451B48E54E00482293 /* task_selected@2x.png in Resources */,
 				5A78FC4F1B4ADDD100E9C38A /* FontAwesome.ttf in Resources */,
+				5A1656091B67BF3A00C5348F /* LocationViewController.xib in Resources */,
 				5AE2B0411B48E54E00482293 /* me_selected@2x.png in Resources */,
 				5A898A2D1B480FFA00BECC26 /* Main.storyboard in Resources */,
 				5AE2B0441B48E54E00482293 /* task_normal@2x.png in Resources */,
 				5A898A321B480FFA00BECC26 /* LaunchScreen.xib in Resources */,
 				5AE2B0421B48E54E00482293 /* project_normal@2x.png in Resources */,
 				5AE2B0431B48E54E00482293 /* project_selected@2x.png in Resources */,
+				5A36272B1B67AFED0046555E /* mapapi.bundle in Resources */,
 				5A898A2F1B480FFA00BECC26 /* Images.xcassets in Resources */,
 				5AE2B0401B48E54E00482293 /* me_normal@2x.png in Resources */,
 			);
@@ -502,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AA8E2FD1B4EBD9400E465C3 /* StringXMLTool.m in Sources */,
+				5A1656081B67BF3A00C5348F /* LocationViewController.m in Sources */,
 				5A78FC4D1B4ADDD100E9C38A /* NSString+FontAwesome.m in Sources */,
 				5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */,
 				5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */,
@@ -515,7 +557,7 @@
 				5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */,
 				5AA8E2FA1B4EBAE500E465C3 /* VerifyTool.m in Sources */,
 				5AE7539D1B4ACB4C00D21BD4 /* User.m in Sources */,
-				5A898A271B480FFA00BECC26 /* AppDelegate.m in Sources */,
+				5A898A271B480FFA00BECC26 /* AppDelegate.mm in Sources */,
 				5A898A241B480FFA00BECC26 /* main.m in Sources */,
 				5A78FC511B4ADDD100E9C38A /* UIImage+FontAwesome.m in Sources */,
 				5A0E2A531B528BFC00566899 /* Locator.m in Sources */,
@@ -631,7 +673,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -655,6 +697,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/KQ1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/JTCalendar\"",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+					"\"$(SRCROOT)/inc/**",
+				);
 				INFOPLIST_FILE = KQ1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -669,6 +724,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/KQ1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/JTCalendar\"",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+					"\"$(SRCROOT)/inc/**",
+				);
 				INFOPLIST_FILE = KQ1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
