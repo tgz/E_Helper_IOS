@@ -91,7 +91,7 @@
 {
         //NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     [self.mapView updateLocationData:userLocation];
-    
+    self.mapView.showsUserLocation = NO;
     /**定位成功后，停止定位*/
     [_locationService stopUserLocationService];
     
