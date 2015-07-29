@@ -11,7 +11,9 @@
 
 
 
-@interface LocationViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
+@interface LocationViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>{
+    BMKGeoCodeSearch *_codeSearch;
+}
 @property(strong,nonatomic)BMKLocationService *locationService;
 @end
 
@@ -57,6 +59,7 @@
     [self.mapView viewWillDisappear];
     self.mapView.delegate = nil;
     self.locationService.delegate = nil;
+    _codeSearch.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,8 +84,11 @@
  */
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-        NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+        //NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     [self.mapView updateLocationData:userLocation];
+    
+    /**定位成功后，停止定位*/
+    [_locationService stopUserLocationService];
     
 }
 
@@ -104,6 +110,54 @@
 {
     NSLog(@"start locate");
 }
+
+/**
+ *  点击底图空白处会调用此方法
+ */
+- (void)mapView:(BMKMapView *)mapView onClickedMapBlank:(CLLocationCoordinate2D)coordinate {
+    /**发起发向地理编码检索*/
+    _codeSearch = [[BMKGeoCodeSearch alloc]init];
+    _codeSearch.delegate = self;
+    
+    BMKReverseGeoCodeOption *reverseGeoCodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
+    reverseGeoCodeSearchOption.reverseGeoPoint = coordinate;
+    BOOL flag = [_codeSearch reverseGeoCode:reverseGeoCodeSearchOption];
+
+    if (flag) {
+        NSLog(@"反geo检索发送成功");
+    }else{
+        NSLog(@"反geo检索发送失败");
+    }
+}
+
+#pragma mark - GeoCodeSearchDelegate
+- (void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:
+(BMKSearchErrorCode)error {
+
+    /**清除标记*/
+    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
+    [_mapView removeAnnotations:array];
+    array = [NSArray arrayWithArray:_mapView.overlays];
+    [_mapView removeOverlays:array];
+    
+    
+    if (error == 0) {
+        BMKPointAnnotation *item = [[BMKPointAnnotation alloc]init];
+        item.coordinate = result.location;
+        item.title = result.address;
+        [_mapView addAnnotation:item];
+        _mapView.centerCoordinate = result.location;
+        
+        NSString* titleStr;
+        NSString* showmeg;
+        titleStr = @"反向地理编码";
+        showmeg = [NSString stringWithFormat:@"%@",item.title];
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
+        [myAlertView show];
+    }
+}
+
 
 
 #pragma mark - getters and setters
