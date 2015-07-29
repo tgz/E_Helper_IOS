@@ -11,10 +11,12 @@
 
 
 
-@interface LocationViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>{
-    BMKGeoCodeSearch *_codeSearch;
-}
+@interface LocationViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,UITableViewDataSource,UITableViewDataSource>
+
+@property(strong,nonatomic)BMKGeoCodeSearch *codeSearch;
+
 @property(strong,nonatomic)BMKLocationService *locationService;
+@property(strong,nonatomic)NSArray *poiList;
 @end
 
 @implementation LocationViewController
@@ -32,6 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
    
 }
 
@@ -50,6 +54,7 @@
     self.mapView.userTrackingMode = BMKUserTrackingModeFollow;//BMKUserTrackingModeNone;
     self.mapView.showsUserLocation = YES;
     self.mapView.zoomLevel=15.0;
+    
 }
 
 
@@ -59,7 +64,7 @@
     [self.mapView viewWillDisappear];
     self.mapView.delegate = nil;
     self.locationService.delegate = nil;
-    _codeSearch.delegate = nil;
+    self.codeSearch.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,6 +95,9 @@
     /**定位成功后，停止定位*/
     [_locationService stopUserLocationService];
     
+    /**针对定位结果，进行POI检索*/
+    [self startGeoSearch:userLocation.location.coordinate];
+    
 }
 
 /**
@@ -116,20 +124,26 @@
  */
 - (void)mapView:(BMKMapView *)mapView onClickedMapBlank:(CLLocationCoordinate2D)coordinate {
     /**发起发向地理编码检索*/
-    _codeSearch = [[BMKGeoCodeSearch alloc]init];
-    _codeSearch.delegate = self;
-    
-    BMKReverseGeoCodeOption *reverseGeoCodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
-    reverseGeoCodeSearchOption.reverseGeoPoint = coordinate;
-    BOOL flag = [_codeSearch reverseGeoCode:reverseGeoCodeSearchOption];
+    [self startGeoSearch:coordinate];
+    }
 
+/**
+ *  发起GEO检索
+ *
+ *  @param location 检索位置
+ */
+- (void)startGeoSearch:(CLLocationCoordinate2D)location{
+    BMKReverseGeoCodeOption *reverseGeoCodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
+    reverseGeoCodeSearchOption.reverseGeoPoint = location;
+    BOOL flag = [self.codeSearch reverseGeoCode:reverseGeoCodeSearchOption];
+    
     if (flag) {
         NSLog(@"反geo检索发送成功");
     }else{
         NSLog(@"反geo检索发送失败");
     }
+    
 }
-
 #pragma mark - GeoCodeSearchDelegate
 - (void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:
 (BMKSearchErrorCode)error {
@@ -148,16 +162,66 @@
         [_mapView addAnnotation:item];
         _mapView.centerCoordinate = result.location;
         
-        NSString* titleStr;
-        NSString* showmeg;
-        titleStr = @"反向地理编码";
-        showmeg = [NSString stringWithFormat:@"%@",item.title];
         
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
-        [myAlertView show];
+//        NSString* titleStr;
+//        NSString* showmeg;
+//        titleStr = @"反向地理编码";
+//        showmeg = [NSString stringWithFormat:@"%@",item.title];
+//        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
+//        [myAlertView show];
+        
+        
+        /**取出地理位置的poi信息并更新到TableView*/
+//        NSArray *array =  result.poiList;
+//       
+//          [array enumerateObjectsUsingBlock:^(BMKPoiInfo* obj, NSUInteger idx, BOOL * __nonnull stop) {
+//              NSLog(@"%@%@,%@",obj.city,obj.address,obj.name);
+//          }];
+        
+        self.poiList = result.poiList;
+        [self.tableView reloadData];
     }
 }
 
+#pragma mark - TableViewDelegate
+- (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell==nil) {
+        //
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    //    cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    //    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    //    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    BMKPoiInfo *info = [self.poiList objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = info.name;
+    cell.detailTextLabel.text = info.address;
+    //    cell.textLabel.numberOfLines=2;
+    //    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    
+    return  cell;
+
+}
+- (int)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section==0) {
+        return self.poiList.count;
+    }else
+        return 1;
+}
+
+- (CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+        return 40;
+}
+
+- (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    NSLog(@"选择了%d个Section的第%d行！",indexPath.section,indexPath.row);
+}
 
 
 #pragma mark - getters and setters
@@ -168,5 +232,13 @@
         _locationService = [[BMKLocationService alloc]init];
     }
     return _locationService;
+}
+
+- (BMKGeoCodeSearch *)codeSearch {
+    if (_codeSearch==nil) {
+        _codeSearch = [[BMKGeoCodeSearch alloc]init];
+        _codeSearch.delegate = self;
+    }
+    return _codeSearch;
 }
 @end

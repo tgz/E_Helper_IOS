@@ -36,13 +36,13 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Suj-C4-wcn">
-                    <rect key="frame" x="0.0" y="383" width="600" height="209"/>
+                    <rect key="frame" x="0.0" y="366" width="600" height="226"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Suj-C4-wcn" firstAttribute="top" secondItem="h8t-9r-RyV" secondAttribute="bottom" constant="17" id="9OI-cW-p1P"/>
+                <constraint firstItem="Suj-C4-wcn" firstAttribute="top" secondItem="h8t-9r-RyV" secondAttribute="bottom" id="9OI-cW-p1P"/>
                 <constraint firstItem="TyV-RJ-yFz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IEp-AX-G7P"/>
                 <constraint firstItem="TyV-RJ-yFz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="Pw5-dL-DAc"/>
                 <constraint firstItem="Suj-C4-wcn" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Twi-XE-Dyb"/>
