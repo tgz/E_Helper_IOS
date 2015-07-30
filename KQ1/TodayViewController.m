@@ -62,17 +62,26 @@
         make.top.equalTo(self.userInfo.mas_bottom);
     }];
     
+   
+    
     [self.location mas_makeConstraints:^(MASConstraintMaker *make) {
         //        make.left.mas_equalTo(self.view).width.offset(20);
         //        make.right.mas_equalTo(self.view).width.offset(-20);
         
-        make.centerX.equalTo(self.view);
-        make.height.mas_equalTo(@50);
-        make.top.mas_equalTo(self.ouName.mas_bottom);
+        //make.centerX.equalTo(self.view);
+        make.leading.equalTo(self.view).with.offset(8);
         
-        make.width.mas_equalTo(self.view.frame.size.width);
+        make.height.mas_equalTo(@50);
+        make.top.equalTo(self.ouName.mas_bottom).with.offset(10);
+        
+        make.width.equalTo(self.view).with.offset(-60);
         
     }];
+    [self.openMap mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.location.mas_centerY);
+        make.trailing.equalTo(self.view).with.offset(-10);
+    }];
+    
     ///隐藏基项部导航栏
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
@@ -110,7 +119,8 @@
     
     self.getLocationHistory.center = CGPointMake(kScreenWidth/6, kScreenHeight-kBorderBottom);
     
-    self.openMap.center = CGPointMake(kScreenWidth/2, kScreenHeight-kBorderBottom*2);
+//    self.openMap.center = CGPointMake(kScreenWidth/2, kScreenHeight-kBorderBottom*2);
+//    self.openMap.frame = CGRectMake(kScreenWidth/2, kScreenHeight-kBorderBottom*2, 48, 48);
 }
 
 //- (void)viewDidLayoutSubviews {
@@ -592,7 +602,12 @@
 
 - (UIButton *)openMap {
     if (_openMap == nil) {
-        _openMap = [UIButton buttonWithStyle:StrapPrimaryStyle andTitle:@"地图" andFrame:CGRectMake(0, 0, kButtonWidth, kButtonHeight) target:self action:@selector(goToMap)];
+//        _openMap = [UIButton buttonWithStyle:StrapPrimaryStyle andTitle:@"地图" andFrame:CGRectMake(0, 0, kButtonWidth, kButtonHeight) target:self action:@selector(goToMap)];
+
+        _openMap = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth/2, kScreenHeight-kBorderBottom*2, 48, 48)];
+        [_openMap addTarget:self action:@selector(goToMap) forControlEvents:UIControlEventTouchUpInside];
+        [_openMap setImage:[UIImage imageNamed:@"location"] forState:UIControlStateNormal];
+        
     }
     return _openMap;
 }

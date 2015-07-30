@@ -45,7 +45,7 @@
  
 ##目前的界面截图
   
- ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.45.51.png?imageView2/2/w/350/q/90) ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.35.png?imageView2/2/w/350/q/90)
+ ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月31日%20上午1.06.34.png?imageView2/2/w/350/q/90) ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.35.png?imageView2/2/w/350/q/90)
  
  ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.37.png?imageView2/2/w/350/q/90) ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.40.png?imageView2/2/w/350/q/90)
  
