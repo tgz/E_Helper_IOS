@@ -220,9 +220,23 @@
 }
 
 - (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    NSLog(@"选择了%d个Section的第%d行！",indexPath.section,indexPath.row);
+    //NSLog(@"选择了%d个Section的第%d行！",indexPath.section,indexPath.row);
+    BMKPoiInfo *poi =[self.poiList objectAtIndex:indexPath.row];
+    NSString *location = [NSString stringWithFormat:@"%@%@附近",poi.address,poi.name];
+    [self UpdateLocation:location];
 }
 
+/**
+ *  更新用户考勤地理位置信息
+ *
+ *  @param location 地点，带“附近“
+ */
+- (void)UpdateLocation:(NSString *)location{
+    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:location,@"Location", nil];
+       [[NSNotificationCenter defaultCenter]postNotificationName:@"SC_LocationNew" object:nil userInfo:dict];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - getters and setters
 

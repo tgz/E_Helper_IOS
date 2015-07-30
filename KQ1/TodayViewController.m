@@ -82,10 +82,17 @@
                                              selector:@selector(reloadUserFromUserDefaults)
                                                  name:@"SC_UserChanged" object:nil];
     
+    /**添加通知---变更地点*/
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLocation:) name:@"SC_LocationNew" object:nil];
 
-    
-    NSLog(@"TodayViewController_viewDidLoad");
-       //self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",9];
+    //self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",9];
+}
+
+/**
+ *  手动移除通知监听
+ */
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -139,17 +146,16 @@
     self.ouName.text = self.user.ouName;
     NSLog(@"viewWillAppear：读取用户信息：%@,%@,%@,%d",self.user.userName , self.user.userGuid, self.user.ouName , self.user.isLogin);
   
-    NSString *lastLocation = [Locator ReadLocation];
-    if (![lastLocation isEqualToString:@""]) {
-        lastLocation = @"草场门大街88号东门江苏建设大厦附近";
-        self.location.textColor = [UIColor blackColor];
-    }else{
-        self.location.textColor = [UIColor blackColor];
+    if ([self.location.text isEqualToString:@""]) {
+        NSString *lastLocation = [Locator ReadLocation];
+        if (![lastLocation isEqualToString:@""]) {
+            lastLocation = @"草场门大街88号东门江苏建设大厦附近";
+            self.location.textColor = [UIColor blackColor];
+        }else{
+            self.location.textColor = [UIColor blackColor];
+        }
+        self.location.text = lastLocation;
     }
-    self.location.text = lastLocation;
-    
-    
-    
     
 }
 
@@ -165,7 +171,37 @@
 */
 
 
-#pragma mark - UITabViewDelegate
+#pragma mark - AlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==0)
+    {
+        if(buttonIndex==1)
+        {
+            [self KaoQin];
+        }
+        return;
+    }
+    if (alertView.tag==1) {
+        if (buttonIndex==1) {
+            [self reportZero];
+        }
+        return;
+    }
+}
+
+- (void)beforeKaoQin{
+    NSString *message = [NSString stringWithFormat:@"确认考勤？"];
+    UIAlertView *confirmAlert = [[UIAlertView alloc]initWithTitle:@"提醒：" message:message  delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认",nil];
+    confirmAlert.tag=0;
+    [confirmAlert show];
+}
+- (void)beforeReportZero{
+    NSString *message = [NSString stringWithFormat:@"确认填写零报告？"];
+    UIAlertView *confirmAlert = [[UIAlertView alloc]initWithTitle:@"提醒：" message:message  delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认",nil];
+    confirmAlert.tag=1;
+    [confirmAlert show];
+}
 
 #pragma mark - CustumDelegate
 - (void)passUser:(User *)user {
@@ -241,8 +277,10 @@
     [self presentViewController:mapVC animated:YES completion:nil];
 }
 
+
+
 /**
- 考勤
+ *  考勤
  */
 - (void)KaoQin{
     NSLog(@"Kaoqin!");
@@ -301,6 +339,9 @@
    
 }
 
+/**
+ *  查询考勤记录
+ */
 - (void)KaoQinHistory{
     NSLog(@"KaoqinHistory!");
     
@@ -360,12 +401,6 @@
             
         });
     });
-     
-     
-     
-    
-     
-    
     
 }
 
@@ -438,11 +473,25 @@
     [self.navigationController pushViewController:alvc animated:YES];
 }
 
-
+/**
+ *  重新加载用户
+ */
 - (void)reloadUserFromUserDefaults {
     self.user = [User userFromNSUserDefaults];
     
     NSLog(@"收到通知--->SC_UserChanged---->重新加载用户");
+}
+
+/**
+ *  收到通知后，更新界面数据
+ *
+ *  @param notification 通知消息
+ */
+- (void)updateLocation:(NSNotification *)notification {
+    NSLog(@"收到通知-->SC_LocationNew --> %@%@%@",notification.name,notification.object,notification.userInfo);
+    
+    NSString *location = [notification.userInfo objectForKey:@"Location"];
+    self.location.text = location;
 }
 
 #pragma mark - getters and setters
@@ -517,7 +566,7 @@
                                          andTitle:@"考勤"
                                          andFrame:CGRectMake(0, 0, kButtonWidth,kButtonHeight)
                                            target:self
-                                           action:@selector(KaoQin)];
+                                           action:@selector(beforeKaoQin)];
     }
     
     return _kaoQinButton;
@@ -536,7 +585,7 @@
 
 - (UIButton *)zeroReport {
     if (_zeroReport == nil) {
-        _zeroReport = [UIButton buttonWithStyle:StrapPrimaryStyle andTitle:@"零报告" andFrame:CGRectMake(0, 0, kButtonWidth,kButtonHeight) target:self action:@selector(reportZero)];
+        _zeroReport = [UIButton buttonWithStyle:StrapPrimaryStyle andTitle:@"零报告" andFrame:CGRectMake(0, 0, kButtonWidth,kButtonHeight) target:self action:@selector(beforeReportZero)];
     }
     return _zeroReport;
 }
