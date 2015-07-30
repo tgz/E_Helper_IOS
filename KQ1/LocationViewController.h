@@ -11,5 +11,6 @@
 @interface LocationViewController : UIViewController
 @property (weak, nonatomic) IBOutlet BMKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)cancleClicked:(UIBarButtonItem *)sender;
 
 @end

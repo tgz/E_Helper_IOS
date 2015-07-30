@@ -39,6 +39,8 @@
    
 }
 
+
+
 - (void)viewWillAppear:(BOOL)animated{
     NSLog(@"viewWillAppear");
     [self.mapView viewWillAppear];
@@ -238,6 +240,17 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - response
+/**
+ *  点击右上角取消按钮
+ *
+ *  @param sender BarItem
+ */
+- (IBAction)cancleClicked:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
 #pragma mark - getters and setters
 
 
@@ -255,4 +268,5 @@
     }
     return _codeSearch;
 }
+
 @end

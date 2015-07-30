@@ -28,7 +28,13 @@
                         <constraint firstAttribute="height" constant="44" id="B0R-FP-PVp"/>
                     </constraints>
                     <items>
-                        <navigationItem title="地图定位" id="PPN-dA-Kj1"/>
+                        <navigationItem title="地图定位" id="PPN-dA-Kj1">
+                            <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="zjj-8g-UIc">
+                                <connections>
+                                    <action selector="cancleClicked:" destination="-1" id="JpW-5A-nct"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8t-9r-RyV" customClass="BMKMapView">

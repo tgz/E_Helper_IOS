@@ -7,7 +7,7 @@
  - 考勤提醒
  - 自动勾选零报告
  - 多用户保存/切换 `功能已完成`
- - 地图定位/选点 `进行中`
+ - 地图定位/选点 `功能已完成`
 
 ## 主要技术
 1. 界面布局
@@ -50,7 +50,7 @@
  
  ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.46.53.png?imageView2/2/w/350/q/90) ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月21日%20下午10.47.00.png?imageView2/2/w/350/q/90)
    
- ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月26日%20下午11.50.10.png?imageView2/2/w/350/q/90)
+ ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Simulator%20Screen%20Shot%202015年7月26日%20下午11.50.10.png?imageView2/2/w/350/q/90) ![](http://77l5l6.com1.z0.glb.clouddn.com/ios_Screen%20Shot%202015-07-31%20at%20上午12.22.36.png?imageView2/2/w/350/q/90)
 
 
 
