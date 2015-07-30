@@ -14,6 +14,7 @@
   - UITabBarViewController + UINavigationViewContrller
   - UIButton + Bootstrap `方便地创建一些风格一致的按钮`
   - UIColer + expanded `方便地自定义颜色`
+  - AutoLayout `此项目使用在纯代码,XIB中均有使用`
   - Masonry `方便地创建约束`
   - TableView的使用
   - 常用UI控件
@@ -26,7 +27,7 @@
  - NSUserDefaults的使用
  - NSNotification的使用
  - 加密算法的使用
- - IOS界面控件的使用`此项目使用纯代码的方式`
+ - IOS界面控件的使用
  - NSXMLParser
  - NSUrlConnection NSurlResponse
  - block
