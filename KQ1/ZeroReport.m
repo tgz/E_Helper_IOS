@@ -9,6 +9,7 @@
 #import "ZeroReport.h"
 #import "VerifyTool.h"
 #import "ZereReportEntity.h"
+#import "AFNetworking.h"
 @interface ZeroReport()<NSXMLParserDelegate> 
 @property (nonatomic,strong)NSMutableString *tempString;
 @property (nonatomic,copy)NSString *zReportInsertResult;
@@ -272,6 +273,11 @@
         
     }
     NSLog(@"Return String is ======⬇️⬇️⬇️\n%@",result);
+    
+    
+    
+    
+    
     
     [self analyseResult:responseData];
     

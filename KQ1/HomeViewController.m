@@ -75,7 +75,7 @@
     [switchUserItem setTag:2];
     
     
-    
+    [self reach];
    
     
 }
@@ -117,6 +117,10 @@
     // 检测网络连接的单例,网络变化时的回调方法
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         NSLog(@"%ld", (long)status);
+        if((long)status<1){
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"无法连接网络" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alertView show];
+        }
     }];
 }
 
