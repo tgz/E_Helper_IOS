@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CLLocationManager;
 @class BMKMapView;
 @interface LocationViewController : UIViewController
 @property (weak, nonatomic) IBOutlet BMKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)cancleClicked:(UIBarButtonItem *)sender;
+
+/**定位权限*/
+@property (nonatomic) CLLocationManager *locationManager ;
 
 @end

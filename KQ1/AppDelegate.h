@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 @class BMKMapManager;
-
+@class CLLocationManager;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
  BMKMapManager* _mapManager;
 }
 
 
 @property (strong, nonatomic) UIWindow *window;
+
 
 /**添加CoreData的支持*/
 

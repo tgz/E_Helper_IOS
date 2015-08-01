@@ -37,6 +37,12 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
    
+    
+    self.locationManager = [[CLLocationManager alloc]init];
+    if ([[[UIDevice currentDevice]systemVersion]doubleValue]>8.0) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
 }
 
 
