@@ -54,6 +54,7 @@
 		5AEC904D1B5D53A200C35FA3 /* UserDal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC904C1B5D53A200C35FA3 /* UserDal.m */; };
 		5AEC90501B5EA02500C35FA3 /* ZeroReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC904F1B5EA02500C35FA3 /* ZeroReport.m */; };
 		5AEC90531B5EA06A00C35FA3 /* ZereReportEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC90521B5EA06A00C35FA3 /* ZereReportEntity.m */; };
+		5AF169381B6FBE3800829619 /* ZeroReportQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF169371B6FBE3800829619 /* ZeroReportQuery.m */; };
 		5AF2262D1B51151100F846C1 /* UserLoginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF2262C1B51151100F846C1 /* UserLoginResult.m */; };
 		5AFB222A1B54079A00CC731A /* AttendLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFB22291B54079A00CC731A /* AttendLocationViewController.m */; };
 		ECD53445812D72C0E3DF328D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F05DC5E581FAFCB71B072A4 /* libPods.a */; };
@@ -145,6 +146,8 @@
 		5AEC904F1B5EA02500C35FA3 /* ZeroReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZeroReport.m; sourceTree = "<group>"; };
 		5AEC90511B5EA06A00C35FA3 /* ZereReportEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZereReportEntity.h; sourceTree = "<group>"; };
 		5AEC90521B5EA06A00C35FA3 /* ZereReportEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZereReportEntity.m; sourceTree = "<group>"; };
+		5AF169361B6FBE3800829619 /* ZeroReportQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZeroReportQuery.h; sourceTree = "<group>"; };
+		5AF169371B6FBE3800829619 /* ZeroReportQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZeroReportQuery.m; sourceTree = "<group>"; };
 		5AF2262B1B51151100F846C1 /* UserLoginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginResult.h; sourceTree = "<group>"; };
 		5AF2262C1B51151100F846C1 /* UserLoginResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginResult.m; sourceTree = "<group>"; };
 		5AFB22281B54079A00CC731A /* AttendLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendLocationViewController.h; sourceTree = "<group>"; };
@@ -258,6 +261,7 @@
 		5A898A201B480FFA00BECC26 /* KQ1 */ = {
 			isa = PBXGroup;
 			children = (
+				5AF169341B6FB36500829619 /* API */,
 				5AA8E2F71B4EBA4400E465C3 /* Util */,
 				5A78FBEF1B4AD1F300E9C38A /* ThirdPart */,
 				5AE7539A1B4ACB1100D21BD4 /* Modle */,
@@ -378,6 +382,23 @@
 				5AEC90521B5EA06A00C35FA3 /* ZereReportEntity.m */,
 			);
 			name = Modle;
+			sourceTree = "<group>";
+		};
+		5AF169341B6FB36500829619 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5AF169351B6FB3AE00829619 /* ZeroReport */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		5AF169351B6FB3AE00829619 /* ZeroReport */ = {
+			isa = PBXGroup;
+			children = (
+				5AF169361B6FBE3800829619 /* ZeroReportQuery.h */,
+				5AF169371B6FBE3800829619 /* ZeroReportQuery.m */,
+			);
+			name = ZeroReport;
 			sourceTree = "<group>";
 		};
 		B9344F9CB6EF4CE0D599C376 /* Frameworks */ = {
@@ -568,6 +589,7 @@
 				5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */,
 				5AFB222A1B54079A00CC731A /* AttendLocationViewController.m in Sources */,
 				5A78FC501B4ADDD100E9C38A /* UIFont+FontAwesome.m in Sources */,
+				5AF169381B6FBE3800829619 /* ZeroReportQuery.m in Sources */,
 				5AF2262D1B51151100F846C1 /* UserLoginResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
 #import <BaiduMapAPI/BMapKit.h>
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
 
 @interface AppDelegate ()
 
@@ -26,8 +28,66 @@
         NSLog(@"manager start failed!");
     }
     
+    /**AFNetworking检测网络情况*/
+    /**
+     *  version 1 检测网络是否可用的方法
+     *  手动操作线程，在网络不可用的时候，暂停队列，不再添加新的网络请求
+     */
+//    NSURL *baseUrl = [NSURL URLWithString:@"http://oa.epoint.com.cn"];
+//    AFHTTPRequestOperationManager *httpManager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:baseUrl];
+//    
+//    NSOperationQueue *operationQueue = [httpManager operationQueue];
+//    
+//    [httpManager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+//        switch (status) {
+//            case AFNetworkReachabilityStatusNotReachable:
+//            case AFNetworkReachabilityStatusUnknown:
+//                /**无网络*/
+//                //发送通知--->无网络
+//                
+//                [operationQueue setSuspended:NO];
+//                break;
+//                
+//            case AFNetworkReachabilityStatusReachableViaWiFi:
+//            case AFNetworkReachabilityStatusReachableViaWWAN:
+//            default:
+//                /**有网络*/
+//                //发送通知--->有网络
+//                
+//                //暂停线程---不会添加新的operation
+//                [operationQueue setSuspended:YES];
+//                break;
+//        }
+//    }];
+//    [httpManager.reachabilityManager startMonitoring];
+    /**
+     *  verion 2 检测网络是否可用的另外一种方法
+     */
+    AFNetworkReachabilityManager *reachableManager = [AFNetworkReachabilityManager sharedManager];
+    [reachableManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusNotReachable:
+            case AFNetworkReachabilityStatusUnknown:
+                /**无网络*/
+                //发送通知--->无网络
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            default:
+                /**有网络*/
+                //发送通知--->有网络
+                
+                //暂停线程---不会添加新的operation
+                break;
+        }
+    }];
+    [reachableManager startMonitoring];
     
-       
+    /**AFNetworking网络请求指示器*/
+//    AFNetworkActivityIndicatorManager * activityIndicator = [AFNetworkActivityIndicatorManager sharedManager];
+//    [activityIndicator setEnabled:YES];
+    [[AFNetworkActivityIndicatorManager sharedManager]setEnabled:YES];
     return YES;
 }
 

@@ -35,12 +35,13 @@
  - GCD的使用
  - VVDocumenter-Xcode
  - 百度地图SDK
+ - AFNetworking
 4. 计划
- - 网络请求更换为AFNetworking
  - 下拉刷新
  - 定时提醒功能
  - 工作日判断
  - 界面设计优化
+ - 动画
  ---
  
 ##目前的界面截图
