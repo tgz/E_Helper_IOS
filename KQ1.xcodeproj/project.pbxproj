@@ -55,6 +55,7 @@
 		5AEC90501B5EA02500C35FA3 /* ZeroReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC904F1B5EA02500C35FA3 /* ZeroReport.m */; };
 		5AEC90531B5EA06A00C35FA3 /* ZereReportEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC90521B5EA06A00C35FA3 /* ZereReportEntity.m */; };
 		5AF169381B6FBE3800829619 /* ZeroReportQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF169371B6FBE3800829619 /* ZeroReportQuery.m */; };
+		5AF1693E1B711EDC00829619 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1693D1B711EDC00829619 /* XMLReader.m */; };
 		5AF2262D1B51151100F846C1 /* UserLoginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF2262C1B51151100F846C1 /* UserLoginResult.m */; };
 		5AFB222A1B54079A00CC731A /* AttendLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFB22291B54079A00CC731A /* AttendLocationViewController.m */; };
 		ECD53445812D72C0E3DF328D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F05DC5E581FAFCB71B072A4 /* libPods.a */; };
@@ -148,6 +149,8 @@
 		5AEC90521B5EA06A00C35FA3 /* ZereReportEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZereReportEntity.m; sourceTree = "<group>"; };
 		5AF169361B6FBE3800829619 /* ZeroReportQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZeroReportQuery.h; sourceTree = "<group>"; };
 		5AF169371B6FBE3800829619 /* ZeroReportQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZeroReportQuery.m; sourceTree = "<group>"; };
+		5AF1693C1B711EDC00829619 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		5AF1693D1B711EDC00829619 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		5AF2262B1B51151100F846C1 /* UserLoginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginResult.h; sourceTree = "<group>"; };
 		5AF2262C1B51151100F846C1 /* UserLoginResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginResult.m; sourceTree = "<group>"; };
 		5AFB22281B54079A00CC731A /* AttendLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendLocationViewController.h; sourceTree = "<group>"; };
@@ -314,6 +317,8 @@
 				5AA8E2FC1B4EBD9400E465C3 /* StringXMLTool.m */,
 				5AA8E2FE1B4EC25000E465C3 /* WebserviceHelper.h */,
 				5AA8E2FF1B4EC25000E465C3 /* WebserviceHelper.m */,
+				5AF1693C1B711EDC00829619 /* XMLReader.h */,
+				5AF1693D1B711EDC00829619 /* XMLReader.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -574,6 +579,7 @@
 				5AA8E3001B4EC25000E465C3 /* WebserviceHelper.m in Sources */,
 				5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */,
 				5A78FC571B4C0AFD00E9C38A /* LoginViewController.m in Sources */,
+				5AF1693E1B711EDC00829619 /* XMLReader.m in Sources */,
 				5A78FBFA1B4AD6C100E9C38A /* UIColor+expanded.m in Sources */,
 				5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */,
 				5AA8E2FA1B4EBAE500E465C3 /* VerifyTool.m in Sources */,

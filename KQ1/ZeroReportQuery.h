@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZeroReportQuery : NSObject
+@interface ZeroReportQuery : NSObject<NSXMLParserDelegate>
+
+
+
+- (void)queryZReportStatus:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
 @end

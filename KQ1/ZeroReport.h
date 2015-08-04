@@ -16,5 +16,4 @@
 
 - (BOOL)reportZero:(NSDate *)data UserGuid:(NSString *)userGuid;
 - (NSDictionary *)queryZReportStatus:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
-- (NSDictionary *)queryZReportStatusV2:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
 @end

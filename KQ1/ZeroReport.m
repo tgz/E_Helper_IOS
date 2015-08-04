@@ -277,11 +277,6 @@
     }
     NSLog(@"Return String is ======⬇️⬇️⬇️\n%@",result);
     
-    
-    
-    
-    
-    
     [self analyseResult:responseData];
     
     NSLog(@"ZReportUserView:\n%@",self.zReportUserViewResult);
@@ -305,136 +300,9 @@
     
 }
 
-- (void)queryWithAFNetworking:(NSMutableURLRequest *)request{
-    
-    __weak typeof (self) weakSelf = self;
-    
-    AFHTTPRequestOperation *opertion = [[AFHTTPRequestOperation alloc]initWithRequest:request];
-    [opertion setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"\n\n===============================\n");
-        NSLog(@"%@",[[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding]);
-        NSData *responseData = responseObject;
-        [weakSelf analyseResult:[responseData copy]];
-        NSLog(@"ZReportUserView:\n%@",weakSelf.zReportUserViewResult);
-       
-        NSLog(@"\n\n===============================\n\n");
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"\n\n===============================\n\n");
-        NSLog(@"%@",error);
-        NSLog(@"\n\n===============================\n\n");
-        
-    }];
-    [opertion start];
-}
 
-- (NSDictionary *)queryZReportStatusV2:(NSString *)userGuid fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate{
-        NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];//实例化一个NSDateFormatter对象
-        
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];//设定时间格式,这里可以设置成自己需要的格式
-        
-        NSString *fromDateStr = [dateFormat stringFromDate:fromDate];
-        NSString *toDateStr = [dateFormat stringFromDate:toDate];
-        NSString *validateData = [VerifyTool CreateNewToken];
-        NSString *soapMessage = [NSString stringWithFormat:@"<v:Envelope xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:d=\"http://www.w3.org/2001/XMLSchema\" xmlns:c=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:v=\"http://schemas.xmlsoap.org/soap/envelope/\"><v:Header /><v:Body><ZReport_UserView xmlns=\"http://tempuri.org/\" id=\"o0\" c:root=\"1\"><ValidateData i:type=\"d:string\">%@</ValidateData><ParasXml i:type=\"d:string\">&lt;?xml version=\"1.0\" encoding=\"gb2312\"?&gt;&lt;paras&gt;&lt;UserGuid&gt;%@&lt;/UserGuid&gt;&lt;StartDate&gt;%@&lt;/StartDate&gt;&lt;EndDate&gt;%@&lt;/EndDate&gt;&lt;IsShowContent&gt;1&lt;/IsShowContent&gt;&lt;/paras&gt;</ParasXml></ZReport_UserView></v:Body></v:Envelope>",validateData,userGuid,fromDateStr,toDateStr];
-        
-        NSLog(@"零报告查询：%@,%@ ~ %@",userGuid,fromDateStr,toDateStr);
-        
-        
-        NSString *address =@"http://oa.epoint.com.cn/ZreportServiceV2/ZreportServer.asmx";
-        NSURL* url = [NSURL URLWithString:address];
-        NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
-        
-        
-        
-        // 然后就是text/xml, 和content-Length必须有。
-        [theRequest addValue: @"text/xml; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
-        NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
-        [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
-        // 下面这行， 后面SOAPAction是规范， 而下面这个网址来自哪里呢，来自于上面加红加粗的部分。
-        [theRequest addValue: @"http://tempuri.org/ZReport_UserView" forHTTPHeaderField:@"SOAPAction"];
-        [theRequest setHTTPMethod:@"POST"];
-        [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
-        
-     /** AFNetworking 第一版----manager
-      *由于Header问题，更改为使用AFHTTPRequestOperation
-      
-     //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-     //    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-     //    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-     //    [manager.requestSerializer setValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-     //    [manager.requestSerializer setValue:msgLength forHTTPHeaderField:@"Content-Length"];
-     //    [manager.requestSerializer setValue:@"http://tempuri.org/ZReport_UserView" forHTTPHeaderField:@"SOAPAction"];
-     //    [manager POST:address parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-     //        [formData appendPartWithHeaders:[NSDictionary dictionaryWithObjects:@[@"Content-Type"
-     //                                                                              ,@"Content-Length"
-     //                                                                              ,@"SOAPAction"]
-     //                                                                    forKeys:@[@"text/xml; charset=utf-8"
-     //                                                                              ,msgLength
-     //                                                                              ,@"http://tempuri.org/ZReport_UserView"]]
-     //                                   body:[soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
-     //} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-     //        NSLog(@"\n\n===============================\n\n");
-     //        NSLog(@"%@",[[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding]);
-     //        NSLog(@"\n\n===============================\n\n");
-     //
-     //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-     //        NSLog(@"%@%@",operation.description,error);
-     //    }];
-     //    
-      
-      *
-      */
-    
-    /**AFNetworking 第二版  operation*/
-    [self queryWithAFNetworking:theRequest];
-    
-    NSLog(@"start analyse Report List ----v2");
-    [self analyseReportList];
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    
-    [self.zReportList enumerateObjectsUsingBlock:^(ZereReportEntity  __nonnull *obj, NSUInteger idx, BOOL * __nonnull stop) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy-MM-dd"];
-        NSString *key =[formatter stringFromDate:obj.recordDate];
-        
-        [dict setObject:obj forKey:key];
-        
-        NSLog(@"%@,%d",key,obj.isNullProblem);
-        
-    }];
-    return [dict copy];
-    
-    /**
-     *  原NSURLConnection使用时的解析方法
-     */
-    
-    //    [self analyseResult:responseData];
-    //
-    //    NSLog(@"ZReportUserView:\n%@",self.zReportUserViewResult);
-    //
-    //    [self analyseReportList];
-    //
-    //    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    //
-    //    [self.zReportList enumerateObjectsUsingBlock:^(ZereReportEntity  __nonnull *obj, NSUInteger idx, BOOL * __nonnull stop) {
-    //        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    //        [formatter setDateFormat:@"yyyy-MM-dd"];
-    //        NSString *key =[formatter stringFromDate:obj.recordDate];
-    //
-    //        [dict setObject:obj forKey:key];
-    //
-    //        NSLog(@"%@,%d",key,obj.isNullProblem);
-    //
-    //    }];
-    //    return [dict copy];
-    
-    
-    
-    
-}
+
+
 
 
 - (NSMutableArray *)zReportList {
