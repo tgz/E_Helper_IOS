@@ -511,6 +511,9 @@
         _user = [[User alloc]initWithNSUserDefaults];
     }
     return _user;
+
+    
+
 }
 
 

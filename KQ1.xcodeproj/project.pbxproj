@@ -22,14 +22,6 @@
 		5A3627271B67AE4D0046555E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3627261B67AE4D0046555E /* CoreGraphics.framework */; };
 		5A3627291B67AE540046555E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3627281B67AE540046555E /* Security.framework */; };
 		5A36272B1B67AFED0046555E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5A36272A1B67AFED0046555E /* mapapi.bundle */; };
-		5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */; };
-		5A78FBFA1B4AD6C100E9C38A /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FBF91B4AD6C100E9C38A /* UIColor+expanded.m */; };
-		5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC421B4ADDD100E9C38A /* FAImageView.m */; };
-		5A78FC4D1B4ADDD100E9C38A /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC441B4ADDD100E9C38A /* NSString+FontAwesome.m */; };
-		5A78FC4E1B4ADDD100E9C38A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC451B4ADDD100E9C38A /* README.md */; };
-		5A78FC4F1B4ADDD100E9C38A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A78FC471B4ADDD100E9C38A /* FontAwesome.ttf */; };
-		5A78FC501B4ADDD100E9C38A /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC491B4ADDD100E9C38A /* UIFont+FontAwesome.m */; };
-		5A78FC511B4ADDD100E9C38A /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC4B1B4ADDD100E9C38A /* UIImage+FontAwesome.m */; };
 		5A78FC571B4C0AFD00E9C38A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78FC561B4C0AFD00E9C38A /* LoginViewController.m */; };
 		5A898A241B480FFA00BECC26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A231B480FFA00BECC26 /* main.m */; };
 		5A898A271B480FFA00BECC26 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A898A261B480FFA00BECC26 /* AppDelegate.mm */; };
@@ -41,6 +33,14 @@
 		5AA8E2FA1B4EBAE500E465C3 /* VerifyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8E2F91B4EBAE500E465C3 /* VerifyTool.m */; };
 		5AA8E2FD1B4EBD9400E465C3 /* StringXMLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8E2FC1B4EBD9400E465C3 /* StringXMLTool.m */; };
 		5AA8E3001B4EC25000E465C3 /* WebserviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA8E2FF1B4EC25000E465C3 /* WebserviceHelper.m */; };
+		5ABA60221BB24054000D1F69 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA60131BB24054000D1F69 /* UIButton+Bootstrap.m */; settings = {ASSET_TAGS = (); }; };
+		5ABA60231BB24054000D1F69 /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA60151BB24054000D1F69 /* UIColor+expanded.m */; settings = {ASSET_TAGS = (); }; };
+		5ABA60241BB24054000D1F69 /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA60181BB24054000D1F69 /* FAImageView.m */; settings = {ASSET_TAGS = (); }; };
+		5ABA60251BB24054000D1F69 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA601A1BB24054000D1F69 /* NSString+FontAwesome.m */; settings = {ASSET_TAGS = (); }; };
+		5ABA60261BB24054000D1F69 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA601B1BB24054000D1F69 /* README.md */; settings = {ASSET_TAGS = (); }; };
+		5ABA60271BB24054000D1F69 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5ABA601D1BB24054000D1F69 /* FontAwesome.ttf */; settings = {ASSET_TAGS = (); }; };
+		5ABA60281BB24054000D1F69 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA601F1BB24054000D1F69 /* UIFont+FontAwesome.m */; settings = {ASSET_TAGS = (); }; };
+		5ABA60291BB24054000D1F69 /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA60211BB24054000D1F69 /* UIImage+FontAwesome.m */; settings = {ASSET_TAGS = (); }; };
 		5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B02D1B4835FB00482293 /* HomeViewController.m */; };
 		5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B0331B483C3E00482293 /* TodayViewController.m */; };
 		5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B0361B48D43200482293 /* ZeroReportViewController.m */; };
@@ -92,20 +92,6 @@
 		5A3627261B67AE4D0046555E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5A3627281B67AE540046555E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5A36272A1B67AFED0046555E /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
-		5A78FBF11B4AD23200E9C38A /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Bootstrap.h"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIButton+Bootstrap.h"; sourceTree = "<group>"; };
-		5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Bootstrap.m"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIButton+Bootstrap.m"; sourceTree = "<group>"; };
-		5A78FBF81B4AD6C100E9C38A /* UIColor+expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+expanded.h"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIColor+expanded.h"; sourceTree = "<group>"; };
-		5A78FBF91B4AD6C100E9C38A /* UIColor+expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+expanded.m"; path = "../../Coding-IOS/Coding_iOS/Util/OC_Category/UIColor+expanded.m"; sourceTree = "<group>"; };
-		5A78FC411B4ADDD100E9C38A /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
-		5A78FC421B4ADDD100E9C38A /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
-		5A78FC431B4ADDD100E9C38A /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
-		5A78FC441B4ADDD100E9C38A /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
-		5A78FC451B4ADDD100E9C38A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		5A78FC471B4ADDD100E9C38A /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
-		5A78FC481B4ADDD100E9C38A /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
-		5A78FC491B4ADDD100E9C38A /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
-		5A78FC4A1B4ADDD100E9C38A /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
-		5A78FC4B1B4ADDD100E9C38A /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
 		5A78FC551B4C0AFD00E9C38A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5A78FC561B4C0AFD00E9C38A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		5A78FC581B4C36D600E9C38A /* import.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = import.h; sourceTree = "<group>"; };
@@ -127,6 +113,20 @@
 		5AA8E2FC1B4EBD9400E465C3 /* StringXMLTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringXMLTool.m; sourceTree = "<group>"; };
 		5AA8E2FE1B4EC25000E465C3 /* WebserviceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceHelper.h; sourceTree = "<group>"; };
 		5AA8E2FF1B4EC25000E465C3 /* WebserviceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceHelper.m; sourceTree = "<group>"; };
+		5ABA60121BB24054000D1F69 /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
+		5ABA60131BB24054000D1F69 /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
+		5ABA60141BB24054000D1F69 /* UIColor+expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+expanded.h"; sourceTree = "<group>"; };
+		5ABA60151BB24054000D1F69 /* UIColor+expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+expanded.m"; sourceTree = "<group>"; };
+		5ABA60171BB24054000D1F69 /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
+		5ABA60181BB24054000D1F69 /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
+		5ABA60191BB24054000D1F69 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		5ABA601A1BB24054000D1F69 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		5ABA601B1BB24054000D1F69 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5ABA601D1BB24054000D1F69 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		5ABA601E1BB24054000D1F69 /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
+		5ABA601F1BB24054000D1F69 /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
+		5ABA60201BB24054000D1F69 /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
+		5ABA60211BB24054000D1F69 /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
 		5AE2B02C1B4835FB00482293 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		5AE2B02D1B4835FB00482293 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		5AE2B0321B483C3E00482293 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
@@ -198,47 +198,10 @@
 		5A78FBEF1B4AD1F300E9C38A /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
-				5A78FC401B4ADDD100E9C38A /* FontAwesome+iOS */,
-				5A78FBF01B4AD20100E9C38A /* Category */,
+				5ABA60111BB24054000D1F69 /* Category */,
+				5ABA60161BB24054000D1F69 /* FontAwesome+iOS */,
 			);
 			name = ThirdPart;
-			sourceTree = "<group>";
-		};
-		5A78FBF01B4AD20100E9C38A /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				5A78FBF81B4AD6C100E9C38A /* UIColor+expanded.h */,
-				5A78FBF91B4AD6C100E9C38A /* UIColor+expanded.m */,
-				5A78FBF11B4AD23200E9C38A /* UIButton+Bootstrap.h */,
-				5A78FBF21B4AD23200E9C38A /* UIButton+Bootstrap.m */,
-			);
-			name = Category;
-			sourceTree = "<group>";
-		};
-		5A78FC401B4ADDD100E9C38A /* FontAwesome+iOS */ = {
-			isa = PBXGroup;
-			children = (
-				5A78FC411B4ADDD100E9C38A /* FAImageView.h */,
-				5A78FC421B4ADDD100E9C38A /* FAImageView.m */,
-				5A78FC431B4ADDD100E9C38A /* NSString+FontAwesome.h */,
-				5A78FC441B4ADDD100E9C38A /* NSString+FontAwesome.m */,
-				5A78FC451B4ADDD100E9C38A /* README.md */,
-				5A78FC461B4ADDD100E9C38A /* Resources */,
-				5A78FC481B4ADDD100E9C38A /* UIFont+FontAwesome.h */,
-				5A78FC491B4ADDD100E9C38A /* UIFont+FontAwesome.m */,
-				5A78FC4A1B4ADDD100E9C38A /* UIImage+FontAwesome.h */,
-				5A78FC4B1B4ADDD100E9C38A /* UIImage+FontAwesome.m */,
-			);
-			name = "FontAwesome+iOS";
-			path = "../../Coding-IOS/Pods/FontAwesome+iOS";
-			sourceTree = "<group>";
-		};
-		5A78FC461B4ADDD100E9C38A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5A78FC471B4ADDD100E9C38A /* FontAwesome.ttf */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		5A898A151B480FF900BECC26 = {
@@ -321,6 +284,42 @@
 				5AF1693D1B711EDC00829619 /* XMLReader.m */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		5ABA60111BB24054000D1F69 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				5ABA60121BB24054000D1F69 /* UIButton+Bootstrap.h */,
+				5ABA60131BB24054000D1F69 /* UIButton+Bootstrap.m */,
+				5ABA60141BB24054000D1F69 /* UIColor+expanded.h */,
+				5ABA60151BB24054000D1F69 /* UIColor+expanded.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		5ABA60161BB24054000D1F69 /* FontAwesome+iOS */ = {
+			isa = PBXGroup;
+			children = (
+				5ABA60171BB24054000D1F69 /* FAImageView.h */,
+				5ABA60181BB24054000D1F69 /* FAImageView.m */,
+				5ABA60191BB24054000D1F69 /* NSString+FontAwesome.h */,
+				5ABA601A1BB24054000D1F69 /* NSString+FontAwesome.m */,
+				5ABA601B1BB24054000D1F69 /* README.md */,
+				5ABA601C1BB24054000D1F69 /* Resources */,
+				5ABA601E1BB24054000D1F69 /* UIFont+FontAwesome.h */,
+				5ABA601F1BB24054000D1F69 /* UIFont+FontAwesome.m */,
+				5ABA60201BB24054000D1F69 /* UIImage+FontAwesome.h */,
+				5ABA60211BB24054000D1F69 /* UIImage+FontAwesome.m */,
+			);
+			path = "FontAwesome+iOS";
+			sourceTree = "<group>";
+		};
+		5ABA601C1BB24054000D1F69 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5ABA601D1BB24054000D1F69 /* FontAwesome.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		5AD8113F1B4AC4AE00142CC6 /* Controller */ = {
@@ -506,8 +505,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AA097B91B63E73800C0FEB9 /* ZeroReportViewController.xib in Resources */,
+				5ABA60271BB24054000D1F69 /* FontAwesome.ttf in Resources */,
 				5AE2B0451B48E54E00482293 /* task_selected@2x.png in Resources */,
-				5A78FC4F1B4ADDD100E9C38A /* FontAwesome.ttf in Resources */,
 				5A1656091B67BF3A00C5348F /* LocationViewController.xib in Resources */,
 				5AE2B0411B48E54E00482293 /* me_selected@2x.png in Resources */,
 				5A898A2D1B480FFA00BECC26 /* Main.storyboard in Resources */,
@@ -570,31 +569,31 @@
 			files = (
 				5AA8E2FD1B4EBD9400E465C3 /* StringXMLTool.m in Sources */,
 				5A1656081B67BF3A00C5348F /* LocationViewController.m in Sources */,
-				5A78FC4D1B4ADDD100E9C38A /* NSString+FontAwesome.m in Sources */,
-				5A78FC4C1B4ADDD100E9C38A /* FAImageView.m in Sources */,
+				5ABA60241BB24054000D1F69 /* FAImageView.m in Sources */,
+				5ABA60291BB24054000D1F69 /* UIImage+FontAwesome.m in Sources */,
 				5AE2B0341B483C3E00482293 /* TodayViewController.m in Sources */,
 				5AEC90531B5EA06A00C35FA3 /* ZereReportEntity.m in Sources */,
 				5AEC904D1B5D53A200C35FA3 /* UserDal.m in Sources */,
+				5ABA60251BB24054000D1F69 /* NSString+FontAwesome.m in Sources */,
 				5A0B05D71B5AAEB000298DBA /* KQ1.xcdatamodeld in Sources */,
 				5AA8E3001B4EC25000E465C3 /* WebserviceHelper.m in Sources */,
 				5AE2B0371B48D43200482293 /* ZeroReportViewController.m in Sources */,
 				5A78FC571B4C0AFD00E9C38A /* LoginViewController.m in Sources */,
+				5ABA60281BB24054000D1F69 /* UIFont+FontAwesome.m in Sources */,
 				5AF1693E1B711EDC00829619 /* XMLReader.m in Sources */,
-				5A78FBFA1B4AD6C100E9C38A /* UIColor+expanded.m in Sources */,
-				5A78FBF31B4AD23200E9C38A /* UIButton+Bootstrap.m in Sources */,
 				5AA8E2FA1B4EBAE500E465C3 /* VerifyTool.m in Sources */,
 				5AE7539D1B4ACB4C00D21BD4 /* User.m in Sources */,
 				5A898A271B480FFA00BECC26 /* AppDelegate.mm in Sources */,
+				5ABA60261BB24054000D1F69 /* README.md in Sources */,
 				5A898A241B480FFA00BECC26 /* main.m in Sources */,
-				5A78FC511B4ADDD100E9C38A /* UIImage+FontAwesome.m in Sources */,
+				5ABA60231BB24054000D1F69 /* UIColor+expanded.m in Sources */,
 				5A0E2A531B528BFC00566899 /* Locator.m in Sources */,
 				5A0B05D21B57F0E900298DBA /* SwicthUserViewController.m in Sources */,
 				5AEC90501B5EA02500C35FA3 /* ZeroReport.m in Sources */,
 				5A0E2A561B52C6CE00566899 /* AttendanceRecord.m in Sources */,
-				5A78FC4E1B4ADDD100E9C38A /* README.md in Sources */,
 				5AE2B02E1B4835FB00482293 /* HomeViewController.m in Sources */,
 				5AFB222A1B54079A00CC731A /* AttendLocationViewController.m in Sources */,
-				5A78FC501B4ADDD100E9C38A /* UIFont+FontAwesome.m in Sources */,
+				5ABA60221BB24054000D1F69 /* UIButton+Bootstrap.m in Sources */,
 				5AF169381B6FBE3800829619 /* ZeroReportQuery.m in Sources */,
 				5AF2262D1B51151100F846C1 /* UserLoginResult.m in Sources */,
 			);
@@ -658,6 +657,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -702,6 +702,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -725,6 +726,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -752,6 +754,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
